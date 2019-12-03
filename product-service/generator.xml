@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+    <!-- 数据库驱动包位置 -->
+    <!-- <classPathEntry location="D:\Tools\generator\generator\mysql-connector-java-5.1.34.jar" />    -->
+    <!-- <classPathEntry location="C:\oracle\product\10.2.0\db_1\jdbc\lib\ojdbc14.jar" />-->
+    <context id="DB2Tables" targetRuntime="MyBatis3">
+        <!-- 指定生成的java文件的编码,没有直接生成到项目时中文可能会乱码 -->
+        <property name="javaFileEncoding" value="UTF-8"/>
+        <!-- <commentGenerator>  
+            <property name="suppressAllComments" value="true" />  
+        </commentGenerator>   -->
+        <!-- 数据库链接URL、用户名、密码 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://101.37.37.26:3306/morelinks_product?characterEncoding=utf8" userId="root" password="Morelinks$boyu2017">
+            <!-- 针对mysql数据库 -->
+            <property name="useInformationSchema" value="true"></property>
+            <!--<jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver" connectionURL="jdbc:oracle:thin:@localhost:1521:orcl" userId="msa" password="msa">-->
+        </jdbcConnection>
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+        <!-- 生成模型的包名和位置 com.morelinks.em.Entity.Model com.morelinks.building.monitor.model com.morelinks.cloudnew.model com.morelinks.wechat.mp.model-->
+        <javaModelGenerator targetPackage="com.morelinks.feign.micro.product.api.model" targetProject="\">
+            <property name="enableSubPackages" value="true" />
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+        <!-- 生成的映射文件包名和位置 com.morelinks.em.Entity.Mapper com.morelinks.building.monitor.mapper com.morelinks.cloudnew.mapper com.morelinks.wechat.mp.mapper-->
+        <sqlMapGenerator targetPackage="com.morelinks.service.micro.product.mapper" targetProject="\">
+            <property name="enableSubPackages" value="true" />
+        </sqlMapGenerator>
+        <!-- 生成DAO的包名和位置 -->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.morelinks.service.micro.product.mapper" targetProject="\" createType="BaseMapperWithQueryPage">
+            <property name="enableSubPackages" value="true" />
+            <property name="rootExtendsInterface" value="com.morelinks.core.mapper.BaseMapperWithQueryPage" />
+        </javaClientGenerator>
+        <!-- 生成Service的包名和位置 -->
+        <javaServiceGenerator type="XMLMAPPER" targetPackage="com.morelinks.service.micro.product.service" targetProject="\" >
+            <property name="rootExtendsClass" value="com.morelinks.core.service.BaseServiceWithQueryPage" />
+        </javaServiceGenerator>
+        <table schema="" tableName="discount_info" domainObjectName="DiscountInfo" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" >
+            <columnOverride column="condition_type" javaType="java.lang.Integer" jdbcType="TINYINT" />
+        </table>
+        <table schema="" tableName="product_supplier" domainObjectName="ProductSupplier" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" >
+            <columnOverride column="supplier_status" javaType="java.lang.Integer" jdbcType="TINYINT" />
+        </table>
+        <table schema="" tableName="product_info" domainObjectName="ProductInfo" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" >
+            <columnOverride column="product_status" javaType="java.lang.Integer" jdbcType="TINYINT" />
+        </table>
+        <table schema="" tableName="product_model" domainObjectName="ProductModel" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" >
+            <columnOverride column="model_status" javaType="java.lang.Integer" jdbcType="TINYINT" />
+            <columnOverride column="is_agent_sale" javaType="java.lang.Integer" jdbcType="TINYINT" />
+            <columnOverride column="need_purchase" javaType="java.lang.Integer" jdbcType="TINYINT" />
+        </table>
+        <table schema="" tableName="product_stock_info" domainObjectName="ProductStockInfo" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" >
+        </table>
+        <table schema="" tableName="product_category" domainObjectName="ProductCategory" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" >
+            <columnOverride column="category_status" javaType="java.lang.Integer" jdbcType="TINYINT" />
+        </table>
+        <table schema="" tableName="product_brand" domainObjectName="ProductBrand" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" >
+            <columnOverride column="brand_status" javaType="java.lang.Integer" jdbcType="TINYINT" />
+        </table>
+        <table schema="" tableName="product_img" domainObjectName="ProductImg" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" >
+            <columnOverride column="show_status" javaType="java.lang.Integer" jdbcType="TINYINT" />
+            <columnOverride column="del_status" javaType="java.lang.Integer" jdbcType="TINYINT" />
+        </table>
+        <table schema="" tableName="product" domainObjectName="Product" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" >
+            <columnOverride column="product_status" javaType="java.lang.Integer" jdbcType="TINYINT" />
+            <columnOverride column="is_agent_sale" javaType="java.lang.Integer" jdbcType="TINYINT" />
+            <columnOverride column="need_purchase" javaType="java.lang.Integer" jdbcType="TINYINT" />
+            <columnOverride column="deduce_goods_account" javaType="java.lang.Integer" jdbcType="TINYINT" />
+            <columnOverride column="del_status" javaType="java.lang.Integer" jdbcType="TINYINT" />
+            <columnOverride column="config_order_export_status" javaType="java.lang.Integer" jdbcType="TINYINT" />
+        </table>
+        <table schema="" tableName="product_property" domainObjectName="ProductProperty" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" >
+            <columnOverride column="property_status" javaType="java.lang.Integer" jdbcType="TINYINT" />
+        </table>
+        <table schema="" tableName="product_property_type" domainObjectName="ProductPropertyType" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" >
+            <columnOverride column="property_type_status" javaType="java.lang.Integer" jdbcType="TINYINT" />
+        </table>
+        <table schema="" tableName="product_base_config" domainObjectName="ProductBaseConfig" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" >
+        </table>
+        <table schema="" tableName="product_extra_info" domainObjectName="ProductExtraInfo" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" >
+            <columnOverride column="extra_type" javaType="java.lang.Integer" jdbcType="TINYINT" />
+            <columnOverride column="introduce" javaType="java.lang.String" jdbcType="VARCHAR" />
+            <columnOverride column="parameters_intro" javaType="java.lang.String" jdbcType="VARCHAR" />
+            <columnOverride column="after_sale_intro" javaType="java.lang.String" jdbcType="VARCHAR" />
+        </table>
+
+        <table schema="" tableName="config_category" domainObjectName="ConfigCategory" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" >
+        </table>
+        <table schema="" tableName="config_product" domainObjectName="ConfigProduct" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" >
+            <columnOverride column="product_status" javaType="java.lang.Integer" jdbcType="TINYINT" />
+            <columnOverride column="product_resume" javaType="java.lang.String" jdbcType="VARCHAR" />
+        </table>
+        <table schema="" tableName="config_product_agent_extra" domainObjectName="ConfigProductAgentExtra" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" >
+        </table>
+        <!--<table schema="" tableName="config_product_category_map" domainObjectName="ConfigProductCategoryMap" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" >-->
+            <!--<columnOverride column="map_type" javaType="java.lang.Integer" jdbcType="TINYINT" />-->
+            <!--<columnOverride column="print_status" javaType="java.lang.Integer" jdbcType="TINYINT" />-->
+            <!--<columnOverride column="map_status" javaType="java.lang.Integer" jdbcType="TINYINT" />-->
+        <!--</table>-->
+        <table schema="" tableName="config_product_property" domainObjectName="ConfigProductProperty" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" >
+            <columnOverride column="property_status" javaType="java.lang.Integer" jdbcType="TINYINT" />
+        </table>
+        <table schema="" tableName="config_product_property_map" domainObjectName="ConfigProductPropertyMap" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" >
+            <columnOverride column="map_type" javaType="java.lang.Integer" jdbcType="TINYINT" />
+            <columnOverride column="need_offer_status" javaType="java.lang.Integer" jdbcType="TINYINT" />
+        </table>
+    </context>
+</generatorConfiguration>  

@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morelinks.service.micro.product.mapper.ProductPropertyTypeMapper" >
+  <resultMap id="BaseResultMap" type="com.morelinks.feign.micro.product.api.model.ProductPropertyType" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="model_id" property="modelId" jdbcType="INTEGER" />
+    <result column="property_type_name" property="propertyTypeName" jdbcType="VARCHAR" />
+    <result column="property_type_desc" property="propertyTypeDesc" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="property_type_status" property="propertyTypeStatus" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, model_id, property_type_name, property_type_desc, create_time, update_time, property_type_status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from product_property_type
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from product_property_type
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.morelinks.feign.micro.product.api.model.ProductPropertyType" >
+    insert into product_property_type (id, model_id, property_type_name, 
+      property_type_desc, create_time, update_time, 
+      property_type_status)
+    values (#{id,jdbcType=INTEGER}, #{modelId,jdbcType=INTEGER}, #{propertyTypeName,jdbcType=VARCHAR}, 
+      #{propertyTypeDesc,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{propertyTypeStatus,jdbcType=TINYINT})
+    <selectKey keyProperty="id" order="AFTER" resultType="int" >
+      SELECT LAST_INSERT_ID() AS ID
+    </selectKey>
+  </insert>
+  <insert id="insertSelective" parameterType="com.morelinks.feign.micro.product.api.model.ProductPropertyType" >
+    insert into product_property_type
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="modelId != null" >
+        model_id,
+      </if>
+      <if test="propertyTypeName != null" >
+        property_type_name,
+      </if>
+      <if test="propertyTypeDesc != null" >
+        property_type_desc,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="propertyTypeStatus != null" >
+        property_type_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="modelId != null" >
+        #{modelId,jdbcType=INTEGER},
+      </if>
+      <if test="propertyTypeName != null" >
+        #{propertyTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyTypeDesc != null" >
+        #{propertyTypeDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="propertyTypeStatus != null" >
+        #{propertyTypeStatus,jdbcType=TINYINT},
+      </if>
+    </trim>
+    <selectKey keyProperty="id" order="AFTER" resultType="int" >
+      SELECT LAST_INSERT_ID() AS ID
+    </selectKey>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.morelinks.feign.micro.product.api.model.ProductPropertyType" >
+    update product_property_type
+    <set >
+      <if test="modelId != null" >
+        model_id = #{modelId,jdbcType=INTEGER},
+      </if>
+      <if test="propertyTypeName != null" >
+        property_type_name = #{propertyTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="propertyTypeDesc != null" >
+        property_type_desc = #{propertyTypeDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="propertyTypeStatus != null" >
+        property_type_status = #{propertyTypeStatus,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.morelinks.feign.micro.product.api.model.ProductPropertyType" >
+    update product_property_type
+    set model_id = #{modelId,jdbcType=INTEGER},
+      property_type_name = #{propertyTypeName,jdbcType=VARCHAR},
+      property_type_desc = #{propertyTypeDesc,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      property_type_status = #{propertyTypeStatus,jdbcType=TINYINT}
+    <where >
+      id = #{id,jdbcType=INTEGER}
+    </where>
+  </update>
+  <select id="queryPageResult" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from 
+    product_property_type
+    <where >
+      <if test="condition.id != null" >
+        and id = #{condition.id,jdbcType=INTEGER}
+      </if>
+      <if test="condition.modelId != null" >
+        and model_id = #{condition.modelId,jdbcType=INTEGER}
+      </if>
+      <if test="condition.propertyTypeName != null and condition.propertyTypeName != ''" >
+        and property_type_name = #{condition.propertyTypeName,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.propertyTypeDesc != null and condition.propertyTypeDesc != ''" >
+        and property_type_desc = #{condition.propertyTypeDesc,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.createTime != null" >
+        and create_time = #{condition.createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.updateTime != null" >
+        and update_time = #{condition.updateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.propertyTypeStatus != null" >
+        and property_type_status = #{condition.propertyTypeStatus,jdbcType=TINYINT}
+      </if>
+    </where>
+    <if test="page.sort != null and page.sort != ''" >
+      ORDER BY ${page.sort} ${page.order}
+    </if>
+    <if test="page != null" >
+      limit #{page.offset}, #{page.limit}
+    </if>
+  </select>
+  <select id="queryPageResultCount" resultType="int" >
+    select count(*) from 
+    product_property_type
+    <where >
+      <if test="condition.id != null" >
+        and id = #{condition.id,jdbcType=INTEGER}
+      </if>
+      <if test="condition.modelId != null" >
+        and model_id = #{condition.modelId,jdbcType=INTEGER}
+      </if>
+      <if test="condition.propertyTypeName != null and condition.propertyTypeName != ''" >
+        and property_type_name = #{condition.propertyTypeName,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.propertyTypeDesc != null and condition.propertyTypeDesc != ''" >
+        and property_type_desc = #{condition.propertyTypeDesc,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.createTime != null" >
+        and create_time = #{condition.createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.updateTime != null" >
+        and update_time = #{condition.updateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.propertyTypeStatus != null" >
+        and property_type_status = #{condition.propertyTypeStatus,jdbcType=TINYINT}
+      </if>
+    </where>
+  </select>
+</mapper>

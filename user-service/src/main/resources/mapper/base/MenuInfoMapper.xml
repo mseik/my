@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morelinks.service.micro.inner.user.mapper.MenuInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.morelinks.feign.micro.inner.user.api.model.MenuInfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="route_id" property="routeId" jdbcType="INTEGER" />
+    <result column="system_type" property="systemType" jdbcType="TINYINT" />
+    <result column="system_id" property="systemId" jdbcType="INTEGER" />
+    <result column="menu_type" property="menuType" jdbcType="TINYINT" />
+    <result column="menu_name" property="menuName" jdbcType="VARCHAR" />
+    <result column="menu_desc" property="menuDesc" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="icon" property="icon" jdbcType="VARCHAR" />
+    <result column="sort" property="sort" jdbcType="INTEGER" />
+    <result column="parent_id" property="parentId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, route_id, system_type, system_id, menu_type, menu_name, menu_desc, create_time, 
+    update_time, icon, sort, parent_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from menu_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from menu_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.morelinks.feign.micro.inner.user.api.model.MenuInfo" >
+    insert into menu_info (id, route_id, system_type, 
+      system_id, menu_type, menu_name, 
+      menu_desc, create_time, update_time, 
+      icon, sort, parent_id
+      )
+    values (#{id,jdbcType=INTEGER}, #{routeId,jdbcType=INTEGER}, #{systemType,jdbcType=TINYINT}, 
+      #{systemId,jdbcType=INTEGER}, #{menuType,jdbcType=TINYINT}, #{menuName,jdbcType=VARCHAR}, 
+      #{menuDesc,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{icon,jdbcType=VARCHAR}, #{sort,jdbcType=INTEGER}, #{parentId,jdbcType=INTEGER}
+      )
+    <selectKey keyProperty="id" order="AFTER" resultType="int" >
+      SELECT LAST_INSERT_ID() AS ID
+    </selectKey>
+  </insert>
+  <insert id="insertSelective" parameterType="com.morelinks.feign.micro.inner.user.api.model.MenuInfo" >
+    insert into menu_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="routeId != null" >
+        route_id,
+      </if>
+      <if test="systemType != null" >
+        system_type,
+      </if>
+      <if test="systemId != null" >
+        system_id,
+      </if>
+      <if test="menuType != null" >
+        menu_type,
+      </if>
+      <if test="menuName != null" >
+        menu_name,
+      </if>
+      <if test="menuDesc != null" >
+        menu_desc,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="icon != null" >
+        icon,
+      </if>
+      <if test="sort != null" >
+        sort,
+      </if>
+      <if test="parentId != null" >
+        parent_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="routeId != null" >
+        #{routeId,jdbcType=INTEGER},
+      </if>
+      <if test="systemType != null" >
+        #{systemType,jdbcType=TINYINT},
+      </if>
+      <if test="systemId != null" >
+        #{systemId,jdbcType=INTEGER},
+      </if>
+      <if test="menuType != null" >
+        #{menuType,jdbcType=TINYINT},
+      </if>
+      <if test="menuName != null" >
+        #{menuName,jdbcType=VARCHAR},
+      </if>
+      <if test="menuDesc != null" >
+        #{menuDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="icon != null" >
+        #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=INTEGER},
+      </if>
+    </trim>
+    <selectKey keyProperty="id" order="AFTER" resultType="int" >
+      SELECT LAST_INSERT_ID() AS ID
+    </selectKey>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.morelinks.feign.micro.inner.user.api.model.MenuInfo" >
+    update menu_info
+    <set >
+      <if test="routeId != null" >
+        route_id = #{routeId,jdbcType=INTEGER},
+      </if>
+      <if test="systemType != null" >
+        system_type = #{systemType,jdbcType=TINYINT},
+      </if>
+      <if test="systemId != null" >
+        system_id = #{systemId,jdbcType=INTEGER},
+      </if>
+      <if test="menuType != null" >
+        menu_type = #{menuType,jdbcType=TINYINT},
+      </if>
+      <if test="menuName != null" >
+        menu_name = #{menuName,jdbcType=VARCHAR},
+      </if>
+      <if test="menuDesc != null" >
+        menu_desc = #{menuDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="icon != null" >
+        icon = #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="sort != null" >
+        sort = #{sort,jdbcType=INTEGER},
+      </if>
+      <if test="parentId != null" >
+        parent_id = #{parentId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.morelinks.feign.micro.inner.user.api.model.MenuInfo" >
+    update menu_info
+    set route_id = #{routeId,jdbcType=INTEGER},
+      system_type = #{systemType,jdbcType=TINYINT},
+      system_id = #{systemId,jdbcType=INTEGER},
+      menu_type = #{menuType,jdbcType=TINYINT},
+      menu_name = #{menuName,jdbcType=VARCHAR},
+      menu_desc = #{menuDesc,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      icon = #{icon,jdbcType=VARCHAR},
+      sort = #{sort,jdbcType=INTEGER},
+      parent_id = #{parentId,jdbcType=INTEGER}
+    <where >
+      id = #{id,jdbcType=INTEGER}
+    </where>
+  </update>
+  <select id="queryPageResult" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from 
+    menu_info
+    <where >
+      <if test="condition.id != null" >
+        and id = #{condition.id,jdbcType=INTEGER}
+      </if>
+      <if test="condition.routeId != null" >
+        and route_id = #{condition.routeId,jdbcType=INTEGER}
+      </if>
+      <if test="condition.systemType != null" >
+        and system_type = #{condition.systemType,jdbcType=TINYINT}
+      </if>
+      <if test="condition.systemId != null" >
+        and system_id = #{condition.systemId,jdbcType=INTEGER}
+      </if>
+      <if test="condition.menuType != null" >
+        and menu_type = #{condition.menuType,jdbcType=TINYINT}
+      </if>
+      <if test="condition.menuName != null and condition.menuName != ''" >
+        and menu_name = #{condition.menuName,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.menuDesc != null and condition.menuDesc != ''" >
+        and menu_desc = #{condition.menuDesc,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.createTime != null" >
+        and create_time = #{condition.createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.updateTime != null" >
+        and update_time = #{condition.updateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.icon != null and condition.icon != ''" >
+        and icon = #{condition.icon,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.sort != null" >
+        and sort = #{condition.sort,jdbcType=INTEGER}
+      </if>
+      <if test="condition.parentId != null" >
+        and parent_id = #{condition.parentId,jdbcType=INTEGER}
+      </if>
+    </where>
+    <if test="page.sort != null and page.sort != ''" >
+      ORDER BY ${page.sort} ${page.order}
+    </if>
+    <if test="page != null" >
+      limit #{page.offset}, #{page.limit}
+    </if>
+  </select>
+  <select id="queryPageResultCount" resultType="int" >
+    select count(*) from 
+    menu_info
+    <where >
+      <if test="condition.id != null" >
+        and id = #{condition.id,jdbcType=INTEGER}
+      </if>
+      <if test="condition.routeId != null" >
+        and route_id = #{condition.routeId,jdbcType=INTEGER}
+      </if>
+      <if test="condition.systemType != null" >
+        and system_type = #{condition.systemType,jdbcType=TINYINT}
+      </if>
+      <if test="condition.systemId != null" >
+        and system_id = #{condition.systemId,jdbcType=INTEGER}
+      </if>
+      <if test="condition.menuType != null" >
+        and menu_type = #{condition.menuType,jdbcType=TINYINT}
+      </if>
+      <if test="condition.menuName != null and condition.menuName != ''" >
+        and menu_name = #{condition.menuName,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.menuDesc != null and condition.menuDesc != ''" >
+        and menu_desc = #{condition.menuDesc,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.createTime != null" >
+        and create_time = #{condition.createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.updateTime != null" >
+        and update_time = #{condition.updateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.icon != null and condition.icon != ''" >
+        and icon = #{condition.icon,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.sort != null" >
+        and sort = #{condition.sort,jdbcType=INTEGER}
+      </if>
+      <if test="condition.parentId != null" >
+        and parent_id = #{condition.parentId,jdbcType=INTEGER}
+      </if>
+    </where>
+  </select>
+</mapper>

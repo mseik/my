@@ -1,0 +1,1 @@
+java -jar F:\MoreLink\generator\mybatis-generator-core-1.3.2.jar -configfile D:\MoreLinksGitCode\service\demo\generator.xml -overwrite >1.log

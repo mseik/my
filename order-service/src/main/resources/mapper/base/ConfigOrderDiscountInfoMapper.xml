@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morelinks.service.micro.order.mapper.ConfigOrderDiscountInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.morelinks.feign.micro.order.api.model.ConfigOrderDiscountInfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="agent_id" property="agentId" jdbcType="INTEGER" />
+    <result column="config_order_id" property="configOrderId" jdbcType="VARCHAR" />
+    <result column="condition_type" property="conditionType" jdbcType="TINYINT" />
+    <result column="discount_type" property="discountType" jdbcType="TINYINT" />
+    <result column="discount_key" property="discountKey" jdbcType="VARCHAR" />
+    <result column="condition_amount" property="conditionAmount" jdbcType="DECIMAL" />
+    <result column="from_type" property="fromType" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, agent_id, config_order_id, condition_type, discount_type, discount_key, condition_amount, 
+    from_type
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from config_order_discount_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from config_order_discount_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.morelinks.feign.micro.order.api.model.ConfigOrderDiscountInfo" >
+    insert into config_order_discount_info (id, agent_id, config_order_id, 
+      condition_type, discount_type, discount_key, 
+      condition_amount, from_type)
+    values (#{id,jdbcType=INTEGER}, #{agentId,jdbcType=INTEGER}, #{configOrderId,jdbcType=VARCHAR}, 
+      #{conditionType,jdbcType=TINYINT}, #{discountType,jdbcType=TINYINT}, #{discountKey,jdbcType=VARCHAR}, 
+      #{conditionAmount,jdbcType=DECIMAL}, #{fromType,jdbcType=TINYINT})
+    <selectKey keyProperty="id" order="AFTER" resultType="int" >
+      SELECT LAST_INSERT_ID() AS ID
+    </selectKey>
+  </insert>
+  <insert id="insertSelective" parameterType="com.morelinks.feign.micro.order.api.model.ConfigOrderDiscountInfo" >
+    insert into config_order_discount_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="agentId != null" >
+        agent_id,
+      </if>
+      <if test="configOrderId != null" >
+        config_order_id,
+      </if>
+      <if test="conditionType != null" >
+        condition_type,
+      </if>
+      <if test="discountType != null" >
+        discount_type,
+      </if>
+      <if test="discountKey != null" >
+        discount_key,
+      </if>
+      <if test="conditionAmount != null" >
+        condition_amount,
+      </if>
+      <if test="fromType != null" >
+        from_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="agentId != null" >
+        #{agentId,jdbcType=INTEGER},
+      </if>
+      <if test="configOrderId != null" >
+        #{configOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="conditionType != null" >
+        #{conditionType,jdbcType=TINYINT},
+      </if>
+      <if test="discountType != null" >
+        #{discountType,jdbcType=TINYINT},
+      </if>
+      <if test="discountKey != null" >
+        #{discountKey,jdbcType=VARCHAR},
+      </if>
+      <if test="conditionAmount != null" >
+        #{conditionAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="fromType != null" >
+        #{fromType,jdbcType=TINYINT},
+      </if>
+    </trim>
+    <selectKey keyProperty="id" order="AFTER" resultType="int" >
+      SELECT LAST_INSERT_ID() AS ID
+    </selectKey>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.morelinks.feign.micro.order.api.model.ConfigOrderDiscountInfo" >
+    update config_order_discount_info
+    <set >
+      <if test="agentId != null" >
+        agent_id = #{agentId,jdbcType=INTEGER},
+      </if>
+      <if test="configOrderId != null" >
+        config_order_id = #{configOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="conditionType != null" >
+        condition_type = #{conditionType,jdbcType=TINYINT},
+      </if>
+      <if test="discountType != null" >
+        discount_type = #{discountType,jdbcType=TINYINT},
+      </if>
+      <if test="discountKey != null" >
+        discount_key = #{discountKey,jdbcType=VARCHAR},
+      </if>
+      <if test="conditionAmount != null" >
+        condition_amount = #{conditionAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="fromType != null" >
+        from_type = #{fromType,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.morelinks.feign.micro.order.api.model.ConfigOrderDiscountInfo" >
+    update config_order_discount_info
+    set agent_id = #{agentId,jdbcType=INTEGER},
+      config_order_id = #{configOrderId,jdbcType=VARCHAR},
+      condition_type = #{conditionType,jdbcType=TINYINT},
+      discount_type = #{discountType,jdbcType=TINYINT},
+      discount_key = #{discountKey,jdbcType=VARCHAR},
+      condition_amount = #{conditionAmount,jdbcType=DECIMAL},
+      from_type = #{fromType,jdbcType=TINYINT}
+    <where >
+      id = #{id,jdbcType=INTEGER}
+    </where>
+  </update>
+  <select id="queryPageResult" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from 
+    config_order_discount_info
+    <where >
+      <if test="condition.id != null" >
+        and id = #{condition.id,jdbcType=INTEGER}
+      </if>
+      <if test="condition.agentId != null" >
+        and agent_id = #{condition.agentId,jdbcType=INTEGER}
+      </if>
+      <if test="condition.configOrderId != null and condition.configOrderId != ''" >
+        and config_order_id = #{condition.configOrderId,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.conditionType != null" >
+        and condition_type = #{condition.conditionType,jdbcType=TINYINT}
+      </if>
+      <if test="condition.discountType != null" >
+        and discount_type = #{condition.discountType,jdbcType=TINYINT}
+      </if>
+      <if test="condition.discountKey != null and condition.discountKey != ''" >
+        and discount_key = #{condition.discountKey,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.conditionAmount != null" >
+        and condition_amount = #{condition.conditionAmount,jdbcType=DECIMAL}
+      </if>
+      <if test="condition.fromType != null" >
+        and from_type = #{condition.fromType,jdbcType=TINYINT}
+      </if>
+    </where>
+    <if test="page.sort != null and page.sort != ''" >
+      ORDER BY ${page.sort} ${page.order}
+    </if>
+    <if test="page != null" >
+      limit #{page.offset}, #{page.limit}
+    </if>
+  </select>
+  <select id="queryPageResultCount" resultType="int" >
+    select count(*) from 
+    config_order_discount_info
+    <where >
+      <if test="condition.id != null" >
+        and id = #{condition.id,jdbcType=INTEGER}
+      </if>
+      <if test="condition.agentId != null" >
+        and agent_id = #{condition.agentId,jdbcType=INTEGER}
+      </if>
+      <if test="condition.configOrderId != null and condition.configOrderId != ''" >
+        and config_order_id = #{condition.configOrderId,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.conditionType != null" >
+        and condition_type = #{condition.conditionType,jdbcType=TINYINT}
+      </if>
+      <if test="condition.discountType != null" >
+        and discount_type = #{condition.discountType,jdbcType=TINYINT}
+      </if>
+      <if test="condition.discountKey != null and condition.discountKey != ''" >
+        and discount_key = #{condition.discountKey,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.conditionAmount != null" >
+        and condition_amount = #{condition.conditionAmount,jdbcType=DECIMAL}
+      </if>
+      <if test="condition.fromType != null" >
+        and from_type = #{condition.fromType,jdbcType=TINYINT}
+      </if>
+    </where>
+  </select>
+</mapper>

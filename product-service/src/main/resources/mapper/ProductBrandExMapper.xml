@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morelinks.service.micro.product.mapper.ProductBrandMapper" >
+    <select id="queryProduct" resultMap="BaseResultMap" >
+        select
+        <include refid="Base_Column_List" />
+        from
+        product_brand
+        <where >
+            <if test="condition.brandIds != null and condition.brandIds.size > 0">
+                and  id in
+                <foreach item="item" index="index" collection="condition.brandIds" open="(" separator="," close=")">
+                    #{item}</foreach>
+            </if>
+
+        </where>
+        <if test="condition.page.sort != null and condition.page.sort != ''" >
+            ORDER BY ${condition.page.sort} ${condition.page.order}
+        </if>
+        <if test="condition.page != null" >
+            limit #{condition.page.offset}, #{condition.page.limit}
+        </if>
+    </select>
+
+</mapper>

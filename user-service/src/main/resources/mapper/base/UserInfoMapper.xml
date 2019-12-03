@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morelinks.service.micro.inner.user.mapper.UserInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.morelinks.feign.micro.inner.user.api.model.UserInfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="nick_name" property="nickName" jdbcType="VARCHAR" />
+    <result column="real_name" property="realName" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="system_type" property="systemType" jdbcType="TINYINT" />
+    <result column="user_status" property="userStatus" jdbcType="TINYINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="head_img_path" property="headImgPath" jdbcType="VARCHAR" />
+    <result column="user_tel" property="userTel" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_name, nick_name, real_name, password, system_type, user_status, create_time, 
+    update_time, head_img_path, user_tel
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from user_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.morelinks.feign.micro.inner.user.api.model.UserInfo" >
+    insert into user_info (id, user_name, nick_name, 
+      real_name, password, system_type, 
+      user_status, create_time, update_time, 
+      head_img_path, user_tel)
+    values (#{id,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR}, 
+      #{realName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{systemType,jdbcType=TINYINT}, 
+      #{userStatus,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{headImgPath,jdbcType=VARCHAR}, #{userTel,jdbcType=VARCHAR})
+    <selectKey keyProperty="id" order="AFTER" resultType="int" >
+      SELECT LAST_INSERT_ID() AS ID
+    </selectKey>
+  </insert>
+  <insert id="insertSelective" parameterType="com.morelinks.feign.micro.inner.user.api.model.UserInfo" >
+    insert into user_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="nickName != null" >
+        nick_name,
+      </if>
+      <if test="realName != null" >
+        real_name,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="systemType != null" >
+        system_type,
+      </if>
+      <if test="userStatus != null" >
+        user_status,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="headImgPath != null" >
+        head_img_path,
+      </if>
+      <if test="userTel != null" >
+        user_tel,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null" >
+        #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null" >
+        #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="systemType != null" >
+        #{systemType,jdbcType=TINYINT},
+      </if>
+      <if test="userStatus != null" >
+        #{userStatus,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="headImgPath != null" >
+        #{headImgPath,jdbcType=VARCHAR},
+      </if>
+      <if test="userTel != null" >
+        #{userTel,jdbcType=VARCHAR},
+      </if>
+    </trim>
+    <selectKey keyProperty="id" order="AFTER" resultType="int" >
+      SELECT LAST_INSERT_ID() AS ID
+    </selectKey>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.morelinks.feign.micro.inner.user.api.model.UserInfo" >
+    update user_info
+    <set >
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null" >
+        nick_name = #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="realName != null" >
+        real_name = #{realName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="systemType != null" >
+        system_type = #{systemType,jdbcType=TINYINT},
+      </if>
+      <if test="userStatus != null" >
+        user_status = #{userStatus,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="headImgPath != null" >
+        head_img_path = #{headImgPath,jdbcType=VARCHAR},
+      </if>
+      <if test="userTel != null" >
+        user_tel = #{userTel,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.morelinks.feign.micro.inner.user.api.model.UserInfo" >
+    update user_info
+    set user_name = #{userName,jdbcType=VARCHAR},
+      nick_name = #{nickName,jdbcType=VARCHAR},
+      real_name = #{realName,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      system_type = #{systemType,jdbcType=TINYINT},
+      user_status = #{userStatus,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      head_img_path = #{headImgPath,jdbcType=VARCHAR},
+      user_tel = #{userTel,jdbcType=VARCHAR}
+    <where >
+      id = #{id,jdbcType=INTEGER}
+    </where>
+  </update>
+  <select id="queryPageResult" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from 
+    user_info
+    <where >
+      <if test="condition.id != null" >
+        and id = #{condition.id,jdbcType=INTEGER}
+      </if>
+      <if test="condition.userName != null and condition.userName != ''" >
+        and user_name = #{condition.userName,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.nickName != null and condition.nickName != ''" >
+        and nick_name = #{condition.nickName,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.realName != null and condition.realName != ''" >
+        and real_name = #{condition.realName,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.password != null and condition.password != ''" >
+        and password = #{condition.password,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.systemType != null" >
+        and system_type = #{condition.systemType,jdbcType=TINYINT}
+      </if>
+      <if test="condition.userStatus != null" >
+        and user_status = #{condition.userStatus,jdbcType=TINYINT}
+      </if>
+      <if test="condition.createTime != null" >
+        and create_time = #{condition.createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.updateTime != null" >
+        and update_time = #{condition.updateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.headImgPath != null and condition.headImgPath != ''" >
+        and head_img_path = #{condition.headImgPath,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.userTel != null and condition.userTel != ''" >
+        and user_tel = #{condition.userTel,jdbcType=VARCHAR}
+      </if>
+    </where>
+    <if test="page.sort != null and page.sort != ''" >
+      ORDER BY ${page.sort} ${page.order}
+    </if>
+    <if test="page != null" >
+      limit #{page.offset}, #{page.limit}
+    </if>
+  </select>
+  <select id="queryPageResultCount" resultType="int" >
+    select count(*) from 
+    user_info
+    <where >
+      <if test="condition.id != null" >
+        and id = #{condition.id,jdbcType=INTEGER}
+      </if>
+      <if test="condition.userName != null and condition.userName != ''" >
+        and user_name = #{condition.userName,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.nickName != null and condition.nickName != ''" >
+        and nick_name = #{condition.nickName,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.realName != null and condition.realName != ''" >
+        and real_name = #{condition.realName,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.password != null and condition.password != ''" >
+        and password = #{condition.password,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.systemType != null" >
+        and system_type = #{condition.systemType,jdbcType=TINYINT}
+      </if>
+      <if test="condition.userStatus != null" >
+        and user_status = #{condition.userStatus,jdbcType=TINYINT}
+      </if>
+      <if test="condition.createTime != null" >
+        and create_time = #{condition.createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.updateTime != null" >
+        and update_time = #{condition.updateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.headImgPath != null and condition.headImgPath != ''" >
+        and head_img_path = #{condition.headImgPath,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.userTel != null and condition.userTel != ''" >
+        and user_tel = #{condition.userTel,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </select>
+</mapper>

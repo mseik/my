@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morelinks.service.micro.product.mapper.DiscountInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.morelinks.feign.micro.product.api.model.DiscountInfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="discount_type" property="discountType" jdbcType="INTEGER" />
+    <result column="discount_key" property="discountKey" jdbcType="VARCHAR" />
+    <result column="member_min_level" property="memberMinLevel" jdbcType="INTEGER" />
+    <result column="member_max_level" property="memberMaxLevel" jdbcType="INTEGER" />
+    <result column="valid_start_time" property="validStartTime" jdbcType="TIMESTAMP" />
+    <result column="valid_end_time" property="validEndTime" jdbcType="TIMESTAMP" />
+    <result column="discount_status" property="discountStatus" jdbcType="INTEGER" />
+    <result column="create_user" property="createUser" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="discount_name" property="discountName" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="discount_num" property="discountNum" jdbcType="INTEGER" />
+    <result column="discount_amount" property="discountAmount" jdbcType="DECIMAL" />
+    <result column="condition_amount" property="conditionAmount" jdbcType="DECIMAL" />
+    <result column="condition_type" property="conditionType" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, discount_type, discount_key, member_min_level, member_max_level, valid_start_time, 
+    valid_end_time, discount_status, create_user, create_time, update_time, discount_name, 
+    remark, discount_num, discount_amount, condition_amount, condition_type
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from discount_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from discount_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.morelinks.feign.micro.product.api.model.DiscountInfo" >
+    insert into discount_info (id, discount_type, discount_key, 
+      member_min_level, member_max_level, valid_start_time, 
+      valid_end_time, discount_status, create_user, 
+      create_time, update_time, discount_name, 
+      remark, discount_num, discount_amount, 
+      condition_amount, condition_type)
+    values (#{id,jdbcType=INTEGER}, #{discountType,jdbcType=INTEGER}, #{discountKey,jdbcType=VARCHAR}, 
+      #{memberMinLevel,jdbcType=INTEGER}, #{memberMaxLevel,jdbcType=INTEGER}, #{validStartTime,jdbcType=TIMESTAMP}, 
+      #{validEndTime,jdbcType=TIMESTAMP}, #{discountStatus,jdbcType=INTEGER}, #{createUser,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{discountName,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{discountNum,jdbcType=INTEGER}, #{discountAmount,jdbcType=DECIMAL}, 
+      #{conditionAmount,jdbcType=DECIMAL}, #{conditionType,jdbcType=TINYINT})
+    <selectKey keyProperty="id" order="AFTER" resultType="int" >
+      SELECT LAST_INSERT_ID() AS ID
+    </selectKey>
+  </insert>
+  <insert id="insertSelective" parameterType="com.morelinks.feign.micro.product.api.model.DiscountInfo" >
+    insert into discount_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="discountType != null" >
+        discount_type,
+      </if>
+      <if test="discountKey != null" >
+        discount_key,
+      </if>
+      <if test="memberMinLevel != null" >
+        member_min_level,
+      </if>
+      <if test="memberMaxLevel != null" >
+        member_max_level,
+      </if>
+      <if test="validStartTime != null" >
+        valid_start_time,
+      </if>
+      <if test="validEndTime != null" >
+        valid_end_time,
+      </if>
+      <if test="discountStatus != null" >
+        discount_status,
+      </if>
+      <if test="createUser != null" >
+        create_user,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="discountName != null" >
+        discount_name,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="discountNum != null" >
+        discount_num,
+      </if>
+      <if test="discountAmount != null" >
+        discount_amount,
+      </if>
+      <if test="conditionAmount != null" >
+        condition_amount,
+      </if>
+      <if test="conditionType != null" >
+        condition_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="discountType != null" >
+        #{discountType,jdbcType=INTEGER},
+      </if>
+      <if test="discountKey != null" >
+        #{discountKey,jdbcType=VARCHAR},
+      </if>
+      <if test="memberMinLevel != null" >
+        #{memberMinLevel,jdbcType=INTEGER},
+      </if>
+      <if test="memberMaxLevel != null" >
+        #{memberMaxLevel,jdbcType=INTEGER},
+      </if>
+      <if test="validStartTime != null" >
+        #{validStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="validEndTime != null" >
+        #{validEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="discountStatus != null" >
+        #{discountStatus,jdbcType=INTEGER},
+      </if>
+      <if test="createUser != null" >
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="discountName != null" >
+        #{discountName,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="discountNum != null" >
+        #{discountNum,jdbcType=INTEGER},
+      </if>
+      <if test="discountAmount != null" >
+        #{discountAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="conditionAmount != null" >
+        #{conditionAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="conditionType != null" >
+        #{conditionType,jdbcType=TINYINT},
+      </if>
+    </trim>
+    <selectKey keyProperty="id" order="AFTER" resultType="int" >
+      SELECT LAST_INSERT_ID() AS ID
+    </selectKey>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.morelinks.feign.micro.product.api.model.DiscountInfo" >
+    update discount_info
+    <set >
+      <if test="discountType != null" >
+        discount_type = #{discountType,jdbcType=INTEGER},
+      </if>
+      <if test="discountKey != null" >
+        discount_key = #{discountKey,jdbcType=VARCHAR},
+      </if>
+      <if test="memberMinLevel != null" >
+        member_min_level = #{memberMinLevel,jdbcType=INTEGER},
+      </if>
+      <if test="memberMaxLevel != null" >
+        member_max_level = #{memberMaxLevel,jdbcType=INTEGER},
+      </if>
+      <if test="validStartTime != null" >
+        valid_start_time = #{validStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="validEndTime != null" >
+        valid_end_time = #{validEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="discountStatus != null" >
+        discount_status = #{discountStatus,jdbcType=INTEGER},
+      </if>
+      <if test="createUser != null" >
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="discountName != null" >
+        discount_name = #{discountName,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="discountNum != null" >
+        discount_num = #{discountNum,jdbcType=INTEGER},
+      </if>
+      <if test="discountAmount != null" >
+        discount_amount = #{discountAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="conditionAmount != null" >
+        condition_amount = #{conditionAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="conditionType != null" >
+        condition_type = #{conditionType,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.morelinks.feign.micro.product.api.model.DiscountInfo" >
+    update discount_info
+    set discount_type = #{discountType,jdbcType=INTEGER},
+      discount_key = #{discountKey,jdbcType=VARCHAR},
+      member_min_level = #{memberMinLevel,jdbcType=INTEGER},
+      member_max_level = #{memberMaxLevel,jdbcType=INTEGER},
+      valid_start_time = #{validStartTime,jdbcType=TIMESTAMP},
+      valid_end_time = #{validEndTime,jdbcType=TIMESTAMP},
+      discount_status = #{discountStatus,jdbcType=INTEGER},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      discount_name = #{discountName,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      discount_num = #{discountNum,jdbcType=INTEGER},
+      discount_amount = #{discountAmount,jdbcType=DECIMAL},
+      condition_amount = #{conditionAmount,jdbcType=DECIMAL},
+      condition_type = #{conditionType,jdbcType=TINYINT}
+    <where >
+      id = #{id,jdbcType=INTEGER}
+    </where>
+  </update>
+  <select id="queryPageResult" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from 
+    discount_info
+    <where >
+      <if test="condition.id != null" >
+        and id = #{condition.id,jdbcType=INTEGER}
+      </if>
+      <if test="condition.discountType != null" >
+        and discount_type = #{condition.discountType,jdbcType=INTEGER}
+      </if>
+      <if test="condition.discountKey != null and condition.discountKey != ''" >
+        and discount_key = #{condition.discountKey,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.memberMinLevel != null" >
+        and member_min_level = #{condition.memberMinLevel,jdbcType=INTEGER}
+      </if>
+      <if test="condition.memberMaxLevel != null" >
+        and member_max_level = #{condition.memberMaxLevel,jdbcType=INTEGER}
+      </if>
+      <if test="condition.validStartTime != null" >
+        and valid_start_time = #{condition.validStartTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.validEndTime != null" >
+        and valid_end_time = #{condition.validEndTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.discountStatus != null" >
+        and discount_status = #{condition.discountStatus,jdbcType=INTEGER}
+      </if>
+      <if test="condition.createUser != null and condition.createUser != ''" >
+        and create_user = #{condition.createUser,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.createTime != null" >
+        and create_time = #{condition.createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.updateTime != null" >
+        and update_time = #{condition.updateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.discountName != null and condition.discountName != ''" >
+        and discount_name = #{condition.discountName,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.remark != null and condition.remark != ''" >
+        and remark = #{condition.remark,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.discountNum != null" >
+        and discount_num = #{condition.discountNum,jdbcType=INTEGER}
+      </if>
+      <if test="condition.discountAmount != null" >
+        and discount_amount = #{condition.discountAmount,jdbcType=DECIMAL}
+      </if>
+      <if test="condition.conditionAmount != null" >
+        and condition_amount = #{condition.conditionAmount,jdbcType=DECIMAL}
+      </if>
+      <if test="condition.conditionType != null" >
+        and condition_type = #{condition.conditionType,jdbcType=TINYINT}
+      </if>
+    </where>
+    <if test="page.sort != null and page.sort != ''" >
+      ORDER BY ${page.sort} ${page.order}
+    </if>
+    <if test="page != null" >
+      limit #{page.offset}, #{page.limit}
+    </if>
+  </select>
+  <select id="queryPageResultCount" resultType="int" >
+    select count(*) from 
+    discount_info
+    <where >
+      <if test="condition.id != null" >
+        and id = #{condition.id,jdbcType=INTEGER}
+      </if>
+      <if test="condition.discountType != null" >
+        and discount_type = #{condition.discountType,jdbcType=INTEGER}
+      </if>
+      <if test="condition.discountKey != null and condition.discountKey != ''" >
+        and discount_key = #{condition.discountKey,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.memberMinLevel != null" >
+        and member_min_level = #{condition.memberMinLevel,jdbcType=INTEGER}
+      </if>
+      <if test="condition.memberMaxLevel != null" >
+        and member_max_level = #{condition.memberMaxLevel,jdbcType=INTEGER}
+      </if>
+      <if test="condition.validStartTime != null" >
+        and valid_start_time = #{condition.validStartTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.validEndTime != null" >
+        and valid_end_time = #{condition.validEndTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.discountStatus != null" >
+        and discount_status = #{condition.discountStatus,jdbcType=INTEGER}
+      </if>
+      <if test="condition.createUser != null and condition.createUser != ''" >
+        and create_user = #{condition.createUser,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.createTime != null" >
+        and create_time = #{condition.createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.updateTime != null" >
+        and update_time = #{condition.updateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.discountName != null and condition.discountName != ''" >
+        and discount_name = #{condition.discountName,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.remark != null and condition.remark != ''" >
+        and remark = #{condition.remark,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.discountNum != null" >
+        and discount_num = #{condition.discountNum,jdbcType=INTEGER}
+      </if>
+      <if test="condition.discountAmount != null" >
+        and discount_amount = #{condition.discountAmount,jdbcType=DECIMAL}
+      </if>
+      <if test="condition.conditionAmount != null" >
+        and condition_amount = #{condition.conditionAmount,jdbcType=DECIMAL}
+      </if>
+      <if test="condition.conditionType != null" >
+        and condition_type = #{condition.conditionType,jdbcType=TINYINT}
+      </if>
+    </where>
+  </select>
+</mapper>

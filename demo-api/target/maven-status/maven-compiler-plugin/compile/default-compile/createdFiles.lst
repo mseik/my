@@ -1,0 +1,4 @@
+com\morelinks\feign\demo\api\client\TestFeignClient.class
+com\morelinks\feign\demo\api\model\DemoName.class
+com\morelinks\feign\demo\api\DemoApiApplication.class
+com\morelinks\feign\demo\api\service\ITestController.class

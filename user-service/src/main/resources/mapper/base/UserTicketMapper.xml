@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morelinks.service.micro.inner.user.mapper.UserTicketMapper" >
+  <resultMap id="BaseResultMap" type="com.morelinks.feign.micro.inner.user.api.model.UserTicket" >
+    <id column="token" property="token" jdbcType="VARCHAR" />
+    <result column="expired" property="expired" jdbcType="TINYINT" />
+    <result column="expire_time" property="expireTime" jdbcType="TIMESTAMP" />
+    <result column="issue_time" property="issueTime" jdbcType="TIMESTAMP" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="device_id" property="deviceId" jdbcType="VARCHAR" />
+    <result column="ip_address" property="ipAddress" jdbcType="VARCHAR" />
+    <result column="extra_info" property="extraInfo" jdbcType="VARCHAR" />
+    <result column="system_id" property="systemId" jdbcType="INTEGER" />
+    <result column="system_type" property="systemType" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    token, expired, expire_time, issue_time, user_id, device_id, ip_address, extra_info, 
+    system_id, system_type
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_ticket
+    where token = #{token,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from user_ticket
+    where token = #{token,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.morelinks.feign.micro.inner.user.api.model.UserTicket" >
+    insert into user_ticket (token, expired, expire_time, 
+      issue_time, user_id, device_id, 
+      ip_address, extra_info, system_id, 
+      system_type)
+    values (#{token,jdbcType=VARCHAR}, #{expired,jdbcType=TINYINT}, #{expireTime,jdbcType=TIMESTAMP}, 
+      #{issueTime,jdbcType=TIMESTAMP}, #{userId,jdbcType=INTEGER}, #{deviceId,jdbcType=VARCHAR}, 
+      #{ipAddress,jdbcType=VARCHAR}, #{extraInfo,jdbcType=VARCHAR}, #{systemId,jdbcType=INTEGER}, 
+      #{systemType,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.morelinks.feign.micro.inner.user.api.model.UserTicket" >
+    insert into user_ticket
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="token != null" >
+        token,
+      </if>
+      <if test="expired != null" >
+        expired,
+      </if>
+      <if test="expireTime != null" >
+        expire_time,
+      </if>
+      <if test="issueTime != null" >
+        issue_time,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="deviceId != null" >
+        device_id,
+      </if>
+      <if test="ipAddress != null" >
+        ip_address,
+      </if>
+      <if test="extraInfo != null" >
+        extra_info,
+      </if>
+      <if test="systemId != null" >
+        system_id,
+      </if>
+      <if test="systemType != null" >
+        system_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="token != null" >
+        #{token,jdbcType=VARCHAR},
+      </if>
+      <if test="expired != null" >
+        #{expired,jdbcType=TINYINT},
+      </if>
+      <if test="expireTime != null" >
+        #{expireTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="issueTime != null" >
+        #{issueTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="deviceId != null" >
+        #{deviceId,jdbcType=VARCHAR},
+      </if>
+      <if test="ipAddress != null" >
+        #{ipAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="extraInfo != null" >
+        #{extraInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="systemId != null" >
+        #{systemId,jdbcType=INTEGER},
+      </if>
+      <if test="systemType != null" >
+        #{systemType,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.morelinks.feign.micro.inner.user.api.model.UserTicket" >
+    update user_ticket
+    <set >
+      <if test="expired != null" >
+        expired = #{expired,jdbcType=TINYINT},
+      </if>
+      <if test="expireTime != null" >
+        expire_time = #{expireTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="issueTime != null" >
+        issue_time = #{issueTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="deviceId != null" >
+        device_id = #{deviceId,jdbcType=VARCHAR},
+      </if>
+      <if test="ipAddress != null" >
+        ip_address = #{ipAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="extraInfo != null" >
+        extra_info = #{extraInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="systemId != null" >
+        system_id = #{systemId,jdbcType=INTEGER},
+      </if>
+      <if test="systemType != null" >
+        system_type = #{systemType,jdbcType=TINYINT},
+      </if>
+    </set>
+    where token = #{token,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.morelinks.feign.micro.inner.user.api.model.UserTicket" >
+    update user_ticket
+    set expired = #{expired,jdbcType=TINYINT},
+      expire_time = #{expireTime,jdbcType=TIMESTAMP},
+      issue_time = #{issueTime,jdbcType=TIMESTAMP},
+      user_id = #{userId,jdbcType=INTEGER},
+      device_id = #{deviceId,jdbcType=VARCHAR},
+      ip_address = #{ipAddress,jdbcType=VARCHAR},
+      extra_info = #{extraInfo,jdbcType=VARCHAR},
+      system_id = #{systemId,jdbcType=INTEGER},
+      system_type = #{systemType,jdbcType=TINYINT}
+    <where >
+      token = #{token,jdbcType=VARCHAR}
+    </where>
+  </update>
+  <select id="queryPageResult" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from 
+    user_ticket
+    <where >
+      <if test="condition.token != null and condition.token != ''" >
+        and token = #{condition.token,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.expired != null" >
+        and expired = #{condition.expired,jdbcType=TINYINT}
+      </if>
+      <if test="condition.expireTime != null" >
+        and expire_time = #{condition.expireTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.issueTime != null" >
+        and issue_time = #{condition.issueTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.userId != null" >
+        and user_id = #{condition.userId,jdbcType=INTEGER}
+      </if>
+      <if test="condition.deviceId != null and condition.deviceId != ''" >
+        and device_id = #{condition.deviceId,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.ipAddress != null and condition.ipAddress != ''" >
+        and ip_address = #{condition.ipAddress,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.extraInfo != null and condition.extraInfo != ''" >
+        and extra_info = #{condition.extraInfo,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.systemId != null" >
+        and system_id = #{condition.systemId,jdbcType=INTEGER}
+      </if>
+      <if test="condition.systemType != null" >
+        and system_type = #{condition.systemType,jdbcType=TINYINT}
+      </if>
+    </where>
+    <if test="page.sort != null and page.sort != ''" >
+      ORDER BY ${page.sort} ${page.order}
+    </if>
+    <if test="page != null" >
+      limit #{page.offset}, #{page.limit}
+    </if>
+  </select>
+  <select id="queryPageResultCount" resultType="int" >
+    select count(*) from 
+    user_ticket
+    <where >
+      <if test="condition.token != null and condition.token != ''" >
+        and token = #{condition.token,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.expired != null" >
+        and expired = #{condition.expired,jdbcType=TINYINT}
+      </if>
+      <if test="condition.expireTime != null" >
+        and expire_time = #{condition.expireTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.issueTime != null" >
+        and issue_time = #{condition.issueTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.userId != null" >
+        and user_id = #{condition.userId,jdbcType=INTEGER}
+      </if>
+      <if test="condition.deviceId != null and condition.deviceId != ''" >
+        and device_id = #{condition.deviceId,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.ipAddress != null and condition.ipAddress != ''" >
+        and ip_address = #{condition.ipAddress,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.extraInfo != null and condition.extraInfo != ''" >
+        and extra_info = #{condition.extraInfo,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.systemId != null" >
+        and system_id = #{condition.systemId,jdbcType=INTEGER}
+      </if>
+      <if test="condition.systemType != null" >
+        and system_type = #{condition.systemType,jdbcType=TINYINT}
+      </if>
+    </where>
+  </select>
+</mapper>

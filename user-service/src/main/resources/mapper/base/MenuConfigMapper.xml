@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morelinks.service.micro.inner.user.mapper.MenuConfigMapper" >
+  <resultMap id="BaseResultMap" type="com.morelinks.feign.micro.inner.user.api.model.MenuConfig" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="system_type" property="systemType" jdbcType="TINYINT" />
+    <result column="system_id" property="systemId" jdbcType="INTEGER" />
+    <result column="map_type" property="mapType" jdbcType="TINYINT" />
+    <result column="map_key" property="mapKey" jdbcType="VARCHAR" />
+    <result column="menu_id" property="menuId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, system_type, system_id, map_type, map_key, menu_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from menu_config
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from menu_config
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.morelinks.feign.micro.inner.user.api.model.MenuConfig" >
+    insert into menu_config (id, system_type, system_id, 
+      map_type, map_key, menu_id
+      )
+    values (#{id,jdbcType=INTEGER}, #{systemType,jdbcType=TINYINT}, #{systemId,jdbcType=INTEGER}, 
+      #{mapType,jdbcType=TINYINT}, #{mapKey,jdbcType=VARCHAR}, #{menuId,jdbcType=INTEGER}
+      )
+    <selectKey keyProperty="id" order="AFTER" resultType="int" >
+      SELECT LAST_INSERT_ID() AS ID
+    </selectKey>
+  </insert>
+  <insert id="insertSelective" parameterType="com.morelinks.feign.micro.inner.user.api.model.MenuConfig" >
+    insert into menu_config
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="systemType != null" >
+        system_type,
+      </if>
+      <if test="systemId != null" >
+        system_id,
+      </if>
+      <if test="mapType != null" >
+        map_type,
+      </if>
+      <if test="mapKey != null" >
+        map_key,
+      </if>
+      <if test="menuId != null" >
+        menu_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="systemType != null" >
+        #{systemType,jdbcType=TINYINT},
+      </if>
+      <if test="systemId != null" >
+        #{systemId,jdbcType=INTEGER},
+      </if>
+      <if test="mapType != null" >
+        #{mapType,jdbcType=TINYINT},
+      </if>
+      <if test="mapKey != null" >
+        #{mapKey,jdbcType=VARCHAR},
+      </if>
+      <if test="menuId != null" >
+        #{menuId,jdbcType=INTEGER},
+      </if>
+    </trim>
+    <selectKey keyProperty="id" order="AFTER" resultType="int" >
+      SELECT LAST_INSERT_ID() AS ID
+    </selectKey>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.morelinks.feign.micro.inner.user.api.model.MenuConfig" >
+    update menu_config
+    <set >
+      <if test="systemType != null" >
+        system_type = #{systemType,jdbcType=TINYINT},
+      </if>
+      <if test="systemId != null" >
+        system_id = #{systemId,jdbcType=INTEGER},
+      </if>
+      <if test="mapType != null" >
+        map_type = #{mapType,jdbcType=TINYINT},
+      </if>
+      <if test="mapKey != null" >
+        map_key = #{mapKey,jdbcType=VARCHAR},
+      </if>
+      <if test="menuId != null" >
+        menu_id = #{menuId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.morelinks.feign.micro.inner.user.api.model.MenuConfig" >
+    update menu_config
+    set system_type = #{systemType,jdbcType=TINYINT},
+      system_id = #{systemId,jdbcType=INTEGER},
+      map_type = #{mapType,jdbcType=TINYINT},
+      map_key = #{mapKey,jdbcType=VARCHAR},
+      menu_id = #{menuId,jdbcType=INTEGER}
+    <where >
+      id = #{id,jdbcType=INTEGER}
+    </where>
+  </update>
+  <select id="queryPageResult" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from 
+    menu_config
+    <where >
+      <if test="condition.id != null" >
+        and id = #{condition.id,jdbcType=INTEGER}
+      </if>
+      <if test="condition.systemType != null" >
+        and system_type = #{condition.systemType,jdbcType=TINYINT}
+      </if>
+      <if test="condition.systemId != null" >
+        and system_id = #{condition.systemId,jdbcType=INTEGER}
+      </if>
+      <if test="condition.mapType != null" >
+        and map_type = #{condition.mapType,jdbcType=TINYINT}
+      </if>
+      <if test="condition.mapKey != null and condition.mapKey != ''" >
+        and map_key = #{condition.mapKey,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.menuId != null" >
+        and menu_id = #{condition.menuId,jdbcType=INTEGER}
+      </if>
+    </where>
+    <if test="page.sort != null and page.sort != ''" >
+      ORDER BY ${page.sort} ${page.order}
+    </if>
+    <if test="page != null" >
+      limit #{page.offset}, #{page.limit}
+    </if>
+  </select>
+  <select id="queryPageResultCount" resultType="int" >
+    select count(*) from 
+    menu_config
+    <where >
+      <if test="condition.id != null" >
+        and id = #{condition.id,jdbcType=INTEGER}
+      </if>
+      <if test="condition.systemType != null" >
+        and system_type = #{condition.systemType,jdbcType=TINYINT}
+      </if>
+      <if test="condition.systemId != null" >
+        and system_id = #{condition.systemId,jdbcType=INTEGER}
+      </if>
+      <if test="condition.mapType != null" >
+        and map_type = #{condition.mapType,jdbcType=TINYINT}
+      </if>
+      <if test="condition.mapKey != null and condition.mapKey != ''" >
+        and map_key = #{condition.mapKey,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.menuId != null" >
+        and menu_id = #{condition.menuId,jdbcType=INTEGER}
+      </if>
+    </where>
+  </select>
+</mapper>

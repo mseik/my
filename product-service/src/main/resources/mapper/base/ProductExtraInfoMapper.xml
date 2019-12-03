@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morelinks.service.micro.product.mapper.ProductExtraInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.morelinks.feign.micro.product.api.model.ProductExtraInfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="extra_type" property="extraType" jdbcType="TINYINT" />
+    <result column="extra_key" property="extraKey" jdbcType="VARCHAR" />
+    <result column="introduce" property="introduce" jdbcType="VARCHAR" />
+    <result column="parameters_intro" property="parametersIntro" jdbcType="VARCHAR" />
+    <result column="after_sale_intro" property="afterSaleIntro" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, extra_type, extra_key, introduce, parameters_intro, after_sale_intro, create_time, 
+    update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from product_extra_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from product_extra_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.morelinks.feign.micro.product.api.model.ProductExtraInfo" >
+    insert into product_extra_info (id, extra_type, extra_key, 
+      introduce, parameters_intro, after_sale_intro, 
+      create_time, update_time)
+    values (#{id,jdbcType=INTEGER}, #{extraType,jdbcType=TINYINT}, #{extraKey,jdbcType=VARCHAR}, 
+      #{introduce,jdbcType=VARCHAR}, #{parametersIntro,jdbcType=VARCHAR}, #{afterSaleIntro,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+    <selectKey keyProperty="id" order="AFTER" resultType="int" >
+      SELECT LAST_INSERT_ID() AS ID
+    </selectKey>
+  </insert>
+  <insert id="insertSelective" parameterType="com.morelinks.feign.micro.product.api.model.ProductExtraInfo" >
+    insert into product_extra_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="extraType != null" >
+        extra_type,
+      </if>
+      <if test="extraKey != null" >
+        extra_key,
+      </if>
+      <if test="introduce != null" >
+        introduce,
+      </if>
+      <if test="parametersIntro != null" >
+        parameters_intro,
+      </if>
+      <if test="afterSaleIntro != null" >
+        after_sale_intro,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="extraType != null" >
+        #{extraType,jdbcType=TINYINT},
+      </if>
+      <if test="extraKey != null" >
+        #{extraKey,jdbcType=VARCHAR},
+      </if>
+      <if test="introduce != null" >
+        #{introduce,jdbcType=VARCHAR},
+      </if>
+      <if test="parametersIntro != null" >
+        #{parametersIntro,jdbcType=VARCHAR},
+      </if>
+      <if test="afterSaleIntro != null" >
+        #{afterSaleIntro,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+    <selectKey keyProperty="id" order="AFTER" resultType="int" >
+      SELECT LAST_INSERT_ID() AS ID
+    </selectKey>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.morelinks.feign.micro.product.api.model.ProductExtraInfo" >
+    update product_extra_info
+    <set >
+      <if test="extraType != null" >
+        extra_type = #{extraType,jdbcType=TINYINT},
+      </if>
+      <if test="extraKey != null" >
+        extra_key = #{extraKey,jdbcType=VARCHAR},
+      </if>
+      <if test="introduce != null" >
+        introduce = #{introduce,jdbcType=VARCHAR},
+      </if>
+      <if test="parametersIntro != null" >
+        parameters_intro = #{parametersIntro,jdbcType=VARCHAR},
+      </if>
+      <if test="afterSaleIntro != null" >
+        after_sale_intro = #{afterSaleIntro,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.morelinks.feign.micro.product.api.model.ProductExtraInfo" >
+    update product_extra_info
+    set extra_type = #{extraType,jdbcType=TINYINT},
+      extra_key = #{extraKey,jdbcType=VARCHAR},
+      introduce = #{introduce,jdbcType=VARCHAR},
+      parameters_intro = #{parametersIntro,jdbcType=VARCHAR},
+      after_sale_intro = #{afterSaleIntro,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    <where >
+      id = #{id,jdbcType=INTEGER}
+    </where>
+  </update>
+  <select id="queryPageResult" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from 
+    product_extra_info
+    <where >
+      <if test="condition.id != null" >
+        and id = #{condition.id,jdbcType=INTEGER}
+      </if>
+      <if test="condition.extraType != null" >
+        and extra_type = #{condition.extraType,jdbcType=TINYINT}
+      </if>
+      <if test="condition.extraKey != null and condition.extraKey != ''" >
+        and extra_key = #{condition.extraKey,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.introduce != null and condition.introduce != ''" >
+        and introduce = #{condition.introduce,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.parametersIntro != null and condition.parametersIntro != ''" >
+        and parameters_intro = #{condition.parametersIntro,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.afterSaleIntro != null and condition.afterSaleIntro != ''" >
+        and after_sale_intro = #{condition.afterSaleIntro,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.createTime != null" >
+        and create_time = #{condition.createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.updateTime != null" >
+        and update_time = #{condition.updateTime,jdbcType=TIMESTAMP}
+      </if>
+    </where>
+    <if test="page.sort != null and page.sort != ''" >
+      ORDER BY ${page.sort} ${page.order}
+    </if>
+    <if test="page != null" >
+      limit #{page.offset}, #{page.limit}
+    </if>
+  </select>
+  <select id="queryPageResultCount" resultType="int" >
+    select count(*) from 
+    product_extra_info
+    <where >
+      <if test="condition.id != null" >
+        and id = #{condition.id,jdbcType=INTEGER}
+      </if>
+      <if test="condition.extraType != null" >
+        and extra_type = #{condition.extraType,jdbcType=TINYINT}
+      </if>
+      <if test="condition.extraKey != null and condition.extraKey != ''" >
+        and extra_key = #{condition.extraKey,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.introduce != null and condition.introduce != ''" >
+        and introduce = #{condition.introduce,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.parametersIntro != null and condition.parametersIntro != ''" >
+        and parameters_intro = #{condition.parametersIntro,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.afterSaleIntro != null and condition.afterSaleIntro != ''" >
+        and after_sale_intro = #{condition.afterSaleIntro,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.createTime != null" >
+        and create_time = #{condition.createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.updateTime != null" >
+        and update_time = #{condition.updateTime,jdbcType=TIMESTAMP}
+      </if>
+    </where>
+  </select>
+</mapper>

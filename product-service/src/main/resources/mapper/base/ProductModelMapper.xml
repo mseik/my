@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morelinks.service.micro.product.mapper.ProductModelMapper" >
+  <resultMap id="BaseResultMap" type="com.morelinks.feign.micro.product.api.model.ProductModel" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="category_id" property="categoryId" jdbcType="INTEGER" />
+    <result column="brand_id" property="brandId" jdbcType="INTEGER" />
+    <result column="serial_no" property="serialNo" jdbcType="INTEGER" />
+    <result column="model_name" property="modelName" jdbcType="VARCHAR" />
+    <result column="model_status" property="modelStatus" jdbcType="TINYINT" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="show_name" property="showName" jdbcType="VARCHAR" />
+    <result column="category_name" property="categoryName" jdbcType="VARCHAR" />
+    <result column="brand_name" property="brandName" jdbcType="VARCHAR" />
+    <result column="is_agent_sale" property="isAgentSale" jdbcType="TINYINT" />
+    <result column="resume" property="resume" jdbcType="VARCHAR" />
+    <result column="cover_img_path" property="coverImgPath" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, category_id, brand_id, serial_no, model_name, model_status, remark, create_time, 
+    update_time, show_name, category_name, brand_name, is_agent_sale, resume, cover_img_path
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from product_model
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from product_model
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.morelinks.feign.micro.product.api.model.ProductModel" >
+    insert into product_model (id, category_id, brand_id, 
+      serial_no, model_name, model_status, 
+      remark, create_time, update_time, 
+      show_name, category_name, brand_name, 
+      is_agent_sale, resume, cover_img_path
+      )
+    values (#{id,jdbcType=INTEGER}, #{categoryId,jdbcType=INTEGER}, #{brandId,jdbcType=INTEGER}, 
+      #{serialNo,jdbcType=INTEGER}, #{modelName,jdbcType=VARCHAR}, #{modelStatus,jdbcType=TINYINT}, 
+      #{remark,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{showName,jdbcType=VARCHAR}, #{categoryName,jdbcType=VARCHAR}, #{brandName,jdbcType=VARCHAR}, 
+      #{isAgentSale,jdbcType=TINYINT}, #{resume,jdbcType=VARCHAR}, #{coverImgPath,jdbcType=VARCHAR}
+      )
+    <selectKey keyProperty="id" order="AFTER" resultType="int" >
+      SELECT LAST_INSERT_ID() AS ID
+    </selectKey>
+  </insert>
+  <insert id="insertSelective" parameterType="com.morelinks.feign.micro.product.api.model.ProductModel" >
+    insert into product_model
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="categoryId != null" >
+        category_id,
+      </if>
+      <if test="brandId != null" >
+        brand_id,
+      </if>
+      <if test="serialNo != null" >
+        serial_no,
+      </if>
+      <if test="modelName != null" >
+        model_name,
+      </if>
+      <if test="modelStatus != null" >
+        model_status,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="showName != null" >
+        show_name,
+      </if>
+      <if test="categoryName != null" >
+        category_name,
+      </if>
+      <if test="brandName != null" >
+        brand_name,
+      </if>
+      <if test="isAgentSale != null" >
+        is_agent_sale,
+      </if>
+      <if test="resume != null" >
+        resume,
+      </if>
+      <if test="coverImgPath != null" >
+        cover_img_path,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="categoryId != null" >
+        #{categoryId,jdbcType=INTEGER},
+      </if>
+      <if test="brandId != null" >
+        #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="serialNo != null" >
+        #{serialNo,jdbcType=INTEGER},
+      </if>
+      <if test="modelName != null" >
+        #{modelName,jdbcType=VARCHAR},
+      </if>
+      <if test="modelStatus != null" >
+        #{modelStatus,jdbcType=TINYINT},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="showName != null" >
+        #{showName,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryName != null" >
+        #{categoryName,jdbcType=VARCHAR},
+      </if>
+      <if test="brandName != null" >
+        #{brandName,jdbcType=VARCHAR},
+      </if>
+      <if test="isAgentSale != null" >
+        #{isAgentSale,jdbcType=TINYINT},
+      </if>
+      <if test="resume != null" >
+        #{resume,jdbcType=VARCHAR},
+      </if>
+      <if test="coverImgPath != null" >
+        #{coverImgPath,jdbcType=VARCHAR},
+      </if>
+    </trim>
+    <selectKey keyProperty="id" order="AFTER" resultType="int" >
+      SELECT LAST_INSERT_ID() AS ID
+    </selectKey>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.morelinks.feign.micro.product.api.model.ProductModel" >
+    update product_model
+    <set >
+      <if test="categoryId != null" >
+        category_id = #{categoryId,jdbcType=INTEGER},
+      </if>
+      <if test="brandId != null" >
+        brand_id = #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="serialNo != null" >
+        serial_no = #{serialNo,jdbcType=INTEGER},
+      </if>
+      <if test="modelName != null" >
+        model_name = #{modelName,jdbcType=VARCHAR},
+      </if>
+      <if test="modelStatus != null" >
+        model_status = #{modelStatus,jdbcType=TINYINT},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="showName != null" >
+        show_name = #{showName,jdbcType=VARCHAR},
+      </if>
+      <if test="categoryName != null" >
+        category_name = #{categoryName,jdbcType=VARCHAR},
+      </if>
+      <if test="brandName != null" >
+        brand_name = #{brandName,jdbcType=VARCHAR},
+      </if>
+      <if test="isAgentSale != null" >
+        is_agent_sale = #{isAgentSale,jdbcType=TINYINT},
+      </if>
+      <if test="resume != null" >
+        resume = #{resume,jdbcType=VARCHAR},
+      </if>
+      <if test="coverImgPath != null" >
+        cover_img_path = #{coverImgPath,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.morelinks.feign.micro.product.api.model.ProductModel" >
+    update product_model
+    set category_id = #{categoryId,jdbcType=INTEGER},
+      brand_id = #{brandId,jdbcType=INTEGER},
+      serial_no = #{serialNo,jdbcType=INTEGER},
+      model_name = #{modelName,jdbcType=VARCHAR},
+      model_status = #{modelStatus,jdbcType=TINYINT},
+      remark = #{remark,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      show_name = #{showName,jdbcType=VARCHAR},
+      category_name = #{categoryName,jdbcType=VARCHAR},
+      brand_name = #{brandName,jdbcType=VARCHAR},
+      is_agent_sale = #{isAgentSale,jdbcType=TINYINT},
+      resume = #{resume,jdbcType=VARCHAR},
+      cover_img_path = #{coverImgPath,jdbcType=VARCHAR}
+    <where >
+      id = #{id,jdbcType=INTEGER}
+    </where>
+  </update>
+  <select id="queryPageResult" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from 
+    product_model
+    <where >
+      <if test="condition.id != null" >
+        and id = #{condition.id,jdbcType=INTEGER}
+      </if>
+      <if test="condition.categoryId != null" >
+        and category_id = #{condition.categoryId,jdbcType=INTEGER}
+      </if>
+      <if test="condition.brandId != null" >
+        and brand_id = #{condition.brandId,jdbcType=INTEGER}
+      </if>
+      <if test="condition.serialNo != null" >
+        and serial_no = #{condition.serialNo,jdbcType=INTEGER}
+      </if>
+      <if test="condition.modelName != null and condition.modelName != ''" >
+        and model_name = #{condition.modelName,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.modelStatus != null" >
+        and model_status = #{condition.modelStatus,jdbcType=TINYINT}
+      </if>
+      <if test="condition.remark != null and condition.remark != ''" >
+        and remark = #{condition.remark,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.createTime != null" >
+        and create_time = #{condition.createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.updateTime != null" >
+        and update_time = #{condition.updateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.showName != null and condition.showName != ''" >
+        and show_name = #{condition.showName,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.categoryName != null and condition.categoryName != ''" >
+        and category_name = #{condition.categoryName,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.brandName != null and condition.brandName != ''" >
+        and brand_name = #{condition.brandName,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.isAgentSale != null" >
+        and is_agent_sale = #{condition.isAgentSale,jdbcType=TINYINT}
+      </if>
+      <if test="condition.resume != null and condition.resume != ''" >
+        and resume = #{condition.resume,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.coverImgPath != null and condition.coverImgPath != ''" >
+        and cover_img_path = #{condition.coverImgPath,jdbcType=VARCHAR}
+      </if>
+    </where>
+    <if test="page.sort != null and page.sort != ''" >
+      ORDER BY ${page.sort} ${page.order}
+    </if>
+    <if test="page != null" >
+      limit #{page.offset}, #{page.limit}
+    </if>
+  </select>
+  <select id="queryPageResultCount" resultType="int" >
+    select count(*) from 
+    product_model
+    <where >
+      <if test="condition.id != null" >
+        and id = #{condition.id,jdbcType=INTEGER}
+      </if>
+      <if test="condition.categoryId != null" >
+        and category_id = #{condition.categoryId,jdbcType=INTEGER}
+      </if>
+      <if test="condition.brandId != null" >
+        and brand_id = #{condition.brandId,jdbcType=INTEGER}
+      </if>
+      <if test="condition.serialNo != null" >
+        and serial_no = #{condition.serialNo,jdbcType=INTEGER}
+      </if>
+      <if test="condition.modelName != null and condition.modelName != ''" >
+        and model_name = #{condition.modelName,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.modelStatus != null" >
+        and model_status = #{condition.modelStatus,jdbcType=TINYINT}
+      </if>
+      <if test="condition.remark != null and condition.remark != ''" >
+        and remark = #{condition.remark,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.createTime != null" >
+        and create_time = #{condition.createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.updateTime != null" >
+        and update_time = #{condition.updateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.showName != null and condition.showName != ''" >
+        and show_name = #{condition.showName,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.categoryName != null and condition.categoryName != ''" >
+        and category_name = #{condition.categoryName,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.brandName != null and condition.brandName != ''" >
+        and brand_name = #{condition.brandName,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.isAgentSale != null" >
+        and is_agent_sale = #{condition.isAgentSale,jdbcType=TINYINT}
+      </if>
+      <if test="condition.resume != null and condition.resume != ''" >
+        and resume = #{condition.resume,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.coverImgPath != null and condition.coverImgPath != ''" >
+        and cover_img_path = #{condition.coverImgPath,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </select>
+</mapper>

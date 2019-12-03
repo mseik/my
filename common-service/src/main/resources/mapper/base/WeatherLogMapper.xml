@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morelinks.service.micro.common.mapper.WeatherLogMapper" >
+  <resultMap id="BaseResultMap" type="com.morelinks.feign.micro.common.api.model.WeatherLog" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="city_id" property="cityId" jdbcType="VARCHAR" />
+    <result column="stat_time" property="statTime" jdbcType="TIMESTAMP" />
+    <result column="sun_rise_time" property="sunRiseTime" jdbcType="TIMESTAMP" />
+    <result column="sun_set_time" property="sunSetTime" jdbcType="TIMESTAMP" />
+    <result column="weather" property="weather" jdbcType="VARCHAR" />
+    <result column="wind_level" property="windLevel" jdbcType="VARCHAR" />
+    <result column="temp" property="temp" jdbcType="VARCHAR" />
+    <result column="humidity" property="humidity" jdbcType="VARCHAR" />
+    <result column="wind_direction" property="windDirection" jdbcType="VARCHAR" />
+    <result column="wind_speed" property="windSpeed" jdbcType="VARCHAR" />
+    <result column="pm25_val" property="pm25Val" jdbcType="VARCHAR" />
+    <result column="aqi_val" property="aqiVal" jdbcType="VARCHAR" />
+    <result column="quality" property="quality" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, city_id, stat_time, sun_rise_time, sun_set_time, weather, wind_level, temp, humidity, 
+    wind_direction, wind_speed, pm25_val, aqi_val, quality
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from p_weather_log
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from p_weather_log
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.morelinks.feign.micro.common.api.model.WeatherLog" >
+    insert into p_weather_log (id, city_id, stat_time, 
+      sun_rise_time, sun_set_time, weather, 
+      wind_level, temp, humidity, 
+      wind_direction, wind_speed, pm25_val, 
+      aqi_val, quality)
+    values (#{id,jdbcType=INTEGER}, #{cityId,jdbcType=VARCHAR}, #{statTime,jdbcType=TIMESTAMP}, 
+      #{sunRiseTime,jdbcType=TIMESTAMP}, #{sunSetTime,jdbcType=TIMESTAMP}, #{weather,jdbcType=VARCHAR}, 
+      #{windLevel,jdbcType=VARCHAR}, #{temp,jdbcType=VARCHAR}, #{humidity,jdbcType=VARCHAR}, 
+      #{windDirection,jdbcType=VARCHAR}, #{windSpeed,jdbcType=VARCHAR}, #{pm25Val,jdbcType=VARCHAR}, 
+      #{aqiVal,jdbcType=VARCHAR}, #{quality,jdbcType=VARCHAR})
+    <selectKey keyProperty="id" order="AFTER" resultType="int" >
+      SELECT LAST_INSERT_ID() AS ID
+    </selectKey>
+  </insert>
+  <insert id="insertSelective" parameterType="com.morelinks.feign.micro.common.api.model.WeatherLog" >
+    insert into p_weather_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="cityId != null" >
+        city_id,
+      </if>
+      <if test="statTime != null" >
+        stat_time,
+      </if>
+      <if test="sunRiseTime != null" >
+        sun_rise_time,
+      </if>
+      <if test="sunSetTime != null" >
+        sun_set_time,
+      </if>
+      <if test="weather != null" >
+        weather,
+      </if>
+      <if test="windLevel != null" >
+        wind_level,
+      </if>
+      <if test="temp != null" >
+        temp,
+      </if>
+      <if test="humidity != null" >
+        humidity,
+      </if>
+      <if test="windDirection != null" >
+        wind_direction,
+      </if>
+      <if test="windSpeed != null" >
+        wind_speed,
+      </if>
+      <if test="pm25Val != null" >
+        pm25_val,
+      </if>
+      <if test="aqiVal != null" >
+        aqi_val,
+      </if>
+      <if test="quality != null" >
+        quality,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="cityId != null" >
+        #{cityId,jdbcType=VARCHAR},
+      </if>
+      <if test="statTime != null" >
+        #{statTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sunRiseTime != null" >
+        #{sunRiseTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sunSetTime != null" >
+        #{sunSetTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="weather != null" >
+        #{weather,jdbcType=VARCHAR},
+      </if>
+      <if test="windLevel != null" >
+        #{windLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="temp != null" >
+        #{temp,jdbcType=VARCHAR},
+      </if>
+      <if test="humidity != null" >
+        #{humidity,jdbcType=VARCHAR},
+      </if>
+      <if test="windDirection != null" >
+        #{windDirection,jdbcType=VARCHAR},
+      </if>
+      <if test="windSpeed != null" >
+        #{windSpeed,jdbcType=VARCHAR},
+      </if>
+      <if test="pm25Val != null" >
+        #{pm25Val,jdbcType=VARCHAR},
+      </if>
+      <if test="aqiVal != null" >
+        #{aqiVal,jdbcType=VARCHAR},
+      </if>
+      <if test="quality != null" >
+        #{quality,jdbcType=VARCHAR},
+      </if>
+    </trim>
+    <selectKey keyProperty="id" order="AFTER" resultType="int" >
+      SELECT LAST_INSERT_ID() AS ID
+    </selectKey>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.morelinks.feign.micro.common.api.model.WeatherLog" >
+    update p_weather_log
+    <set >
+      <if test="cityId != null" >
+        city_id = #{cityId,jdbcType=VARCHAR},
+      </if>
+      <if test="statTime != null" >
+        stat_time = #{statTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sunRiseTime != null" >
+        sun_rise_time = #{sunRiseTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sunSetTime != null" >
+        sun_set_time = #{sunSetTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="weather != null" >
+        weather = #{weather,jdbcType=VARCHAR},
+      </if>
+      <if test="windLevel != null" >
+        wind_level = #{windLevel,jdbcType=VARCHAR},
+      </if>
+      <if test="temp != null" >
+        temp = #{temp,jdbcType=VARCHAR},
+      </if>
+      <if test="humidity != null" >
+        humidity = #{humidity,jdbcType=VARCHAR},
+      </if>
+      <if test="windDirection != null" >
+        wind_direction = #{windDirection,jdbcType=VARCHAR},
+      </if>
+      <if test="windSpeed != null" >
+        wind_speed = #{windSpeed,jdbcType=VARCHAR},
+      </if>
+      <if test="pm25Val != null" >
+        pm25_val = #{pm25Val,jdbcType=VARCHAR},
+      </if>
+      <if test="aqiVal != null" >
+        aqi_val = #{aqiVal,jdbcType=VARCHAR},
+      </if>
+      <if test="quality != null" >
+        quality = #{quality,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.morelinks.feign.micro.common.api.model.WeatherLog" >
+    update p_weather_log
+    set city_id = #{cityId,jdbcType=VARCHAR},
+      stat_time = #{statTime,jdbcType=TIMESTAMP},
+      sun_rise_time = #{sunRiseTime,jdbcType=TIMESTAMP},
+      sun_set_time = #{sunSetTime,jdbcType=TIMESTAMP},
+      weather = #{weather,jdbcType=VARCHAR},
+      wind_level = #{windLevel,jdbcType=VARCHAR},
+      temp = #{temp,jdbcType=VARCHAR},
+      humidity = #{humidity,jdbcType=VARCHAR},
+      wind_direction = #{windDirection,jdbcType=VARCHAR},
+      wind_speed = #{windSpeed,jdbcType=VARCHAR},
+      pm25_val = #{pm25Val,jdbcType=VARCHAR},
+      aqi_val = #{aqiVal,jdbcType=VARCHAR},
+      quality = #{quality,jdbcType=VARCHAR}
+    <where >
+      id = #{id,jdbcType=INTEGER}
+    </where>
+  </update>
+  <select id="queryPageResult" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from 
+    p_weather_log
+    <where >
+      <if test="condition.id != null" >
+        and id = #{condition.id,jdbcType=INTEGER}
+      </if>
+      <if test="condition.cityId != null and condition.cityId != ''" >
+        and city_id = #{condition.cityId,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.statTime != null" >
+        and stat_time = #{condition.statTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.sunRiseTime != null" >
+        and sun_rise_time = #{condition.sunRiseTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.sunSetTime != null" >
+        and sun_set_time = #{condition.sunSetTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.weather != null and condition.weather != ''" >
+        and weather = #{condition.weather,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.windLevel != null and condition.windLevel != ''" >
+        and wind_level = #{condition.windLevel,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.temp != null and condition.temp != ''" >
+        and temp = #{condition.temp,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.humidity != null and condition.humidity != ''" >
+        and humidity = #{condition.humidity,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.windDirection != null and condition.windDirection != ''" >
+        and wind_direction = #{condition.windDirection,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.windSpeed != null and condition.windSpeed != ''" >
+        and wind_speed = #{condition.windSpeed,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.pm25Val != null and condition.pm25Val != ''" >
+        and pm25_val = #{condition.pm25Val,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.aqiVal != null and condition.aqiVal != ''" >
+        and aqi_val = #{condition.aqiVal,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.quality != null and condition.quality != ''" >
+        and quality = #{condition.quality,jdbcType=VARCHAR}
+      </if>
+    </where>
+    <if test="page.sort != null and page.sort != ''" >
+      ORDER BY ${page.sort} ${page.order}
+    </if>
+    <if test="page != null" >
+      limit #{page.offset}, #{page.limit}
+    </if>
+  </select>
+  <select id="queryPageResultCount" resultType="int" >
+    select count(*) from 
+    p_weather_log
+    <where >
+      <if test="condition.id != null" >
+        and id = #{condition.id,jdbcType=INTEGER}
+      </if>
+      <if test="condition.cityId != null and condition.cityId != ''" >
+        and city_id = #{condition.cityId,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.statTime != null" >
+        and stat_time = #{condition.statTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.sunRiseTime != null" >
+        and sun_rise_time = #{condition.sunRiseTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.sunSetTime != null" >
+        and sun_set_time = #{condition.sunSetTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.weather != null and condition.weather != ''" >
+        and weather = #{condition.weather,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.windLevel != null and condition.windLevel != ''" >
+        and wind_level = #{condition.windLevel,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.temp != null and condition.temp != ''" >
+        and temp = #{condition.temp,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.humidity != null and condition.humidity != ''" >
+        and humidity = #{condition.humidity,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.windDirection != null and condition.windDirection != ''" >
+        and wind_direction = #{condition.windDirection,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.windSpeed != null and condition.windSpeed != ''" >
+        and wind_speed = #{condition.windSpeed,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.pm25Val != null and condition.pm25Val != ''" >
+        and pm25_val = #{condition.pm25Val,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.aqiVal != null and condition.aqiVal != ''" >
+        and aqi_val = #{condition.aqiVal,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.quality != null and condition.quality != ''" >
+        and quality = #{condition.quality,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </select>
+</mapper>

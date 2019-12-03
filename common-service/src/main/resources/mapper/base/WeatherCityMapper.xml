@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morelinks.service.micro.common.mapper.WeatherCityMapper" >
+  <resultMap id="BaseResultMap" type="com.morelinks.feign.micro.common.api.model.WeatherCity" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="CITY_ID" property="cityId" jdbcType="VARCHAR" />
+    <result column="CITY_NAME" property="cityName" jdbcType="VARCHAR" />
+    <result column="city_type" property="cityType" jdbcType="INTEGER" />
+    <result column="parent_city_id" property="parentCityId" jdbcType="VARCHAR" />
+    <result column="city_pinyin" property="cityPinyin" jdbcType="VARCHAR" />
+    <result column="latitude" property="latitude" jdbcType="DOUBLE" />
+    <result column="longitude" property="longitude" jdbcType="DOUBLE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, CITY_ID, CITY_NAME, city_type, parent_city_id, city_pinyin, latitude, longitude
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from p_weather_city
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from p_weather_city
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.morelinks.feign.micro.common.api.model.WeatherCity" >
+    insert into p_weather_city (ID, CITY_ID, CITY_NAME, 
+      city_type, parent_city_id, city_pinyin, 
+      latitude, longitude)
+    values (#{id,jdbcType=INTEGER}, #{cityId,jdbcType=VARCHAR}, #{cityName,jdbcType=VARCHAR}, 
+      #{cityType,jdbcType=INTEGER}, #{parentCityId,jdbcType=VARCHAR}, #{cityPinyin,jdbcType=VARCHAR}, 
+      #{latitude,jdbcType=DOUBLE}, #{longitude,jdbcType=DOUBLE})
+    <selectKey keyProperty="id" order="AFTER" resultType="int" >
+      SELECT LAST_INSERT_ID() AS ID
+    </selectKey>
+  </insert>
+  <insert id="insertSelective" parameterType="com.morelinks.feign.micro.common.api.model.WeatherCity" >
+    insert into p_weather_city
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="cityId != null" >
+        CITY_ID,
+      </if>
+      <if test="cityName != null" >
+        CITY_NAME,
+      </if>
+      <if test="cityType != null" >
+        city_type,
+      </if>
+      <if test="parentCityId != null" >
+        parent_city_id,
+      </if>
+      <if test="cityPinyin != null" >
+        city_pinyin,
+      </if>
+      <if test="latitude != null" >
+        latitude,
+      </if>
+      <if test="longitude != null" >
+        longitude,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="cityId != null" >
+        #{cityId,jdbcType=VARCHAR},
+      </if>
+      <if test="cityName != null" >
+        #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityType != null" >
+        #{cityType,jdbcType=INTEGER},
+      </if>
+      <if test="parentCityId != null" >
+        #{parentCityId,jdbcType=VARCHAR},
+      </if>
+      <if test="cityPinyin != null" >
+        #{cityPinyin,jdbcType=VARCHAR},
+      </if>
+      <if test="latitude != null" >
+        #{latitude,jdbcType=DOUBLE},
+      </if>
+      <if test="longitude != null" >
+        #{longitude,jdbcType=DOUBLE},
+      </if>
+    </trim>
+    <selectKey keyProperty="id" order="AFTER" resultType="int" >
+      SELECT LAST_INSERT_ID() AS ID
+    </selectKey>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.morelinks.feign.micro.common.api.model.WeatherCity" >
+    update p_weather_city
+    <set >
+      <if test="cityId != null" >
+        CITY_ID = #{cityId,jdbcType=VARCHAR},
+      </if>
+      <if test="cityName != null" >
+        CITY_NAME = #{cityName,jdbcType=VARCHAR},
+      </if>
+      <if test="cityType != null" >
+        city_type = #{cityType,jdbcType=INTEGER},
+      </if>
+      <if test="parentCityId != null" >
+        parent_city_id = #{parentCityId,jdbcType=VARCHAR},
+      </if>
+      <if test="cityPinyin != null" >
+        city_pinyin = #{cityPinyin,jdbcType=VARCHAR},
+      </if>
+      <if test="latitude != null" >
+        latitude = #{latitude,jdbcType=DOUBLE},
+      </if>
+      <if test="longitude != null" >
+        longitude = #{longitude,jdbcType=DOUBLE},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.morelinks.feign.micro.common.api.model.WeatherCity" >
+    update p_weather_city
+    set CITY_ID = #{cityId,jdbcType=VARCHAR},
+      CITY_NAME = #{cityName,jdbcType=VARCHAR},
+      city_type = #{cityType,jdbcType=INTEGER},
+      parent_city_id = #{parentCityId,jdbcType=VARCHAR},
+      city_pinyin = #{cityPinyin,jdbcType=VARCHAR},
+      latitude = #{latitude,jdbcType=DOUBLE},
+      longitude = #{longitude,jdbcType=DOUBLE}
+    <where >
+      ID = #{id,jdbcType=INTEGER}
+    </where>
+  </update>
+  <select id="queryPageResult" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from 
+    p_weather_city
+    <where >
+      <if test="condition.id != null" >
+        and ID = #{condition.id,jdbcType=INTEGER}
+      </if>
+      <if test="condition.cityId != null and condition.cityId != ''" >
+        and CITY_ID = #{condition.cityId,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.cityName != null and condition.cityName != ''" >
+        and CITY_NAME = #{condition.cityName,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.cityType != null" >
+        and city_type = #{condition.cityType,jdbcType=INTEGER}
+      </if>
+      <if test="condition.parentCityId != null and condition.parentCityId != ''" >
+        and parent_city_id = #{condition.parentCityId,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.cityPinyin != null and condition.cityPinyin != ''" >
+        and city_pinyin = #{condition.cityPinyin,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.latitude != null" >
+        and latitude = #{condition.latitude,jdbcType=DOUBLE}
+      </if>
+      <if test="condition.longitude != null" >
+        and longitude = #{condition.longitude,jdbcType=DOUBLE}
+      </if>
+    </where>
+    <if test="page.sort != null and page.sort != ''" >
+      ORDER BY ${page.sort} ${page.order}
+    </if>
+    <if test="page != null" >
+      limit #{page.offset}, #{page.limit}
+    </if>
+  </select>
+  <select id="queryPageResultCount" resultType="int" >
+    select count(*) from 
+    p_weather_city
+    <where >
+      <if test="condition.id != null" >
+        and ID = #{condition.id,jdbcType=INTEGER}
+      </if>
+      <if test="condition.cityId != null and condition.cityId != ''" >
+        and CITY_ID = #{condition.cityId,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.cityName != null and condition.cityName != ''" >
+        and CITY_NAME = #{condition.cityName,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.cityType != null" >
+        and city_type = #{condition.cityType,jdbcType=INTEGER}
+      </if>
+      <if test="condition.parentCityId != null and condition.parentCityId != ''" >
+        and parent_city_id = #{condition.parentCityId,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.cityPinyin != null and condition.cityPinyin != ''" >
+        and city_pinyin = #{condition.cityPinyin,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.latitude != null" >
+        and latitude = #{condition.latitude,jdbcType=DOUBLE}
+      </if>
+      <if test="condition.longitude != null" >
+        and longitude = #{condition.longitude,jdbcType=DOUBLE}
+      </if>
+    </where>
+  </select>
+</mapper>

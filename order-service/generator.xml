@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+    <!-- 数据库驱动包位置 -->
+    <!-- <classPathEntry location="D:\Tools\generator\generator\mysql-connector-java-5.1.34.jar" />    -->
+    <!-- <classPathEntry location="C:\oracle\product\10.2.0\db_1\jdbc\lib\ojdbc14.jar" />-->
+    <context id="DB2Tables" targetRuntime="MyBatis3">
+        <!-- 指定生成的java文件的编码,没有直接生成到项目时中文可能会乱码 -->
+        <property name="javaFileEncoding" value="UTF-8"/>
+        <!-- <commentGenerator>  
+            <property name="suppressAllComments" value="true" />  
+        </commentGenerator>   -->
+        <!-- 数据库链接URL、用户名、密码 -->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://101.37.37.26:3306/morelinks_order?characterEncoding=utf8" userId="root" password="Morelinks$boyu2017">
+            <!-- 针对mysql数据库 -->
+            <property name="useInformationSchema" value="true"></property>
+            <!--<jdbcConnection driverClass="oracle.jdbc.driver.OracleDriver" connectionURL="jdbc:oracle:thin:@localhost:1521:orcl" userId="msa" password="msa">-->
+        </jdbcConnection>
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+        <!-- 生成模型的包名和位置 com.morelinks.em.Entity.Model com.morelinks.building.monitor.model com.morelinks.cloudnew.model com.morelinks.wechat.mp.model-->
+        <javaModelGenerator targetPackage="com.morelinks.feign.micro.order.api.model" targetProject="\">
+            <property name="enableSubPackages" value="true" />
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+        <!-- 生成的映射文件包名和位置 com.morelinks.em.Entity.Mapper com.morelinks.building.monitor.mapper com.morelinks.cloudnew.mapper com.morelinks.wechat.mp.mapper-->
+        <sqlMapGenerator targetPackage="com.morelinks.service.micro.order.mapper" targetProject="\">
+            <property name="enableSubPackages" value="true" />
+        </sqlMapGenerator>
+        <!-- 生成DAO的包名和位置 -->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.morelinks.service.micro.order.mapper" targetProject="\" createType="BaseMapperWithQueryPage">
+            <property name="enableSubPackages" value="true" />
+            <property name="rootExtendsInterface" value="com.morelinks.core.mapper.BaseMapperWithQueryPage" />
+        </javaClientGenerator>
+        <!-- 生成Service的包名和位置 -->
+        <javaServiceGenerator type="XMLMAPPER" targetPackage="com.morelinks.service.micro.order.service" targetProject="\" >
+            <property name="rootExtendsClass" value="com.morelinks.core.service.BaseServiceWithQueryPage" />
+        </javaServiceGenerator>
+        <table schema="" tableName="agent_order" versionName="version" domainObjectName="AgentOrder" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" >
+            <columnOverride column="pay_type" javaType="java.lang.Integer" jdbcType="TINYINT" />
+            <columnOverride column="pay_status" javaType="java.lang.Integer" jdbcType="TINYINT" />
+        </table>
+        <table schema="" tableName="agent_order_detail" domainObjectName="AgentOrderDetail" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" >
+            <columnOverride column="core_product_type" javaType="java.lang.Integer" jdbcType="TINYINT" />
+        </table>
+        <table schema="" tableName="agent_cart" domainObjectName="AgentCart" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" >
+        </table>
+        <table schema="" tableName="agent_delivery_address" domainObjectName="AgentDeliveryAddress" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" >
+            <columnOverride column="address_status" javaType="java.lang.Integer" jdbcType="TINYINT" />
+        </table>
+        <table schema="" tableName="agent_mall_base_config" domainObjectName="AgentMallBaseConfig" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" >
+            <columnOverride column="config_val" javaType="java.lang.String" jdbcType="VARCHAR" />
+        </table>
+        <table schema="" tableName="agent_order_form_config" domainObjectName="AgentOrderFormConfig" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" >
+        </table>
+        <table schema="" tableName="agent_order_log" domainObjectName="AgentOrderLog" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" >
+            <columnOverride column="log_type" javaType="java.lang.Integer" jdbcType="TINYINT" />
+            <columnOverride column="ori_order_status" javaType="java.lang.Integer" jdbcType="TINYINT" />
+            <columnOverride column="after_order_status" javaType="java.lang.Integer" jdbcType="TINYINT" />
+            <columnOverride column="operator_type" javaType="java.lang.Integer" jdbcType="TINYINT" />
+        </table>
+        <table schema="" tableName="express_order" domainObjectName="ExpressOrder" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" >
+            <columnOverride column="order_type" javaType="java.lang.Integer" jdbcType="TINYINT" />
+            <columnOverride column="pay_type" javaType="java.lang.Integer" jdbcType="TINYINT" />
+            <columnOverride column="express_status" javaType="java.lang.Integer" jdbcType="TINYINT" />
+        </table>
+        <table schema="" tableName="express" domainObjectName="Express" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" >
+        </table>
+        <table schema="" tableName="express_order_log" domainObjectName="ExpressOrderLog" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" >
+            <columnOverride column="operator_type" javaType="java.lang.Integer" jdbcType="TINYINT" />
+        </table>
+        <table schema="" tableName="agent_order_invoice_info" domainObjectName="AgentOrderInvoiceInfo" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" >
+        </table>
+        <table schema="" tableName="config_order" domainObjectName="ConfigOrder" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" >
+            <columnOverride column="order_status" javaType="java.lang.Integer" jdbcType="TINYINT" />
+            <columnOverride column="install_amount_type" javaType="java.lang.Integer" jdbcType="TINYINT" />
+            <columnOverride column="debug_amount_type" javaType="java.lang.Integer" jdbcType="TINYINT" />
+            <columnOverride column="tax_amount_type" javaType="java.lang.Integer" jdbcType="TINYINT" />
+        </table>
+        <table schema="" tableName="config_order_detail" domainObjectName="ConfigOrderDetail" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" >
+            <columnOverride column="product_type" javaType="java.lang.Integer" jdbcType="TINYINT" />
+        </table>
+        <table schema="" tableName="config_order_discount_info" domainObjectName="ConfigOrderDiscountInfo" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" >
+            <columnOverride column="from_type" javaType="java.lang.Integer" jdbcType="TINYINT" />
+            <columnOverride column="condition_type" javaType="java.lang.Integer" jdbcType="TINYINT" />
+            <columnOverride column="discount_type" javaType="java.lang.Integer" jdbcType="TINYINT" />
+        </table>
+        <table schema="" tableName="config_order_extra_info" domainObjectName="ConfigOrderExtraInfo" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" >
+            <columnOverride column="extra_type" javaType="java.lang.Integer" jdbcType="TINYINT" />
+            <columnOverride column="condition_type" javaType="java.lang.Integer" jdbcType="TINYINT" />
+            <columnOverride column="map_type" javaType="java.lang.Integer" jdbcType="TINYINT" />
+        </table>
+        <table schema="" tableName="config_print_order" domainObjectName="ConfigPrintOrder" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" >
+            <columnOverride column="order_status" javaType="java.lang.Integer" jdbcType="TINYINT" />
+            <columnOverride column="discount_type" javaType="java.lang.Integer" jdbcType="TINYINT" />
+            <columnOverride column="install_amount_type" javaType="java.lang.Integer" jdbcType="TINYINT" />
+            <columnOverride column="debug_amount_type" javaType="java.lang.Integer" jdbcType="TINYINT" />
+            <columnOverride column="tax_amount_type" javaType="java.lang.Integer" jdbcType="TINYINT" />
+        </table>
+        <table schema="" tableName="config_print_order_detail" domainObjectName="ConfigPrintOrderDetail" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" >
+            <columnOverride column="map_type" javaType="java.lang.Integer" jdbcType="TINYINT" />
+            <columnOverride column="discount_type" javaType="java.lang.Integer" jdbcType="TINYINT" />
+        </table>
+        <table schema="" tableName="config_print_order_extra_info" domainObjectName="ConfigPrintOrderExtraInfo" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" >
+            <columnOverride column="extra_type" javaType="java.lang.Integer" jdbcType="TINYINT" />
+            <columnOverride column="condition_type" javaType="java.lang.Integer" jdbcType="TINYINT" />
+            <columnOverride column="map_type" javaType="java.lang.Integer" jdbcType="TINYINT" />
+        </table>
+        <table schema="" tableName="template_pdf" domainObjectName="TemplatePdf" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" >
+        </table>
+
+    </context>
+</generatorConfiguration>  

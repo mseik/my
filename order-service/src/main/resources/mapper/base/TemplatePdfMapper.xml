@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morelinks.service.micro.order.mapper.TemplatePdfMapper" >
+  <resultMap id="BaseResultMap" type="com.morelinks.feign.micro.order.api.model.TemplatePdf" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="agent_id" property="agentId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="header_message" property="headerMessage" jdbcType="VARCHAR" />
+    <result column="tips_message" property="tipsMessage" jdbcType="VARCHAR" />
+    <result column="footer_message" property="footerMessage" jdbcType="VARCHAR" />
+    <result column="watermark_message" property="watermarkMessage" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, agent_id, user_id, header_message, tips_message, footer_message, watermark_message, 
+    create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from template_pdf
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from template_pdf
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.morelinks.feign.micro.order.api.model.TemplatePdf" >
+    insert into template_pdf (id, agent_id, user_id, 
+      header_message, tips_message, footer_message, 
+      watermark_message, create_time, update_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{agentId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, 
+      #{headerMessage,jdbcType=VARCHAR}, #{tipsMessage,jdbcType=VARCHAR}, #{footerMessage,jdbcType=VARCHAR}, 
+      #{watermarkMessage,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
+      )
+    <selectKey keyProperty="id" order="AFTER" resultType="int" >
+      SELECT LAST_INSERT_ID() AS ID
+    </selectKey>
+  </insert>
+  <insert id="insertSelective" parameterType="com.morelinks.feign.micro.order.api.model.TemplatePdf" >
+    insert into template_pdf
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="agentId != null" >
+        agent_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="headerMessage != null" >
+        header_message,
+      </if>
+      <if test="tipsMessage != null" >
+        tips_message,
+      </if>
+      <if test="footerMessage != null" >
+        footer_message,
+      </if>
+      <if test="watermarkMessage != null" >
+        watermark_message,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="agentId != null" >
+        #{agentId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="headerMessage != null" >
+        #{headerMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="tipsMessage != null" >
+        #{tipsMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="footerMessage != null" >
+        #{footerMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="watermarkMessage != null" >
+        #{watermarkMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+    <selectKey keyProperty="id" order="AFTER" resultType="int" >
+      SELECT LAST_INSERT_ID() AS ID
+    </selectKey>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.morelinks.feign.micro.order.api.model.TemplatePdf" >
+    update template_pdf
+    <set >
+      <if test="agentId != null" >
+        agent_id = #{agentId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="headerMessage != null" >
+        header_message = #{headerMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="tipsMessage != null" >
+        tips_message = #{tipsMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="footerMessage != null" >
+        footer_message = #{footerMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="watermarkMessage != null" >
+        watermark_message = #{watermarkMessage,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.morelinks.feign.micro.order.api.model.TemplatePdf" >
+    update template_pdf
+    set agent_id = #{agentId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
+      header_message = #{headerMessage,jdbcType=VARCHAR},
+      tips_message = #{tipsMessage,jdbcType=VARCHAR},
+      footer_message = #{footerMessage,jdbcType=VARCHAR},
+      watermark_message = #{watermarkMessage,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    <where >
+      id = #{id,jdbcType=INTEGER}
+    </where>
+  </update>
+  <select id="queryPageResult" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from 
+    template_pdf
+    <where >
+      <if test="condition.id != null" >
+        and id = #{condition.id,jdbcType=INTEGER}
+      </if>
+      <if test="condition.agentId != null" >
+        and agent_id = #{condition.agentId,jdbcType=INTEGER}
+      </if>
+      <if test="condition.userId != null" >
+        and user_id = #{condition.userId,jdbcType=INTEGER}
+      </if>
+      <if test="condition.headerMessage != null and condition.headerMessage != ''" >
+        and header_message = #{condition.headerMessage,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.tipsMessage != null and condition.tipsMessage != ''" >
+        and tips_message = #{condition.tipsMessage,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.footerMessage != null and condition.footerMessage != ''" >
+        and footer_message = #{condition.footerMessage,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.watermarkMessage != null and condition.watermarkMessage != ''" >
+        and watermark_message = #{condition.watermarkMessage,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.createTime != null" >
+        and create_time = #{condition.createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.updateTime != null" >
+        and update_time = #{condition.updateTime,jdbcType=TIMESTAMP}
+      </if>
+    </where>
+    <if test="page.sort != null and page.sort != ''" >
+      ORDER BY ${page.sort} ${page.order}
+    </if>
+    <if test="page != null" >
+      limit #{page.offset}, #{page.limit}
+    </if>
+  </select>
+  <select id="queryPageResultCount" resultType="int" >
+    select count(*) from 
+    template_pdf
+    <where >
+      <if test="condition.id != null" >
+        and id = #{condition.id,jdbcType=INTEGER}
+      </if>
+      <if test="condition.agentId != null" >
+        and agent_id = #{condition.agentId,jdbcType=INTEGER}
+      </if>
+      <if test="condition.userId != null" >
+        and user_id = #{condition.userId,jdbcType=INTEGER}
+      </if>
+      <if test="condition.headerMessage != null and condition.headerMessage != ''" >
+        and header_message = #{condition.headerMessage,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.tipsMessage != null and condition.tipsMessage != ''" >
+        and tips_message = #{condition.tipsMessage,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.footerMessage != null and condition.footerMessage != ''" >
+        and footer_message = #{condition.footerMessage,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.watermarkMessage != null and condition.watermarkMessage != ''" >
+        and watermark_message = #{condition.watermarkMessage,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.createTime != null" >
+        and create_time = #{condition.createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.updateTime != null" >
+        and update_time = #{condition.updateTime,jdbcType=TIMESTAMP}
+      </if>
+    </where>
+  </select>
+</mapper>

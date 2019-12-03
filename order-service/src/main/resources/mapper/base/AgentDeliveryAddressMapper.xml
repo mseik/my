@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morelinks.service.micro.order.mapper.AgentDeliveryAddressMapper" >
+  <resultMap id="BaseResultMap" type="com.morelinks.feign.micro.order.api.model.AgentDeliveryAddress" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="delivery_address" property="deliveryAddress" jdbcType="VARCHAR" />
+    <result column="contact_tel" property="contactTel" jdbcType="VARCHAR" />
+    <result column="city_id" property="cityId" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="address_status" property="addressStatus" jdbcType="TINYINT" />
+    <result column="contact_email" property="contactEmail" jdbcType="VARCHAR" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="is_default" property="isDefault" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_id, delivery_address, contact_tel, city_id, create_time, update_time, address_status, 
+    contact_email, user_name, is_default
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from agent_delivery_address
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from agent_delivery_address
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.morelinks.feign.micro.order.api.model.AgentDeliveryAddress" >
+    insert into agent_delivery_address (id, user_id, delivery_address, 
+      contact_tel, city_id, create_time, 
+      update_time, address_status, contact_email, 
+      user_name, is_default)
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{deliveryAddress,jdbcType=VARCHAR}, 
+      #{contactTel,jdbcType=VARCHAR}, #{cityId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{addressStatus,jdbcType=TINYINT}, #{contactEmail,jdbcType=VARCHAR}, 
+      #{userName,jdbcType=VARCHAR}, #{isDefault,jdbcType=BIT})
+    <selectKey keyProperty="id" order="AFTER" resultType="int" >
+      SELECT LAST_INSERT_ID() AS ID
+    </selectKey>
+  </insert>
+  <insert id="insertSelective" parameterType="com.morelinks.feign.micro.order.api.model.AgentDeliveryAddress" >
+    insert into agent_delivery_address
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="deliveryAddress != null" >
+        delivery_address,
+      </if>
+      <if test="contactTel != null" >
+        contact_tel,
+      </if>
+      <if test="cityId != null" >
+        city_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="addressStatus != null" >
+        address_status,
+      </if>
+      <if test="contactEmail != null" >
+        contact_email,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="isDefault != null" >
+        is_default,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="deliveryAddress != null" >
+        #{deliveryAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="contactTel != null" >
+        #{contactTel,jdbcType=VARCHAR},
+      </if>
+      <if test="cityId != null" >
+        #{cityId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addressStatus != null" >
+        #{addressStatus,jdbcType=TINYINT},
+      </if>
+      <if test="contactEmail != null" >
+        #{contactEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="isDefault != null" >
+        #{isDefault,jdbcType=BIT},
+      </if>
+    </trim>
+    <selectKey keyProperty="id" order="AFTER" resultType="int" >
+      SELECT LAST_INSERT_ID() AS ID
+    </selectKey>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.morelinks.feign.micro.order.api.model.AgentDeliveryAddress" >
+    update agent_delivery_address
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="deliveryAddress != null" >
+        delivery_address = #{deliveryAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="contactTel != null" >
+        contact_tel = #{contactTel,jdbcType=VARCHAR},
+      </if>
+      <if test="cityId != null" >
+        city_id = #{cityId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="addressStatus != null" >
+        address_status = #{addressStatus,jdbcType=TINYINT},
+      </if>
+      <if test="contactEmail != null" >
+        contact_email = #{contactEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="isDefault != null" >
+        is_default = #{isDefault,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.morelinks.feign.micro.order.api.model.AgentDeliveryAddress" >
+    update agent_delivery_address
+    set user_id = #{userId,jdbcType=INTEGER},
+      delivery_address = #{deliveryAddress,jdbcType=VARCHAR},
+      contact_tel = #{contactTel,jdbcType=VARCHAR},
+      city_id = #{cityId,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      address_status = #{addressStatus,jdbcType=TINYINT},
+      contact_email = #{contactEmail,jdbcType=VARCHAR},
+      user_name = #{userName,jdbcType=VARCHAR},
+      is_default = #{isDefault,jdbcType=BIT}
+    <where >
+      id = #{id,jdbcType=INTEGER}
+    </where>
+  </update>
+  <select id="queryPageResult" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from 
+    agent_delivery_address
+    <where >
+      <if test="condition.id != null" >
+        and id = #{condition.id,jdbcType=INTEGER}
+      </if>
+      <if test="condition.userId != null" >
+        and user_id = #{condition.userId,jdbcType=INTEGER}
+      </if>
+      <if test="condition.deliveryAddress != null and condition.deliveryAddress != ''" >
+        and delivery_address = #{condition.deliveryAddress,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.contactTel != null and condition.contactTel != ''" >
+        and contact_tel = #{condition.contactTel,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.cityId != null and condition.cityId != ''" >
+        and city_id = #{condition.cityId,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.createTime != null" >
+        and create_time = #{condition.createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.updateTime != null" >
+        and update_time = #{condition.updateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.addressStatus != null" >
+        and address_status = #{condition.addressStatus,jdbcType=TINYINT}
+      </if>
+      <if test="condition.contactEmail != null and condition.contactEmail != ''" >
+        and contact_email = #{condition.contactEmail,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.userName != null and condition.userName != ''" >
+        and user_name = #{condition.userName,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.isDefault != null" >
+        and is_default = #{condition.isDefault,jdbcType=BIT}
+      </if>
+    </where>
+    <if test="page.sort != null and page.sort != ''" >
+      ORDER BY ${page.sort} ${page.order}
+    </if>
+    <if test="page != null" >
+      limit #{page.offset}, #{page.limit}
+    </if>
+  </select>
+  <select id="queryPageResultCount" resultType="int" >
+    select count(*) from 
+    agent_delivery_address
+    <where >
+      <if test="condition.id != null" >
+        and id = #{condition.id,jdbcType=INTEGER}
+      </if>
+      <if test="condition.userId != null" >
+        and user_id = #{condition.userId,jdbcType=INTEGER}
+      </if>
+      <if test="condition.deliveryAddress != null and condition.deliveryAddress != ''" >
+        and delivery_address = #{condition.deliveryAddress,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.contactTel != null and condition.contactTel != ''" >
+        and contact_tel = #{condition.contactTel,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.cityId != null and condition.cityId != ''" >
+        and city_id = #{condition.cityId,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.createTime != null" >
+        and create_time = #{condition.createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.updateTime != null" >
+        and update_time = #{condition.updateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.addressStatus != null" >
+        and address_status = #{condition.addressStatus,jdbcType=TINYINT}
+      </if>
+      <if test="condition.contactEmail != null and condition.contactEmail != ''" >
+        and contact_email = #{condition.contactEmail,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.userName != null and condition.userName != ''" >
+        and user_name = #{condition.userName,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.isDefault != null" >
+        and is_default = #{condition.isDefault,jdbcType=BIT}
+      </if>
+    </where>
+  </select>
+</mapper>

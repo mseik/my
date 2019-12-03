@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morelinks.service.micro.inner.user.mapper.ManageSystemInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.morelinks.feign.micro.inner.user.api.model.ManageSystemInfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="system_name" property="systemName" jdbcType="VARCHAR" />
+    <result column="system_desc" property="systemDesc" jdbcType="VARCHAR" />
+    <result column="system_status" property="systemStatus" jdbcType="TINYINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="system_type" property="systemType" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, system_name, system_desc, system_status, create_time, update_time, system_type
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from manage_system_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from manage_system_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.morelinks.feign.micro.inner.user.api.model.ManageSystemInfo" >
+    insert into manage_system_info (id, system_name, system_desc, 
+      system_status, create_time, update_time, 
+      system_type)
+    values (#{id,jdbcType=INTEGER}, #{systemName,jdbcType=VARCHAR}, #{systemDesc,jdbcType=VARCHAR}, 
+      #{systemStatus,jdbcType=TINYINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{systemType,jdbcType=TINYINT})
+    <selectKey keyProperty="id" order="AFTER" resultType="int" >
+      SELECT LAST_INSERT_ID() AS ID
+    </selectKey>
+  </insert>
+  <insert id="insertSelective" parameterType="com.morelinks.feign.micro.inner.user.api.model.ManageSystemInfo" >
+    insert into manage_system_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="systemName != null" >
+        system_name,
+      </if>
+      <if test="systemDesc != null" >
+        system_desc,
+      </if>
+      <if test="systemStatus != null" >
+        system_status,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="systemType != null" >
+        system_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="systemName != null" >
+        #{systemName,jdbcType=VARCHAR},
+      </if>
+      <if test="systemDesc != null" >
+        #{systemDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="systemStatus != null" >
+        #{systemStatus,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="systemType != null" >
+        #{systemType,jdbcType=TINYINT},
+      </if>
+    </trim>
+    <selectKey keyProperty="id" order="AFTER" resultType="int" >
+      SELECT LAST_INSERT_ID() AS ID
+    </selectKey>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.morelinks.feign.micro.inner.user.api.model.ManageSystemInfo" >
+    update manage_system_info
+    <set >
+      <if test="systemName != null" >
+        system_name = #{systemName,jdbcType=VARCHAR},
+      </if>
+      <if test="systemDesc != null" >
+        system_desc = #{systemDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="systemStatus != null" >
+        system_status = #{systemStatus,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="systemType != null" >
+        system_type = #{systemType,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.morelinks.feign.micro.inner.user.api.model.ManageSystemInfo" >
+    update manage_system_info
+    set system_name = #{systemName,jdbcType=VARCHAR},
+      system_desc = #{systemDesc,jdbcType=VARCHAR},
+      system_status = #{systemStatus,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      system_type = #{systemType,jdbcType=TINYINT}
+    <where >
+      id = #{id,jdbcType=INTEGER}
+    </where>
+  </update>
+  <select id="queryPageResult" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from 
+    manage_system_info
+    <where >
+      <if test="condition.id != null" >
+        and id = #{condition.id,jdbcType=INTEGER}
+      </if>
+      <if test="condition.systemName != null and condition.systemName != ''" >
+        and system_name = #{condition.systemName,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.systemDesc != null and condition.systemDesc != ''" >
+        and system_desc = #{condition.systemDesc,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.systemStatus != null" >
+        and system_status = #{condition.systemStatus,jdbcType=TINYINT}
+      </if>
+      <if test="condition.createTime != null" >
+        and create_time = #{condition.createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.updateTime != null" >
+        and update_time = #{condition.updateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.systemType != null" >
+        and system_type = #{condition.systemType,jdbcType=TINYINT}
+      </if>
+    </where>
+    <if test="page.sort != null and page.sort != ''" >
+      ORDER BY ${page.sort} ${page.order}
+    </if>
+    <if test="page != null" >
+      limit #{page.offset}, #{page.limit}
+    </if>
+  </select>
+  <select id="queryPageResultCount" resultType="int" >
+    select count(*) from 
+    manage_system_info
+    <where >
+      <if test="condition.id != null" >
+        and id = #{condition.id,jdbcType=INTEGER}
+      </if>
+      <if test="condition.systemName != null and condition.systemName != ''" >
+        and system_name = #{condition.systemName,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.systemDesc != null and condition.systemDesc != ''" >
+        and system_desc = #{condition.systemDesc,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.systemStatus != null" >
+        and system_status = #{condition.systemStatus,jdbcType=TINYINT}
+      </if>
+      <if test="condition.createTime != null" >
+        and create_time = #{condition.createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.updateTime != null" >
+        and update_time = #{condition.updateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.systemType != null" >
+        and system_type = #{condition.systemType,jdbcType=TINYINT}
+      </if>
+    </where>
+  </select>
+</mapper>

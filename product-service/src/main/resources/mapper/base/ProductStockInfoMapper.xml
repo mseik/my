@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morelinks.service.micro.product.mapper.ProductStockInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.morelinks.feign.micro.product.api.model.ProductStockInfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="product_id" property="productId" jdbcType="INTEGER" />
+    <result column="remain_quantity" property="remainQuantity" jdbcType="INTEGER" />
+    <result column="alarm_quantity" property="alarmQuantity" jdbcType="INTEGER" />
+    <result column="operate_quantity" property="operateQuantity" jdbcType="INTEGER" />
+    <result column="stock_status" property="stockStatus" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="update_version" property="updateVersion" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, product_id, remain_quantity, alarm_quantity, operate_quantity, stock_status, 
+    create_time, update_time, update_version
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from product_stock_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from product_stock_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.morelinks.feign.micro.product.api.model.ProductStockInfo" >
+    insert into product_stock_info (id, product_id, remain_quantity, 
+      alarm_quantity, operate_quantity, stock_status, 
+      create_time, update_time, update_version
+      )
+    values (#{id,jdbcType=INTEGER}, #{productId,jdbcType=INTEGER}, #{remainQuantity,jdbcType=INTEGER}, 
+      #{alarmQuantity,jdbcType=INTEGER}, #{operateQuantity,jdbcType=INTEGER}, #{stockStatus,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{updateVersion,jdbcType=TIMESTAMP}
+      )
+    <selectKey keyProperty="id" order="AFTER" resultType="int" >
+      SELECT LAST_INSERT_ID() AS ID
+    </selectKey>
+  </insert>
+  <insert id="insertSelective" parameterType="com.morelinks.feign.micro.product.api.model.ProductStockInfo" >
+    insert into product_stock_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="productId != null" >
+        product_id,
+      </if>
+      <if test="remainQuantity != null" >
+        remain_quantity,
+      </if>
+      <if test="alarmQuantity != null" >
+        alarm_quantity,
+      </if>
+      <if test="operateQuantity != null" >
+        operate_quantity,
+      </if>
+      <if test="stockStatus != null" >
+        stock_status,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="updateVersion != null" >
+        update_version,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="productId != null" >
+        #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="remainQuantity != null" >
+        #{remainQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="alarmQuantity != null" >
+        #{alarmQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="operateQuantity != null" >
+        #{operateQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="stockStatus != null" >
+        #{stockStatus,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateVersion != null" >
+        #{updateVersion,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+    <selectKey keyProperty="id" order="AFTER" resultType="int" >
+      SELECT LAST_INSERT_ID() AS ID
+    </selectKey>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.morelinks.feign.micro.product.api.model.ProductStockInfo" >
+    update product_stock_info
+    <set >
+      <if test="productId != null" >
+        product_id = #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="remainQuantity != null" >
+        remain_quantity = #{remainQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="alarmQuantity != null" >
+        alarm_quantity = #{alarmQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="operateQuantity != null" >
+        operate_quantity = #{operateQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="stockStatus != null" >
+        stock_status = #{stockStatus,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateVersion != null" >
+        update_version = #{updateVersion,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.morelinks.feign.micro.product.api.model.ProductStockInfo" >
+    update product_stock_info
+    set product_id = #{productId,jdbcType=INTEGER},
+      remain_quantity = #{remainQuantity,jdbcType=INTEGER},
+      alarm_quantity = #{alarmQuantity,jdbcType=INTEGER},
+      operate_quantity = #{operateQuantity,jdbcType=INTEGER},
+      stock_status = #{stockStatus,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      update_version = #{updateVersion,jdbcType=TIMESTAMP}
+    <where >
+      id = #{id,jdbcType=INTEGER}
+    </where>
+  </update>
+  <select id="queryPageResult" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from 
+    product_stock_info
+    <where >
+      <if test="condition.id != null" >
+        and id = #{condition.id,jdbcType=INTEGER}
+      </if>
+      <if test="condition.productId != null" >
+        and product_id = #{condition.productId,jdbcType=INTEGER}
+      </if>
+      <if test="condition.remainQuantity != null" >
+        and remain_quantity = #{condition.remainQuantity,jdbcType=INTEGER}
+      </if>
+      <if test="condition.alarmQuantity != null" >
+        and alarm_quantity = #{condition.alarmQuantity,jdbcType=INTEGER}
+      </if>
+      <if test="condition.operateQuantity != null" >
+        and operate_quantity = #{condition.operateQuantity,jdbcType=INTEGER}
+      </if>
+      <if test="condition.stockStatus != null" >
+        and stock_status = #{condition.stockStatus,jdbcType=INTEGER}
+      </if>
+      <if test="condition.createTime != null" >
+        and create_time = #{condition.createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.updateTime != null" >
+        and update_time = #{condition.updateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.updateVersion != null" >
+        and update_version = #{condition.updateVersion,jdbcType=TIMESTAMP}
+      </if>
+    </where>
+    <if test="page.sort != null and page.sort != ''" >
+      ORDER BY ${page.sort} ${page.order}
+    </if>
+    <if test="page != null" >
+      limit #{page.offset}, #{page.limit}
+    </if>
+  </select>
+  <select id="queryPageResultCount" resultType="int" >
+    select count(*) from 
+    product_stock_info
+    <where >
+      <if test="condition.id != null" >
+        and id = #{condition.id,jdbcType=INTEGER}
+      </if>
+      <if test="condition.productId != null" >
+        and product_id = #{condition.productId,jdbcType=INTEGER}
+      </if>
+      <if test="condition.remainQuantity != null" >
+        and remain_quantity = #{condition.remainQuantity,jdbcType=INTEGER}
+      </if>
+      <if test="condition.alarmQuantity != null" >
+        and alarm_quantity = #{condition.alarmQuantity,jdbcType=INTEGER}
+      </if>
+      <if test="condition.operateQuantity != null" >
+        and operate_quantity = #{condition.operateQuantity,jdbcType=INTEGER}
+      </if>
+      <if test="condition.stockStatus != null" >
+        and stock_status = #{condition.stockStatus,jdbcType=INTEGER}
+      </if>
+      <if test="condition.createTime != null" >
+        and create_time = #{condition.createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.updateTime != null" >
+        and update_time = #{condition.updateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.updateVersion != null" >
+        and update_version = #{condition.updateVersion,jdbcType=TIMESTAMP}
+      </if>
+    </where>
+  </select>
+</mapper>

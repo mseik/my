@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morelinks.service.micro.inner.user.mapper.UserWeiXinMapMapper" >
+  <resultMap id="BaseResultMap" type="com.morelinks.feign.micro.inner.user.api.model.UserWeiXinMap" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="app_id" property="appId" jdbcType="VARCHAR" />
+    <result column="open_id" property="openId" jdbcType="VARCHAR" />
+    <result column="system_type" property="systemType" jdbcType="TINYINT" />
+    <result column="union_id" property="unionId" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="is_bind" property="isBind" jdbcType="TINYINT" />
+    <result column="bind_time" property="bindTime" jdbcType="TIMESTAMP" />
+    <result column="unbind_time" property="unbindTime" jdbcType="TIMESTAMP" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, app_id, open_id, system_type, union_id, user_id, is_bind, bind_time, unbind_time, 
+    create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_weixin_map
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from user_weixin_map
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.morelinks.feign.micro.inner.user.api.model.UserWeiXinMap" >
+    insert into user_weixin_map (id, app_id, open_id, 
+      system_type, union_id, user_id, 
+      is_bind, bind_time, unbind_time, 
+      create_time, update_time)
+    values (#{id,jdbcType=INTEGER}, #{appId,jdbcType=VARCHAR}, #{openId,jdbcType=VARCHAR}, 
+      #{systemType,jdbcType=TINYINT}, #{unionId,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, 
+      #{isBind,jdbcType=TINYINT}, #{bindTime,jdbcType=TIMESTAMP}, #{unbindTime,jdbcType=TIMESTAMP}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+    <selectKey keyProperty="id" order="AFTER" resultType="int" >
+      SELECT LAST_INSERT_ID() AS ID
+    </selectKey>
+  </insert>
+  <insert id="insertSelective" parameterType="com.morelinks.feign.micro.inner.user.api.model.UserWeiXinMap" >
+    insert into user_weixin_map
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="appId != null" >
+        app_id,
+      </if>
+      <if test="openId != null" >
+        open_id,
+      </if>
+      <if test="systemType != null" >
+        system_type,
+      </if>
+      <if test="unionId != null" >
+        union_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="isBind != null" >
+        is_bind,
+      </if>
+      <if test="bindTime != null" >
+        bind_time,
+      </if>
+      <if test="unbindTime != null" >
+        unbind_time,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="appId != null" >
+        #{appId,jdbcType=VARCHAR},
+      </if>
+      <if test="openId != null" >
+        #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="systemType != null" >
+        #{systemType,jdbcType=TINYINT},
+      </if>
+      <if test="unionId != null" >
+        #{unionId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="isBind != null" >
+        #{isBind,jdbcType=TINYINT},
+      </if>
+      <if test="bindTime != null" >
+        #{bindTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="unbindTime != null" >
+        #{unbindTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+    <selectKey keyProperty="id" order="AFTER" resultType="int" >
+      SELECT LAST_INSERT_ID() AS ID
+    </selectKey>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.morelinks.feign.micro.inner.user.api.model.UserWeiXinMap" >
+    update user_weixin_map
+    <set >
+      <if test="appId != null" >
+        app_id = #{appId,jdbcType=VARCHAR},
+      </if>
+      <if test="openId != null" >
+        open_id = #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="systemType != null" >
+        system_type = #{systemType,jdbcType=TINYINT},
+      </if>
+      <if test="unionId != null" >
+        union_id = #{unionId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="isBind != null" >
+        is_bind = #{isBind,jdbcType=TINYINT},
+      </if>
+      <if test="bindTime != null" >
+        bind_time = #{bindTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="unbindTime != null" >
+        unbind_time = #{unbindTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.morelinks.feign.micro.inner.user.api.model.UserWeiXinMap" >
+    update user_weixin_map
+    set app_id = #{appId,jdbcType=VARCHAR},
+      open_id = #{openId,jdbcType=VARCHAR},
+      system_type = #{systemType,jdbcType=TINYINT},
+      union_id = #{unionId,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=INTEGER},
+      is_bind = #{isBind,jdbcType=TINYINT},
+      bind_time = #{bindTime,jdbcType=TIMESTAMP},
+      unbind_time = #{unbindTime,jdbcType=TIMESTAMP},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    <where >
+      id = #{id,jdbcType=INTEGER}
+    </where>
+  </update>
+  <select id="queryPageResult" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from 
+    user_weixin_map
+    <where >
+      <if test="condition.id != null" >
+        and id = #{condition.id,jdbcType=INTEGER}
+      </if>
+      <if test="condition.appId != null and condition.appId != ''" >
+        and app_id = #{condition.appId,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.openId != null and condition.openId != ''" >
+        and open_id = #{condition.openId,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.systemType != null" >
+        and system_type = #{condition.systemType,jdbcType=TINYINT}
+      </if>
+      <if test="condition.unionId != null and condition.unionId != ''" >
+        and union_id = #{condition.unionId,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.userId != null" >
+        and user_id = #{condition.userId,jdbcType=INTEGER}
+      </if>
+      <if test="condition.isBind != null" >
+        and is_bind = #{condition.isBind,jdbcType=TINYINT}
+      </if>
+      <if test="condition.bindTime != null" >
+        and bind_time = #{condition.bindTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.unbindTime != null" >
+        and unbind_time = #{condition.unbindTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.createTime != null" >
+        and create_time = #{condition.createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.updateTime != null" >
+        and update_time = #{condition.updateTime,jdbcType=TIMESTAMP}
+      </if>
+    </where>
+    <if test="page.sort != null and page.sort != ''" >
+      ORDER BY ${page.sort} ${page.order}
+    </if>
+    <if test="page != null" >
+      limit #{page.offset}, #{page.limit}
+    </if>
+  </select>
+  <select id="queryPageResultCount" resultType="int" >
+    select count(*) from 
+    user_weixin_map
+    <where >
+      <if test="condition.id != null" >
+        and id = #{condition.id,jdbcType=INTEGER}
+      </if>
+      <if test="condition.appId != null and condition.appId != ''" >
+        and app_id = #{condition.appId,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.openId != null and condition.openId != ''" >
+        and open_id = #{condition.openId,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.systemType != null" >
+        and system_type = #{condition.systemType,jdbcType=TINYINT}
+      </if>
+      <if test="condition.unionId != null and condition.unionId != ''" >
+        and union_id = #{condition.unionId,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.userId != null" >
+        and user_id = #{condition.userId,jdbcType=INTEGER}
+      </if>
+      <if test="condition.isBind != null" >
+        and is_bind = #{condition.isBind,jdbcType=TINYINT}
+      </if>
+      <if test="condition.bindTime != null" >
+        and bind_time = #{condition.bindTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.unbindTime != null" >
+        and unbind_time = #{condition.unbindTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.createTime != null" >
+        and create_time = #{condition.createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.updateTime != null" >
+        and update_time = #{condition.updateTime,jdbcType=TIMESTAMP}
+      </if>
+    </where>
+  </select>
+</mapper>

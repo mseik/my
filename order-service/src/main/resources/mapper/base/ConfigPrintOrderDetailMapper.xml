@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morelinks.service.micro.order.mapper.ConfigPrintOrderDetailMapper" >
+  <resultMap id="BaseResultMap" type="com.morelinks.feign.micro.order.api.model.ConfigPrintOrderDetail" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="order_id" property="orderId" jdbcType="VARCHAR" />
+    <result column="map_type" property="mapType" jdbcType="TINYINT" />
+    <result column="map_key" property="mapKey" jdbcType="INTEGER" />
+    <result column="map_name" property="mapName" jdbcType="VARCHAR" />
+    <result column="num" property="num" jdbcType="INTEGER" />
+    <result column="ori_mount" property="oriMount" jdbcType="DECIMAL" />
+    <result column="final_amount" property="finalAmount" jdbcType="DECIMAL" />
+    <result column="discount_type" property="discountType" jdbcType="TINYINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="category_id" property="categoryId" jdbcType="INTEGER" />
+    <result column="category_name" property="categoryName" jdbcType="VARCHAR" />
+    <result column="brand_id" property="brandId" jdbcType="INTEGER" />
+    <result column="brand_name" property="brandName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, order_id, map_type, map_key, map_name, num, ori_mount, final_amount, discount_type, 
+    create_time, update_time, category_id, category_name, brand_id, brand_name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from config_print_order_detail
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from config_print_order_detail
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.morelinks.feign.micro.order.api.model.ConfigPrintOrderDetail" >
+    insert into config_print_order_detail (id, order_id, map_type, 
+      map_key, map_name, num, 
+      ori_mount, final_amount, discount_type, 
+      create_time, update_time, category_id, 
+      category_name, brand_id, brand_name
+      )
+    values (#{id,jdbcType=INTEGER}, #{orderId,jdbcType=VARCHAR}, #{mapType,jdbcType=TINYINT}, 
+      #{mapKey,jdbcType=INTEGER}, #{mapName,jdbcType=VARCHAR}, #{num,jdbcType=INTEGER}, 
+      #{oriMount,jdbcType=DECIMAL}, #{finalAmount,jdbcType=DECIMAL}, #{discountType,jdbcType=TINYINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{categoryId,jdbcType=INTEGER}, 
+      #{categoryName,jdbcType=VARCHAR}, #{brandId,jdbcType=INTEGER}, #{brandName,jdbcType=VARCHAR}
+      )
+    <selectKey keyProperty="id" order="AFTER" resultType="int" >
+      SELECT LAST_INSERT_ID() AS ID
+    </selectKey>
+  </insert>
+  <insert id="insertSelective" parameterType="com.morelinks.feign.micro.order.api.model.ConfigPrintOrderDetail" >
+    insert into config_print_order_detail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="mapType != null" >
+        map_type,
+      </if>
+      <if test="mapKey != null" >
+        map_key,
+      </if>
+      <if test="mapName != null" >
+        map_name,
+      </if>
+      <if test="num != null" >
+        num,
+      </if>
+      <if test="oriMount != null" >
+        ori_mount,
+      </if>
+      <if test="finalAmount != null" >
+        final_amount,
+      </if>
+      <if test="discountType != null" >
+        discount_type,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="categoryId != null" >
+        category_id,
+      </if>
+      <if test="categoryName != null" >
+        category_name,
+      </if>
+      <if test="brandId != null" >
+        brand_id,
+      </if>
+      <if test="brandName != null" >
+        brand_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="mapType != null" >
+        #{mapType,jdbcType=TINYINT},
+      </if>
+      <if test="mapKey != null" >
+        #{mapKey,jdbcType=INTEGER},
+      </if>
+      <if test="mapName != null" >
+        #{mapName,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null" >
+        #{num,jdbcType=INTEGER},
+      </if>
+      <if test="oriMount != null" >
+        #{oriMount,jdbcType=DECIMAL},
+      </if>
+      <if test="finalAmount != null" >
+        #{finalAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="discountType != null" >
+        #{discountType,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="categoryId != null" >
+        #{categoryId,jdbcType=INTEGER},
+      </if>
+      <if test="categoryName != null" >
+        #{categoryName,jdbcType=VARCHAR},
+      </if>
+      <if test="brandId != null" >
+        #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="brandName != null" >
+        #{brandName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+    <selectKey keyProperty="id" order="AFTER" resultType="int" >
+      SELECT LAST_INSERT_ID() AS ID
+    </selectKey>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.morelinks.feign.micro.order.api.model.ConfigPrintOrderDetail" >
+    update config_print_order_detail
+    <set >
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="mapType != null" >
+        map_type = #{mapType,jdbcType=TINYINT},
+      </if>
+      <if test="mapKey != null" >
+        map_key = #{mapKey,jdbcType=INTEGER},
+      </if>
+      <if test="mapName != null" >
+        map_name = #{mapName,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null" >
+        num = #{num,jdbcType=INTEGER},
+      </if>
+      <if test="oriMount != null" >
+        ori_mount = #{oriMount,jdbcType=DECIMAL},
+      </if>
+      <if test="finalAmount != null" >
+        final_amount = #{finalAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="discountType != null" >
+        discount_type = #{discountType,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="categoryId != null" >
+        category_id = #{categoryId,jdbcType=INTEGER},
+      </if>
+      <if test="categoryName != null" >
+        category_name = #{categoryName,jdbcType=VARCHAR},
+      </if>
+      <if test="brandId != null" >
+        brand_id = #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="brandName != null" >
+        brand_name = #{brandName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.morelinks.feign.micro.order.api.model.ConfigPrintOrderDetail" >
+    update config_print_order_detail
+    set order_id = #{orderId,jdbcType=VARCHAR},
+      map_type = #{mapType,jdbcType=TINYINT},
+      map_key = #{mapKey,jdbcType=INTEGER},
+      map_name = #{mapName,jdbcType=VARCHAR},
+      num = #{num,jdbcType=INTEGER},
+      ori_mount = #{oriMount,jdbcType=DECIMAL},
+      final_amount = #{finalAmount,jdbcType=DECIMAL},
+      discount_type = #{discountType,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      category_id = #{categoryId,jdbcType=INTEGER},
+      category_name = #{categoryName,jdbcType=VARCHAR},
+      brand_id = #{brandId,jdbcType=INTEGER},
+      brand_name = #{brandName,jdbcType=VARCHAR}
+    <where >
+      id = #{id,jdbcType=INTEGER}
+    </where>
+  </update>
+  <select id="queryPageResult" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from 
+    config_print_order_detail
+    <where >
+      <if test="condition.id != null" >
+        and id = #{condition.id,jdbcType=INTEGER}
+      </if>
+      <if test="condition.orderId != null and condition.orderId != ''" >
+        and order_id = #{condition.orderId,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.mapType != null" >
+        and map_type = #{condition.mapType,jdbcType=TINYINT}
+      </if>
+      <if test="condition.mapKey != null" >
+        and map_key = #{condition.mapKey,jdbcType=INTEGER}
+      </if>
+      <if test="condition.mapName != null and condition.mapName != ''" >
+        and map_name = #{condition.mapName,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.num != null" >
+        and num = #{condition.num,jdbcType=INTEGER}
+      </if>
+      <if test="condition.oriMount != null" >
+        and ori_mount = #{condition.oriMount,jdbcType=DECIMAL}
+      </if>
+      <if test="condition.finalAmount != null" >
+        and final_amount = #{condition.finalAmount,jdbcType=DECIMAL}
+      </if>
+      <if test="condition.discountType != null" >
+        and discount_type = #{condition.discountType,jdbcType=TINYINT}
+      </if>
+      <if test="condition.createTime != null" >
+        and create_time = #{condition.createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.updateTime != null" >
+        and update_time = #{condition.updateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.categoryId != null" >
+        and category_id = #{condition.categoryId,jdbcType=INTEGER}
+      </if>
+      <if test="condition.categoryName != null and condition.categoryName != ''" >
+        and category_name = #{condition.categoryName,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.brandId != null" >
+        and brand_id = #{condition.brandId,jdbcType=INTEGER}
+      </if>
+      <if test="condition.brandName != null and condition.brandName != ''" >
+        and brand_name = #{condition.brandName,jdbcType=VARCHAR}
+      </if>
+    </where>
+    <if test="page.sort != null and page.sort != ''" >
+      ORDER BY ${page.sort} ${page.order}
+    </if>
+    <if test="page != null" >
+      limit #{page.offset}, #{page.limit}
+    </if>
+  </select>
+  <select id="queryPageResultCount" resultType="int" >
+    select count(*) from 
+    config_print_order_detail
+    <where >
+      <if test="condition.id != null" >
+        and id = #{condition.id,jdbcType=INTEGER}
+      </if>
+      <if test="condition.orderId != null and condition.orderId != ''" >
+        and order_id = #{condition.orderId,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.mapType != null" >
+        and map_type = #{condition.mapType,jdbcType=TINYINT}
+      </if>
+      <if test="condition.mapKey != null" >
+        and map_key = #{condition.mapKey,jdbcType=INTEGER}
+      </if>
+      <if test="condition.mapName != null and condition.mapName != ''" >
+        and map_name = #{condition.mapName,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.num != null" >
+        and num = #{condition.num,jdbcType=INTEGER}
+      </if>
+      <if test="condition.oriMount != null" >
+        and ori_mount = #{condition.oriMount,jdbcType=DECIMAL}
+      </if>
+      <if test="condition.finalAmount != null" >
+        and final_amount = #{condition.finalAmount,jdbcType=DECIMAL}
+      </if>
+      <if test="condition.discountType != null" >
+        and discount_type = #{condition.discountType,jdbcType=TINYINT}
+      </if>
+      <if test="condition.createTime != null" >
+        and create_time = #{condition.createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.updateTime != null" >
+        and update_time = #{condition.updateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.categoryId != null" >
+        and category_id = #{condition.categoryId,jdbcType=INTEGER}
+      </if>
+      <if test="condition.categoryName != null and condition.categoryName != ''" >
+        and category_name = #{condition.categoryName,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.brandId != null" >
+        and brand_id = #{condition.brandId,jdbcType=INTEGER}
+      </if>
+      <if test="condition.brandName != null and condition.brandName != ''" >
+        and brand_name = #{condition.brandName,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </select>
+</mapper>

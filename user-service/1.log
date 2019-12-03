@@ -1,0 +1,28 @@
+Column system_status, specified for override in table user_system_role, does not exist in the table.
+Existing file D:\MorelinksGitCode\service\micro-inner-user\src\main\resources\mapper\base\ManageSystemInfoMapper.xml was overwritten
+Existing file D:\MorelinksGitCode\service\micro-inner-user\src\main\resources\mapper\base\UserSystemRoleMapper.xml was overwritten
+Existing file D:\MorelinksGitCode\service\micro-inner-user\src\main\resources\mapper\base\UserInfoMapper.xml was overwritten
+Existing file D:\MorelinksGitCode\service\micro-inner-user\src\main\resources\mapper\base\UserTicketMapper.xml was overwritten
+Existing file D:\MorelinksGitCode\service\micro-inner-user\src\main\resources\mapper\base\AgentLevelMapper.xml was overwritten
+Existing file D:\MorelinksGitCode\service\micro-inner-user\src\main\resources\mapper\base\AgentInfoMapper.xml was overwritten
+Existing file D:\MorelinksGitCode\service\micro-inner-user\src\main\resources\mapper\base\UserAgentMapMapper.xml was overwritten
+Existing file D:\MorelinksGitCode\service\micro-inner-user\src\main\resources\mapper\base\AgentInvoiceInfoMapper.xml was overwritten
+Existing file D:\MorelinksGitCode\service\micro-inner-user\src\main\resources\mapper\base\UserWeiXinMapMapper.xml was overwritten
+Existing file D:\MorelinksGitCode\service\micro-inner-user\src\main\resources\mapper\base\UserBaseConfigMapper.xml was overwritten
+Existing file D:\MorelinksGitCode\service\micro-inner-user\src\main\resources\mapper\base\MenuConfigMapper.xml was overwritten
+Existing file D:\MorelinksGitCode\service\micro-inner-user\src\main\resources\mapper\base\MenuInfoMapper.xml was overwritten
+Existing file D:\MorelinksGitCode\service\micro-inner-user\src\main\resources\mapper\base\RouteInfoMapper.xml was overwritten
+Existing file D:\MorelinksGitCode\feign-api\micro-inner-user-api\src\main\java\com\morelinks\feign\micro\inner\user\api\model\ManageSystemInfo.java was overwritten
+Existing file D:\MorelinksGitCode\feign-api\micro-inner-user-api\src\main\java\com\morelinks\feign\micro\inner\user\api\model\UserSystemRole.java was overwritten
+Existing file D:\MorelinksGitCode\feign-api\micro-inner-user-api\src\main\java\com\morelinks\feign\micro\inner\user\api\model\UserInfo.java was overwritten
+Existing file D:\MorelinksGitCode\feign-api\micro-inner-user-api\src\main\java\com\morelinks\feign\micro\inner\user\api\model\AgentLevel.java was overwritten
+Existing file D:\MorelinksGitCode\feign-api\micro-inner-user-api\src\main\java\com\morelinks\feign\micro\inner\user\api\model\AgentInfo.java was overwritten
+Existing file D:\MorelinksGitCode\feign-api\micro-inner-user-api\src\main\java\com\morelinks\feign\micro\inner\user\api\model\UserAgentMap.java was overwritten
+Existing file D:\MorelinksGitCode\feign-api\micro-inner-user-api\src\main\java\com\morelinks\feign\micro\inner\user\api\model\AgentInvoiceInfo.java was overwritten
+Existing file D:\MorelinksGitCode\feign-api\micro-inner-user-api\src\main\java\com\morelinks\feign\micro\inner\user\api\model\UserWeiXinMap.java was overwritten
+Existing file D:\MorelinksGitCode\feign-api\micro-inner-user-api\src\main\java\com\morelinks\feign\micro\inner\user\api\model\UserBaseConfig.java was overwritten
+Existing file D:\MorelinksGitCode\feign-api\micro-inner-user-api\src\main\java\com\morelinks\feign\micro\inner\user\api\model\MenuConfig.java was overwritten
+Existing file D:\MorelinksGitCode\feign-api\micro-inner-user-api\src\main\java\com\morelinks\feign\micro\inner\user\api\model\MenuInfo.java was overwritten
+Existing file D:\MorelinksGitCode\feign-api\micro-inner-user-api\src\main\java\com\morelinks\feign\micro\inner\user\api\model\RouteInfo.java was overwritten
+
+MyBatis Generator finished successfully, there were warnings.

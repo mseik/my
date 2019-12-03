@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morelinks.service.micro.order.mapper.ConfigOrderDiscountInfoMapper" >
+    <delete id="deleteByPrimaryKeySelective" parameterType="java.lang.Integer" >
+    delete from config_order_discount_info
+        <where >
+            <if test="condition.id != null" >
+                and id = #{condition.id,jdbcType=INTEGER}
+            </if>
+            <if test="condition.agentId != null" >
+                and agent_id = #{condition.agentId,jdbcType=INTEGER}
+            </if>
+            <if test="condition.configOrderId != null and condition.configOrderId != ''" >
+                and config_order_id = #{condition.configOrderId,jdbcType=VARCHAR}
+            </if>
+            <if test="condition.conditionType != null" >
+                and condition_type = #{condition.conditionType,jdbcType=TINYINT}
+            </if>
+            <if test="condition.discountType != null" >
+                and discount_type = #{condition.discountType,jdbcType=TINYINT}
+            </if>
+            <if test="condition.discountKey != null and condition.discountKey != ''" >
+                and discount_key = #{condition.discountKey,jdbcType=VARCHAR}
+            </if>
+            <if test="condition.conditionAmount != null" >
+                and condition_amount = #{condition.conditionAmount,jdbcType=DECIMAL}
+            </if>
+            <if test="condition.fromType != null" >
+                and from_type = #{condition.fromType,jdbcType=TINYINT}
+            </if>
+        </where>
+  </delete>
+
+
+</mapper>

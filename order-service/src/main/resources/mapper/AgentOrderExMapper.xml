@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.morelinks.service.micro.order.mapper.AgentOrderMapper">
+    <select id="queryPageResultNew" resultMap="BaseResultMap" >
+        select
+        <include refid="Base_Column_List" />
+        from
+        agent_order
+        <where >
+            <if test="condition.userId != null and condition.userId != ''" >
+                and user_id = #{condition.userId,jdbcType=VARCHAR}
+            </if>
+            <if test="condition.agentId != null" >
+                and agent_id = #{condition.agentId,jdbcType=INTEGER}
+            </if>
+            <if test="null!=condition.orderStatuss and condition.orderStatuss.size > 0">
+                and order_status in
+                <foreach item="item" index="index" collection="condition.orderStatuss" open="(" separator="," close=")">
+                    #{item}</foreach>
+            </if>
+            <if test="condition.orderType != null" >
+                and order_type = #{condition.orderType,jdbcType=INTEGER}
+            </if>
+            <if test="condition.fromType != null" >
+                and from_type = #{condition.fromType,jdbcType=INTEGER}
+            </if>
+            <if test="condition.startOrderTime != null" >
+                and create_time <![CDATA[>=]]> #{condition.startOrderTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="condition.endOrderTime != null" >
+                and create_time <![CDATA[<=]]> #{condition.endOrderTime,jdbcType=TIMESTAMP}
+            </if>
+        </where>
+        <if test="page.sort != null and page.sort != ''" >
+            ORDER BY ${page.sort} ${page.order}
+        </if>
+        <if test="page != null" >
+            limit #{page.offset}, #{page.limit}
+        </if>
+    </select>
+    <select id="queryPageResultCountNew" resultType="int" >
+        select count(*) from
+        agent_order
+        <where >
+            <if test="condition.userId != null and condition.userId != ''" >
+                and user_id = #{condition.userId,jdbcType=VARCHAR}
+            </if>
+            <if test="condition.agentId != null" >
+                and agent_id = #{condition.agentId,jdbcType=INTEGER}
+            </if>
+            <if test="null!=condition.orderStatuss and condition.orderStatuss.size > 0">
+                and order_status in
+                <foreach item="item" index="index" collection="condition.orderStatuss" open="(" separator="," close=")">
+                    #{item}</foreach>
+            </if>
+            <if test="condition.orderType != null" >
+                and order_type = #{condition.orderType,jdbcType=INTEGER}
+            </if>
+            <if test="condition.fromType != null" >
+                and from_type = #{condition.fromType,jdbcType=INTEGER}
+            </if>
+            <if test="condition.startOrderTime != null" >
+                and create_time <![CDATA[>=]]> #{condition.startOrderTime,jdbcType=TIMESTAMP}
+            </if>
+            <if test="condition.endOrderTime != null" >
+                and create_time <![CDATA[<=]]> #{condition.endOrderTime,jdbcType=TIMESTAMP}
+            </if>
+        </where>
+    </select>
+</mapper>

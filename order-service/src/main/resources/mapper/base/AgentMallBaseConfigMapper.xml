@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morelinks.service.micro.order.mapper.AgentMallBaseConfigMapper" >
+  <resultMap id="BaseResultMap" type="com.morelinks.feign.micro.order.api.model.AgentMallBaseConfig" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="config_type" property="configType" jdbcType="VARCHAR" />
+    <result column="config_key" property="configKey" jdbcType="VARCHAR" />
+    <result column="config_val" property="configVal" jdbcType="VARCHAR" />
+    <result column="config_sort" property="configSort" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, config_type, config_key, config_val, config_sort, create_time, update_time, remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from agent_mall_base_config
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from agent_mall_base_config
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.morelinks.feign.micro.order.api.model.AgentMallBaseConfig" >
+    insert into agent_mall_base_config (id, config_type, config_key, 
+      config_val, config_sort, create_time, 
+      update_time, remark)
+    values (#{id,jdbcType=INTEGER}, #{configType,jdbcType=VARCHAR}, #{configKey,jdbcType=VARCHAR}, 
+      #{configVal,jdbcType=VARCHAR}, #{configSort,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR})
+    <selectKey keyProperty="id" order="AFTER" resultType="int" >
+      SELECT LAST_INSERT_ID() AS ID
+    </selectKey>
+  </insert>
+  <insert id="insertSelective" parameterType="com.morelinks.feign.micro.order.api.model.AgentMallBaseConfig" >
+    insert into agent_mall_base_config
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="configType != null" >
+        config_type,
+      </if>
+      <if test="configKey != null" >
+        config_key,
+      </if>
+      <if test="configVal != null" >
+        config_val,
+      </if>
+      <if test="configSort != null" >
+        config_sort,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="configType != null" >
+        #{configType,jdbcType=VARCHAR},
+      </if>
+      <if test="configKey != null" >
+        #{configKey,jdbcType=VARCHAR},
+      </if>
+      <if test="configVal != null" >
+        #{configVal,jdbcType=VARCHAR},
+      </if>
+      <if test="configSort != null" >
+        #{configSort,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+    <selectKey keyProperty="id" order="AFTER" resultType="int" >
+      SELECT LAST_INSERT_ID() AS ID
+    </selectKey>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.morelinks.feign.micro.order.api.model.AgentMallBaseConfig" >
+    update agent_mall_base_config
+    <set >
+      <if test="configType != null" >
+        config_type = #{configType,jdbcType=VARCHAR},
+      </if>
+      <if test="configKey != null" >
+        config_key = #{configKey,jdbcType=VARCHAR},
+      </if>
+      <if test="configVal != null" >
+        config_val = #{configVal,jdbcType=VARCHAR},
+      </if>
+      <if test="configSort != null" >
+        config_sort = #{configSort,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.morelinks.feign.micro.order.api.model.AgentMallBaseConfig" >
+    update agent_mall_base_config
+    set config_type = #{configType,jdbcType=VARCHAR},
+      config_key = #{configKey,jdbcType=VARCHAR},
+      config_val = #{configVal,jdbcType=VARCHAR},
+      config_sort = #{configSort,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR}
+    <where >
+      id = #{id,jdbcType=INTEGER}
+    </where>
+  </update>
+  <select id="queryPageResult" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from 
+    agent_mall_base_config
+    <where >
+      <if test="condition.id != null" >
+        and id = #{condition.id,jdbcType=INTEGER}
+      </if>
+      <if test="condition.configType != null and condition.configType != ''" >
+        and config_type = #{condition.configType,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.configKey != null and condition.configKey != ''" >
+        and config_key = #{condition.configKey,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.configVal != null and condition.configVal != ''" >
+        and config_val = #{condition.configVal,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.configSort != null" >
+        and config_sort = #{condition.configSort,jdbcType=INTEGER}
+      </if>
+      <if test="condition.createTime != null" >
+        and create_time = #{condition.createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.updateTime != null" >
+        and update_time = #{condition.updateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.remark != null and condition.remark != ''" >
+        and remark = #{condition.remark,jdbcType=VARCHAR}
+      </if>
+    </where>
+    <if test="page.sort != null and page.sort != ''" >
+      ORDER BY ${page.sort} ${page.order}
+    </if>
+    <if test="page != null" >
+      limit #{page.offset}, #{page.limit}
+    </if>
+  </select>
+  <select id="queryPageResultCount" resultType="int" >
+    select count(*) from 
+    agent_mall_base_config
+    <where >
+      <if test="condition.id != null" >
+        and id = #{condition.id,jdbcType=INTEGER}
+      </if>
+      <if test="condition.configType != null and condition.configType != ''" >
+        and config_type = #{condition.configType,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.configKey != null and condition.configKey != ''" >
+        and config_key = #{condition.configKey,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.configVal != null and condition.configVal != ''" >
+        and config_val = #{condition.configVal,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.configSort != null" >
+        and config_sort = #{condition.configSort,jdbcType=INTEGER}
+      </if>
+      <if test="condition.createTime != null" >
+        and create_time = #{condition.createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.updateTime != null" >
+        and update_time = #{condition.updateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.remark != null and condition.remark != ''" >
+        and remark = #{condition.remark,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </select>
+</mapper>

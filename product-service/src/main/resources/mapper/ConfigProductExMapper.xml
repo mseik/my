@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morelinks.service.micro.product.mapper.ConfigProductMapper" >
+    <!--<select id="QuerySortProduct" resultMap="BaseResultMap" >-->
+        <!--select-->
+        <!--<include refid="Base_Column_List" />-->
+        <!--from-->
+        <!--config_product-->
+        <!--<where >-->
+            <!--<if test="condition.listMapKey != null and condition.listMapKey.size > 0">-->
+                <!--and  id in-->
+                <!--<foreach item="item" index="index" collection="condition.listMapKey" open="(" separator="," close=")">-->
+                    <!--#{item}</foreach>-->
+            <!--</if>-->
+            <!--<if test="condition.listBrand != null and condition.listBrand.size > 0">-->
+                <!--and  brand_id in-->
+                <!--<foreach item="item" index="index" collection="condition.listBrand " open="(" separator="," close=")">-->
+                    <!--#{item}</foreach>-->
+            <!--</if>-->
+        <!--</where>-->
+        <!--<if test="condition.page.sort != null and condition.page.sort != ''" >-->
+            <!--ORDER BY ${condition.page.sort} ${condition.page.order}-->
+        <!--</if>-->
+        <!--<if test="condition.page != null" >-->
+            <!--limit #{condition.page.offset}, #{condition.page.limit}-->
+        <!--</if>-->
+    <!--</select>-->
+
+
+    <sql id="queryConfigProductPageResult_where_if">
+        <if test="condition.brandIds != null and condition.brandIds.size &gt; 0">
+            and  brand_id in
+            <foreach item="item" index="index" collection="condition.brandIds" open="(" separator="," close=")">
+                #{item}</foreach>
+        </if>
+        <if test="condition.categoryIds != null and condition.categoryIds.size &gt; 0">
+            and  category_id in
+            <foreach item="item" index="index" collection="condition.categoryIds" open="(" separator="," close=")">
+                #{item}</foreach>
+        </if>
+        <if test="condition.agentId != null and condition.agentId > 0" >
+            and agent_id in (#{condition.agentId,jdbcType=INTEGER},0)
+        </if>
+        <if test="condition.agentId == null or condition.agentId  &lt;= 0" >
+            and agent_id = 0
+        </if>
+        <if test="condition.productName != null and condition.productName != ''" >
+            and   product_name LIKE concat(concat('%',#{condition.productName}),'%')
+        </if>
+        <if test="condition.productStatus != null" >
+            and product_status = #{condition.productStatus,jdbcType=TINYINT}
+        </if>
+    </sql>
+    <select id="queryConfigProductPageResult" resultMap="BaseResultMap" >
+        select
+        <include refid="Base_Column_List" />
+        from
+        config_product
+        <where >
+            <include refid="queryConfigProductPageResult_where_if"/>
+        </where>
+        <if test="page.sort != null and page.sort != ''" >
+            ORDER BY ${page.sort} ${page.order}
+        </if>
+        <if test="page != null" >
+            limit #{page.offset}, #{page.limit}
+        </if>
+    </select>
+    <select id="queryConfigProductPageResultCount" resultType="int" >
+        select count(*) from
+        config_product
+        <where >
+            <include refid="queryConfigProductPageResult_where_if"/>
+        </where>
+    </select>
+
+</mapper>

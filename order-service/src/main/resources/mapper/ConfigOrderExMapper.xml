@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morelinks.service.micro.order.mapper.ConfigOrderMapper" >
+    <select id="queryPageResultNew" resultMap="BaseResultMap" >
+        select
+        <include refid="Base_Column_List" />
+        from
+        config_order
+        <where >
+           <if test="condition.orderName != null and condition.orderName != ''" >
+                or  order_name  LIKE concat(concat('%',#{condition.orderName}),'%') and user_id =  #{condition.uerId,jdbcType=INTEGER}
+                and  del_status =   #{condition.isDelete}
+               <if test="condition.orderStatus != null" >
+                   and order_status = #{condition.orderStatus,jdbcType=INTEGER}
+               </if>
+            </if>
+            <if test="condition.customerName != null and condition.customerName != ''" >
+              or  customer_name LIKE concat(concat('%',#{condition.customerName}),'%') and user_id =  #{condition.uerId,jdbcType=INTEGER}
+                and  del_status =   #{condition.isDelete}
+                <if test="condition.orderStatus != null" >
+                    and order_status = #{condition.orderStatus,jdbcType=INTEGER}
+                </if>
+            </if>
+            <if test="condition.customerTel != null and condition.customerTel != ''" >
+               or  customer_tel LIKE  concat(concat('%',#{condition.customerTel}),'%') and user_id =  #{condition.uerId,jdbcType=INTEGER}
+                and  del_status =   #{condition.isDelete}
+                <if test="condition.orderStatus != null" >
+                    and order_status = #{condition.orderStatus,jdbcType=INTEGER}
+                </if>
+            </if>
+            <if test="condition.uerId != null" >
+                and user_id =  #{condition.uerId,jdbcType=INTEGER}
+            </if>
+            <if test="condition.orderStatus != null" >
+                and order_status = #{condition.orderStatus,jdbcType=INTEGER}
+            </if>
+            <if test="condition.isDelete != null" >
+                and  del_status =  #{condition.isDelete}
+            </if>
+        </where>
+        <if test="condition.page.sort != null and condition.page.sort != ''" >
+            ORDER BY ${condition.page.sort} ${condition.page.order}
+        </if>
+        <if test="condition.page != null" >
+            limit #{condition.page.offset}, #{condition.page.limit}
+        </if>
+    </select>
+
+    <select id="queryPageResultCountNew" resultType="int" >
+        select count(*) from
+        config_order
+        <where >
+            <if test="condition.orderName != null and condition.orderName != ''" >
+                or  order_name  LIKE concat(concat('%',#{condition.orderName}),'%') and user_id =  #{condition.uerId,jdbcType=INTEGER}
+                and  del_status =   #{condition.isDelete}
+                <if test="condition.orderStatus != null" >
+                    and order_status = #{condition.orderStatus,jdbcType=INTEGER}
+                </if>
+            </if>
+            <if test="condition.customerName != null and condition.customerName != ''" >
+                or  customer_name LIKE concat(concat('%',#{condition.customerName}),'%') and user_id =  #{condition.uerId,jdbcType=INTEGER}
+                and  del_status =   #{condition.isDelete}
+                <if test="condition.orderStatus != null" >
+                    and order_status = #{condition.orderStatus,jdbcType=INTEGER}
+                </if>
+            </if>
+            <if test="condition.customerTel != null and condition.customerTel != ''" >
+                or  customer_tel LIKE  concat(concat('%',#{condition.customerTel}),'%') and user_id =  #{condition.uerId,jdbcType=INTEGER}
+                and  del_status =   #{condition.isDelete}
+                <if test="condition.orderStatus != null" >
+                    and order_status = #{condition.orderStatus,jdbcType=INTEGER}
+                </if>
+            </if>
+            <if test="condition.uerId != null" >
+                and user_id =  #{condition.uerId,jdbcType=INTEGER}
+            </if>
+            <if test="condition.orderStatus != null" >
+                and order_status = #{condition.orderStatus,jdbcType=INTEGER}
+            </if>
+            <if test="condition.isDelete != null" >
+                and  del_status =  #{condition.isDelete}
+            </if>
+        </where>
+    </select>
+
+</mapper>

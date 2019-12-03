@@ -1,0 +1,41 @@
+Column need_purchase, specified for override in table product_model, does not exist in the table.
+Column property_status, specified for override in table config_product_property, does not exist in the table.
+Column map_type, specified for override in table config_product_property_map, does not exist in the table.
+Existing file D:\MorelinksGitCode\service\micro-product\src\main\resources\mapper\base\DiscountInfoMapper.xml was overwritten
+Existing file D:\MorelinksGitCode\service\micro-product\src\main\resources\mapper\base\ProductSupplierMapper.xml was overwritten
+Existing file D:\MorelinksGitCode\service\micro-product\src\main\resources\mapper\base\ProductInfoMapper.xml was overwritten
+Existing file D:\MorelinksGitCode\service\micro-product\src\main\resources\mapper\base\ProductModelMapper.xml was overwritten
+Existing file D:\MorelinksGitCode\service\micro-product\src\main\resources\mapper\base\ProductStockInfoMapper.xml was overwritten
+Existing file D:\MorelinksGitCode\service\micro-product\src\main\resources\mapper\base\ProductCategoryMapper.xml was overwritten
+Existing file D:\MorelinksGitCode\service\micro-product\src\main\resources\mapper\base\ProductBrandMapper.xml was overwritten
+Existing file D:\MorelinksGitCode\service\micro-product\src\main\resources\mapper\base\ProductImgMapper.xml was overwritten
+Existing file D:\MorelinksGitCode\service\micro-product\src\main\resources\mapper\base\ProductMapper.xml was overwritten
+Existing file D:\MorelinksGitCode\service\micro-product\src\main\resources\mapper\base\ProductPropertyMapper.xml was overwritten
+Existing file D:\MorelinksGitCode\service\micro-product\src\main\resources\mapper\base\ProductPropertyTypeMapper.xml was overwritten
+Existing file D:\MorelinksGitCode\service\micro-product\src\main\resources\mapper\base\ProductBaseConfigMapper.xml was overwritten
+Existing file D:\MorelinksGitCode\service\micro-product\src\main\resources\mapper\base\ProductExtraInfoMapper.xml was overwritten
+Existing file D:\MorelinksGitCode\service\micro-product\src\main\resources\mapper\base\ConfigCategoryMapper.xml was overwritten
+Existing file D:\MorelinksGitCode\service\micro-product\src\main\resources\mapper\base\ConfigProductMapper.xml was overwritten
+Existing file D:\MorelinksGitCode\service\micro-product\src\main\resources\mapper\base\ConfigProductAgentExtraMapper.xml was overwritten
+Existing file D:\MorelinksGitCode\service\micro-product\src\main\resources\mapper\base\ConfigProductPropertyMapper.xml was overwritten
+Existing file D:\MorelinksGitCode\service\micro-product\src\main\resources\mapper\base\ConfigProductPropertyMapMapper.xml was overwritten
+Existing file D:\MorelinksGitCode\feign-api\micro-product-api\src\main\java\com\morelinks\feign\micro\product\api\model\DiscountInfo.java was overwritten
+Existing file D:\MorelinksGitCode\feign-api\micro-product-api\src\main\java\com\morelinks\feign\micro\product\api\model\ProductSupplier.java was overwritten
+Existing file D:\MorelinksGitCode\feign-api\micro-product-api\src\main\java\com\morelinks\feign\micro\product\api\model\ProductInfo.java was overwritten
+Existing file D:\MorelinksGitCode\feign-api\micro-product-api\src\main\java\com\morelinks\feign\micro\product\api\model\ProductModel.java was overwritten
+Existing file D:\MorelinksGitCode\feign-api\micro-product-api\src\main\java\com\morelinks\feign\micro\product\api\model\ProductStockInfo.java was overwritten
+Existing file D:\MorelinksGitCode\feign-api\micro-product-api\src\main\java\com\morelinks\feign\micro\product\api\model\ProductCategory.java was overwritten
+Existing file D:\MorelinksGitCode\feign-api\micro-product-api\src\main\java\com\morelinks\feign\micro\product\api\model\ProductBrand.java was overwritten
+Existing file D:\MorelinksGitCode\feign-api\micro-product-api\src\main\java\com\morelinks\feign\micro\product\api\model\ProductImg.java was overwritten
+Existing file D:\MorelinksGitCode\feign-api\micro-product-api\src\main\java\com\morelinks\feign\micro\product\api\model\Product.java was overwritten
+Existing file D:\MorelinksGitCode\feign-api\micro-product-api\src\main\java\com\morelinks\feign\micro\product\api\model\ProductProperty.java was overwritten
+Existing file D:\MorelinksGitCode\feign-api\micro-product-api\src\main\java\com\morelinks\feign\micro\product\api\model\ProductPropertyType.java was overwritten
+Existing file D:\MorelinksGitCode\feign-api\micro-product-api\src\main\java\com\morelinks\feign\micro\product\api\model\ProductBaseConfig.java was overwritten
+Existing file D:\MorelinksGitCode\feign-api\micro-product-api\src\main\java\com\morelinks\feign\micro\product\api\model\ProductExtraInfo.java was overwritten
+Existing file D:\MorelinksGitCode\feign-api\micro-product-api\src\main\java\com\morelinks\feign\micro\product\api\model\ConfigCategory.java was overwritten
+Existing file D:\MorelinksGitCode\feign-api\micro-product-api\src\main\java\com\morelinks\feign\micro\product\api\model\ConfigProduct.java was overwritten
+Existing file D:\MorelinksGitCode\feign-api\micro-product-api\src\main\java\com\morelinks\feign\micro\product\api\model\ConfigProductAgentExtra.java was overwritten
+Existing file D:\MorelinksGitCode\feign-api\micro-product-api\src\main\java\com\morelinks\feign\micro\product\api\model\ConfigProductProperty.java was overwritten
+Existing file D:\MorelinksGitCode\feign-api\micro-product-api\src\main\java\com\morelinks\feign\micro\product\api\model\ConfigProductPropertyMap.java was overwritten
+
+MyBatis Generator finished successfully, there were warnings.

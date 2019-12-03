@@ -1,0 +1,8 @@
+Existing file D:\MoreLinksSVN\service\micro-common\src\main\resources\mapper\base\WeatherCityMapper.xml was overwritten
+Existing file D:\MoreLinksSVN\service\micro-common\src\main\resources\mapper\base\SMSConfigMapper.xml was overwritten
+Existing file D:\MoreLinksSVN\service\micro-common\src\main\resources\mapper\base\SMSTemplateConfigMapper.xml was overwritten
+Existing file D:\MoreLinksSVN\morelinks-feign-api\micro-common-api\src\main\java\com\morelinks\feign\micro\common\api\model\WeatherCity.java was overwritten
+Existing file D:\MoreLinksSVN\morelinks-feign-api\micro-common-api\src\main\java\com\morelinks\feign\micro\common\api\model\SMSConfig.java was overwritten
+Existing file D:\MoreLinksSVN\morelinks-feign-api\micro-common-api\src\main\java\com\morelinks\feign\micro\common\api\model\SMSTemplateConfig.java was overwritten
+
+MyBatis Generator finished successfully, there were warnings.

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morelinks.service.micro.product.mapper.ConfigProductPropertyMapMapper" >
+    <select id="queryPageResultNew" resultMap="BaseResultMap" >
+        select
+        <include refid="Base_Column_List" />
+        from
+        config_product_property_map
+        <where >
+            <if test="condition != null " >
+                and map_id in
+                <foreach item="item" index="index" collection="condition" open="(" separator="," close=")">
+                    #{item}</foreach>
+            </if>
+        </where>
+    </select>
+</mapper>

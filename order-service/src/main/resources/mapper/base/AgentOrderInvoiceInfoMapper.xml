@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morelinks.service.micro.order.mapper.AgentOrderInvoiceInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.morelinks.feign.micro.order.api.model.AgentOrderInvoiceInfo" >
+    <id column="order_id" property="orderId" jdbcType="VARCHAR" />
+    <result column="invoice_id" property="invoiceId" jdbcType="INTEGER" />
+    <result column="invoice_title" property="invoiceTitle" jdbcType="VARCHAR" />
+    <result column="invoice_no" property="invoiceNo" jdbcType="VARCHAR" />
+    <result column="invoice_company_address" property="invoiceCompanyAddress" jdbcType="VARCHAR" />
+    <result column="invoice_company_tel" property="invoiceCompanyTel" jdbcType="VARCHAR" />
+    <result column="invoice_bank_name" property="invoiceBankName" jdbcType="VARCHAR" />
+    <result column="invoice_bank_account" property="invoiceBankAccount" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    order_id, invoice_id, invoice_title, invoice_no, invoice_company_address, invoice_company_tel, 
+    invoice_bank_name, invoice_bank_account, create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from agent_order_invoice_info
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from agent_order_invoice_info
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.morelinks.feign.micro.order.api.model.AgentOrderInvoiceInfo" >
+    insert into agent_order_invoice_info (order_id, invoice_id, invoice_title, 
+      invoice_no, invoice_company_address, invoice_company_tel, 
+      invoice_bank_name, invoice_bank_account, create_time, 
+      update_time)
+    values (#{orderId,jdbcType=VARCHAR}, #{invoiceId,jdbcType=INTEGER}, #{invoiceTitle,jdbcType=VARCHAR}, 
+      #{invoiceNo,jdbcType=VARCHAR}, #{invoiceCompanyAddress,jdbcType=VARCHAR}, #{invoiceCompanyTel,jdbcType=VARCHAR}, 
+      #{invoiceBankName,jdbcType=VARCHAR}, #{invoiceBankAccount,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.morelinks.feign.micro.order.api.model.AgentOrderInvoiceInfo" >
+    insert into agent_order_invoice_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="invoiceId != null" >
+        invoice_id,
+      </if>
+      <if test="invoiceTitle != null" >
+        invoice_title,
+      </if>
+      <if test="invoiceNo != null" >
+        invoice_no,
+      </if>
+      <if test="invoiceCompanyAddress != null" >
+        invoice_company_address,
+      </if>
+      <if test="invoiceCompanyTel != null" >
+        invoice_company_tel,
+      </if>
+      <if test="invoiceBankName != null" >
+        invoice_bank_name,
+      </if>
+      <if test="invoiceBankAccount != null" >
+        invoice_bank_account,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderId != null" >
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceId != null" >
+        #{invoiceId,jdbcType=INTEGER},
+      </if>
+      <if test="invoiceTitle != null" >
+        #{invoiceTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceNo != null" >
+        #{invoiceNo,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceCompanyAddress != null" >
+        #{invoiceCompanyAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceCompanyTel != null" >
+        #{invoiceCompanyTel,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceBankName != null" >
+        #{invoiceBankName,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceBankAccount != null" >
+        #{invoiceBankAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.morelinks.feign.micro.order.api.model.AgentOrderInvoiceInfo" >
+    update agent_order_invoice_info
+    <set >
+      <if test="invoiceId != null" >
+        invoice_id = #{invoiceId,jdbcType=INTEGER},
+      </if>
+      <if test="invoiceTitle != null" >
+        invoice_title = #{invoiceTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceNo != null" >
+        invoice_no = #{invoiceNo,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceCompanyAddress != null" >
+        invoice_company_address = #{invoiceCompanyAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceCompanyTel != null" >
+        invoice_company_tel = #{invoiceCompanyTel,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceBankName != null" >
+        invoice_bank_name = #{invoiceBankName,jdbcType=VARCHAR},
+      </if>
+      <if test="invoiceBankAccount != null" >
+        invoice_bank_account = #{invoiceBankAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.morelinks.feign.micro.order.api.model.AgentOrderInvoiceInfo" >
+    update agent_order_invoice_info
+    set invoice_id = #{invoiceId,jdbcType=INTEGER},
+      invoice_title = #{invoiceTitle,jdbcType=VARCHAR},
+      invoice_no = #{invoiceNo,jdbcType=VARCHAR},
+      invoice_company_address = #{invoiceCompanyAddress,jdbcType=VARCHAR},
+      invoice_company_tel = #{invoiceCompanyTel,jdbcType=VARCHAR},
+      invoice_bank_name = #{invoiceBankName,jdbcType=VARCHAR},
+      invoice_bank_account = #{invoiceBankAccount,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    <where >
+      order_id = #{orderId,jdbcType=VARCHAR}
+    </where>
+  </update>
+  <select id="queryPageResult" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from 
+    agent_order_invoice_info
+    <where >
+      <if test="condition.orderId != null and condition.orderId != ''" >
+        and order_id = #{condition.orderId,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.invoiceId != null" >
+        and invoice_id = #{condition.invoiceId,jdbcType=INTEGER}
+      </if>
+      <if test="condition.invoiceTitle != null and condition.invoiceTitle != ''" >
+        and invoice_title = #{condition.invoiceTitle,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.invoiceNo != null and condition.invoiceNo != ''" >
+        and invoice_no = #{condition.invoiceNo,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.invoiceCompanyAddress != null and condition.invoiceCompanyAddress != ''" >
+        and invoice_company_address = #{condition.invoiceCompanyAddress,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.invoiceCompanyTel != null and condition.invoiceCompanyTel != ''" >
+        and invoice_company_tel = #{condition.invoiceCompanyTel,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.invoiceBankName != null and condition.invoiceBankName != ''" >
+        and invoice_bank_name = #{condition.invoiceBankName,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.invoiceBankAccount != null and condition.invoiceBankAccount != ''" >
+        and invoice_bank_account = #{condition.invoiceBankAccount,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.createTime != null" >
+        and create_time = #{condition.createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.updateTime != null" >
+        and update_time = #{condition.updateTime,jdbcType=TIMESTAMP}
+      </if>
+    </where>
+    <if test="page.sort != null and page.sort != ''" >
+      ORDER BY ${page.sort} ${page.order}
+    </if>
+    <if test="page != null" >
+      limit #{page.offset}, #{page.limit}
+    </if>
+  </select>
+  <select id="queryPageResultCount" resultType="int" >
+    select count(*) from 
+    agent_order_invoice_info
+    <where >
+      <if test="condition.orderId != null and condition.orderId != ''" >
+        and order_id = #{condition.orderId,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.invoiceId != null" >
+        and invoice_id = #{condition.invoiceId,jdbcType=INTEGER}
+      </if>
+      <if test="condition.invoiceTitle != null and condition.invoiceTitle != ''" >
+        and invoice_title = #{condition.invoiceTitle,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.invoiceNo != null and condition.invoiceNo != ''" >
+        and invoice_no = #{condition.invoiceNo,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.invoiceCompanyAddress != null and condition.invoiceCompanyAddress != ''" >
+        and invoice_company_address = #{condition.invoiceCompanyAddress,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.invoiceCompanyTel != null and condition.invoiceCompanyTel != ''" >
+        and invoice_company_tel = #{condition.invoiceCompanyTel,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.invoiceBankName != null and condition.invoiceBankName != ''" >
+        and invoice_bank_name = #{condition.invoiceBankName,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.invoiceBankAccount != null and condition.invoiceBankAccount != ''" >
+        and invoice_bank_account = #{condition.invoiceBankAccount,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.createTime != null" >
+        and create_time = #{condition.createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.updateTime != null" >
+        and update_time = #{condition.updateTime,jdbcType=TIMESTAMP}
+      </if>
+    </where>
+  </select>
+</mapper>

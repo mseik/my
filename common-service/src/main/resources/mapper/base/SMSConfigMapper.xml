@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morelinks.service.micro.common.mapper.SMSConfigMapper" >
+  <resultMap id="BaseResultMap" type="com.morelinks.feign.micro.common.api.model.SMSConfig" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="from_source" property="fromSource" jdbcType="VARCHAR" />
+    <result column="signature" property="signature" jdbcType="VARCHAR" />
+    <result column="ym_url" property="ymUrl" jdbcType="VARCHAR" />
+    <result column="ym_cdkey" property="ymCdkey" jdbcType="VARCHAR" />
+    <result column="ym_password" property="ymPassword" jdbcType="VARCHAR" />
+    <result column="ym_seqid" property="ymSeqid" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="valid_status" property="validStatus" jdbcType="TINYINT" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, from_source, signature, ym_url, ym_cdkey, ym_password, ym_seqid, create_time, 
+    update_time, valid_status, remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sms_config
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sms_config
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.morelinks.feign.micro.common.api.model.SMSConfig" >
+    insert into sms_config (id, from_source, signature, 
+      ym_url, ym_cdkey, ym_password, 
+      ym_seqid, create_time, update_time, 
+      valid_status, remark)
+    values (#{id,jdbcType=INTEGER}, #{fromSource,jdbcType=VARCHAR}, #{signature,jdbcType=VARCHAR}, 
+      #{ymUrl,jdbcType=VARCHAR}, #{ymCdkey,jdbcType=VARCHAR}, #{ymPassword,jdbcType=VARCHAR}, 
+      #{ymSeqid,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{validStatus,jdbcType=TINYINT}, #{remark,jdbcType=VARCHAR})
+    <selectKey keyProperty="id" order="AFTER" resultType="int" >
+      SELECT LAST_INSERT_ID() AS ID
+    </selectKey>
+  </insert>
+  <insert id="insertSelective" parameterType="com.morelinks.feign.micro.common.api.model.SMSConfig" >
+    insert into sms_config
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="fromSource != null" >
+        from_source,
+      </if>
+      <if test="signature != null" >
+        signature,
+      </if>
+      <if test="ymUrl != null" >
+        ym_url,
+      </if>
+      <if test="ymCdkey != null" >
+        ym_cdkey,
+      </if>
+      <if test="ymPassword != null" >
+        ym_password,
+      </if>
+      <if test="ymSeqid != null" >
+        ym_seqid,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="validStatus != null" >
+        valid_status,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="fromSource != null" >
+        #{fromSource,jdbcType=VARCHAR},
+      </if>
+      <if test="signature != null" >
+        #{signature,jdbcType=VARCHAR},
+      </if>
+      <if test="ymUrl != null" >
+        #{ymUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="ymCdkey != null" >
+        #{ymCdkey,jdbcType=VARCHAR},
+      </if>
+      <if test="ymPassword != null" >
+        #{ymPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="ymSeqid != null" >
+        #{ymSeqid,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="validStatus != null" >
+        #{validStatus,jdbcType=TINYINT},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+    <selectKey keyProperty="id" order="AFTER" resultType="int" >
+      SELECT LAST_INSERT_ID() AS ID
+    </selectKey>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.morelinks.feign.micro.common.api.model.SMSConfig" >
+    update sms_config
+    <set >
+      <if test="fromSource != null" >
+        from_source = #{fromSource,jdbcType=VARCHAR},
+      </if>
+      <if test="signature != null" >
+        signature = #{signature,jdbcType=VARCHAR},
+      </if>
+      <if test="ymUrl != null" >
+        ym_url = #{ymUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="ymCdkey != null" >
+        ym_cdkey = #{ymCdkey,jdbcType=VARCHAR},
+      </if>
+      <if test="ymPassword != null" >
+        ym_password = #{ymPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="ymSeqid != null" >
+        ym_seqid = #{ymSeqid,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="validStatus != null" >
+        valid_status = #{validStatus,jdbcType=TINYINT},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.morelinks.feign.micro.common.api.model.SMSConfig" >
+    update sms_config
+    set from_source = #{fromSource,jdbcType=VARCHAR},
+      signature = #{signature,jdbcType=VARCHAR},
+      ym_url = #{ymUrl,jdbcType=VARCHAR},
+      ym_cdkey = #{ymCdkey,jdbcType=VARCHAR},
+      ym_password = #{ymPassword,jdbcType=VARCHAR},
+      ym_seqid = #{ymSeqid,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      valid_status = #{validStatus,jdbcType=TINYINT},
+      remark = #{remark,jdbcType=VARCHAR}
+    <where >
+      id = #{id,jdbcType=INTEGER}
+    </where>
+  </update>
+  <select id="queryPageResult" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from 
+    sms_config
+    <where >
+      <if test="condition.id != null" >
+        and id = #{condition.id,jdbcType=INTEGER}
+      </if>
+      <if test="condition.fromSource != null and condition.fromSource != ''" >
+        and from_source = #{condition.fromSource,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.signature != null and condition.signature != ''" >
+        and signature = #{condition.signature,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.ymUrl != null and condition.ymUrl != ''" >
+        and ym_url = #{condition.ymUrl,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.ymCdkey != null and condition.ymCdkey != ''" >
+        and ym_cdkey = #{condition.ymCdkey,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.ymPassword != null and condition.ymPassword != ''" >
+        and ym_password = #{condition.ymPassword,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.ymSeqid != null and condition.ymSeqid != ''" >
+        and ym_seqid = #{condition.ymSeqid,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.createTime != null" >
+        and create_time = #{condition.createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.updateTime != null" >
+        and update_time = #{condition.updateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.validStatus != null" >
+        and valid_status = #{condition.validStatus,jdbcType=TINYINT}
+      </if>
+      <if test="condition.remark != null and condition.remark != ''" >
+        and remark = #{condition.remark,jdbcType=VARCHAR}
+      </if>
+    </where>
+    <if test="page.sort != null and page.sort != ''" >
+      ORDER BY ${page.sort} ${page.order}
+    </if>
+    <if test="page != null" >
+      limit #{page.offset}, #{page.limit}
+    </if>
+  </select>
+  <select id="queryPageResultCount" resultType="int" >
+    select count(*) from 
+    sms_config
+    <where >
+      <if test="condition.id != null" >
+        and id = #{condition.id,jdbcType=INTEGER}
+      </if>
+      <if test="condition.fromSource != null and condition.fromSource != ''" >
+        and from_source = #{condition.fromSource,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.signature != null and condition.signature != ''" >
+        and signature = #{condition.signature,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.ymUrl != null and condition.ymUrl != ''" >
+        and ym_url = #{condition.ymUrl,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.ymCdkey != null and condition.ymCdkey != ''" >
+        and ym_cdkey = #{condition.ymCdkey,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.ymPassword != null and condition.ymPassword != ''" >
+        and ym_password = #{condition.ymPassword,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.ymSeqid != null and condition.ymSeqid != ''" >
+        and ym_seqid = #{condition.ymSeqid,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.createTime != null" >
+        and create_time = #{condition.createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.updateTime != null" >
+        and update_time = #{condition.updateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.validStatus != null" >
+        and valid_status = #{condition.validStatus,jdbcType=TINYINT}
+      </if>
+      <if test="condition.remark != null and condition.remark != ''" >
+        and remark = #{condition.remark,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </select>
+</mapper>

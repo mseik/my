@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morelinks.service.micro.order.mapper.ExpressOrderMapper" >
+  <resultMap id="BaseResultMap" type="com.morelinks.feign.micro.order.api.model.ExpressOrder" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="order_id" property="orderId" jdbcType="VARCHAR" />
+    <result column="order_type" property="orderType" jdbcType="TINYINT" />
+    <result column="express_id" property="expressId" jdbcType="INTEGER" />
+    <result column="express_no" property="expressNo" jdbcType="VARCHAR" />
+    <result column="pay_type" property="payType" jdbcType="TINYINT" />
+    <result column="express_amount" property="expressAmount" jdbcType="DECIMAL" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="express_status" property="expressStatus" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, order_id, order_type, express_id, express_no, pay_type, express_amount, remark, 
+    create_time, update_time, express_status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from express_order
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from express_order
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.morelinks.feign.micro.order.api.model.ExpressOrder" >
+    insert into express_order (id, order_id, order_type, 
+      express_id, express_no, pay_type, 
+      express_amount, remark, create_time, 
+      update_time, express_status)
+    values (#{id,jdbcType=INTEGER}, #{orderId,jdbcType=VARCHAR}, #{orderType,jdbcType=TINYINT}, 
+      #{expressId,jdbcType=INTEGER}, #{expressNo,jdbcType=VARCHAR}, #{payType,jdbcType=TINYINT}, 
+      #{expressAmount,jdbcType=DECIMAL}, #{remark,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{expressStatus,jdbcType=TINYINT})
+    <selectKey keyProperty="id" order="AFTER" resultType="int" >
+      SELECT LAST_INSERT_ID() AS ID
+    </selectKey>
+  </insert>
+  <insert id="insertSelective" parameterType="com.morelinks.feign.micro.order.api.model.ExpressOrder" >
+    insert into express_order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="orderType != null" >
+        order_type,
+      </if>
+      <if test="expressId != null" >
+        express_id,
+      </if>
+      <if test="expressNo != null" >
+        express_no,
+      </if>
+      <if test="payType != null" >
+        pay_type,
+      </if>
+      <if test="expressAmount != null" >
+        express_amount,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="expressStatus != null" >
+        express_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderType != null" >
+        #{orderType,jdbcType=TINYINT},
+      </if>
+      <if test="expressId != null" >
+        #{expressId,jdbcType=INTEGER},
+      </if>
+      <if test="expressNo != null" >
+        #{expressNo,jdbcType=VARCHAR},
+      </if>
+      <if test="payType != null" >
+        #{payType,jdbcType=TINYINT},
+      </if>
+      <if test="expressAmount != null" >
+        #{expressAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expressStatus != null" >
+        #{expressStatus,jdbcType=TINYINT},
+      </if>
+    </trim>
+    <selectKey keyProperty="id" order="AFTER" resultType="int" >
+      SELECT LAST_INSERT_ID() AS ID
+    </selectKey>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.morelinks.feign.micro.order.api.model.ExpressOrder" >
+    update express_order
+    <set >
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderType != null" >
+        order_type = #{orderType,jdbcType=TINYINT},
+      </if>
+      <if test="expressId != null" >
+        express_id = #{expressId,jdbcType=INTEGER},
+      </if>
+      <if test="expressNo != null" >
+        express_no = #{expressNo,jdbcType=VARCHAR},
+      </if>
+      <if test="payType != null" >
+        pay_type = #{payType,jdbcType=TINYINT},
+      </if>
+      <if test="expressAmount != null" >
+        express_amount = #{expressAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="expressStatus != null" >
+        express_status = #{expressStatus,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.morelinks.feign.micro.order.api.model.ExpressOrder" >
+    update express_order
+    set order_id = #{orderId,jdbcType=VARCHAR},
+      order_type = #{orderType,jdbcType=TINYINT},
+      express_id = #{expressId,jdbcType=INTEGER},
+      express_no = #{expressNo,jdbcType=VARCHAR},
+      pay_type = #{payType,jdbcType=TINYINT},
+      express_amount = #{expressAmount,jdbcType=DECIMAL},
+      remark = #{remark,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      express_status = #{expressStatus,jdbcType=TINYINT}
+    <where >
+      id = #{id,jdbcType=INTEGER}
+    </where>
+  </update>
+  <select id="queryPageResult" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from 
+    express_order
+    <where >
+      <if test="condition.id != null" >
+        and id = #{condition.id,jdbcType=INTEGER}
+      </if>
+      <if test="condition.orderId != null and condition.orderId != ''" >
+        and order_id = #{condition.orderId,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.orderType != null" >
+        and order_type = #{condition.orderType,jdbcType=TINYINT}
+      </if>
+      <if test="condition.expressId != null" >
+        and express_id = #{condition.expressId,jdbcType=INTEGER}
+      </if>
+      <if test="condition.expressNo != null and condition.expressNo != ''" >
+        and express_no = #{condition.expressNo,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.payType != null" >
+        and pay_type = #{condition.payType,jdbcType=TINYINT}
+      </if>
+      <if test="condition.expressAmount != null" >
+        and express_amount = #{condition.expressAmount,jdbcType=DECIMAL}
+      </if>
+      <if test="condition.remark != null and condition.remark != ''" >
+        and remark = #{condition.remark,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.createTime != null" >
+        and create_time = #{condition.createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.updateTime != null" >
+        and update_time = #{condition.updateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.expressStatus != null" >
+        and express_status = #{condition.expressStatus,jdbcType=TINYINT}
+      </if>
+    </where>
+    <if test="page.sort != null and page.sort != ''" >
+      ORDER BY ${page.sort} ${page.order}
+    </if>
+    <if test="page != null" >
+      limit #{page.offset}, #{page.limit}
+    </if>
+  </select>
+  <select id="queryPageResultCount" resultType="int" >
+    select count(*) from 
+    express_order
+    <where >
+      <if test="condition.id != null" >
+        and id = #{condition.id,jdbcType=INTEGER}
+      </if>
+      <if test="condition.orderId != null and condition.orderId != ''" >
+        and order_id = #{condition.orderId,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.orderType != null" >
+        and order_type = #{condition.orderType,jdbcType=TINYINT}
+      </if>
+      <if test="condition.expressId != null" >
+        and express_id = #{condition.expressId,jdbcType=INTEGER}
+      </if>
+      <if test="condition.expressNo != null and condition.expressNo != ''" >
+        and express_no = #{condition.expressNo,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.payType != null" >
+        and pay_type = #{condition.payType,jdbcType=TINYINT}
+      </if>
+      <if test="condition.expressAmount != null" >
+        and express_amount = #{condition.expressAmount,jdbcType=DECIMAL}
+      </if>
+      <if test="condition.remark != null and condition.remark != ''" >
+        and remark = #{condition.remark,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.createTime != null" >
+        and create_time = #{condition.createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.updateTime != null" >
+        and update_time = #{condition.updateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.expressStatus != null" >
+        and express_status = #{condition.expressStatus,jdbcType=TINYINT}
+      </if>
+    </where>
+  </select>
+</mapper>

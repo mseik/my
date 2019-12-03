@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.morelinks.service.micro.product.mapper.ProductModelMapper" >
+    <select id="queryPageResultNew" resultMap="BaseResultMap" >
+        select
+        <include refid="Base_Column_List" />
+        from
+        product_model
+        <where >
+            <if test="condition.isAgentSale != null" >
+                and is_agent_sale = #{condition.isAgentSale,jdbcType=TINYINT}
+            </if>
+            <if test="condition.showLikeName != null and condition.showLikeName != ''" >
+                and show_name like concat('%' ,#{condition.showLikeName,jdbcType=VARCHAR},'%')
+            </if>
+            <if test="condition.modelLikeName != null and condition.modelLikeName != ''" >
+                and model_name like concat('%' ,#{condition.modelLikeName,jdbcType=VARCHAR},'%')
+            </if>
+            <if test="null!=condition.modelStatuss and condition.modelStatuss.size > 0">
+                and model_status in
+                <foreach item="item" index="index" collection="condition.modelStatuss" open="(" separator="," close=")">
+                    #{item}</foreach>
+            </if>
+            <if test="null!=condition.brandIds and condition.brandIds.size > 0">
+                and brand_id in
+                <foreach item="item" index="index" collection="condition.brandIds" open="(" separator="," close=")">
+                    #{item}</foreach>
+            </if>
+            <if test="null!=condition.categoryIds and condition.categoryIds.size > 0">
+                and category_id in
+                <foreach item="item" index="index" collection="condition.categoryIds" open="(" separator="," close=")">
+                    #{item}</foreach>
+            </if>
+        </where>
+        <if test="page.sort != null and page.sort != ''" >
+            ORDER BY ${page.sort} ${page.order}
+        </if>
+        <if test="page != null" >
+            limit #{page.offset}, #{page.limit}
+        </if>
+    </select>
+    <select id="queryPageResultCountNew" resultType="int" >
+        select count(*) from
+        product_model
+        <where >
+            <if test="condition.isAgentSale != null" >
+                and is_agent_sale = #{condition.isAgentSale,jdbcType=TINYINT}
+            </if>
+            <if test="condition.showLikeName != null and condition.showLikeName != ''" >
+                and show_name like concat('%' ,#{condition.showLikeName,jdbcType=VARCHAR},'%')
+            </if>
+            <if test="condition.modelLikeName != null and condition.modelLikeName != ''" >
+                and model_name like concat('%' ,#{condition.modelLikeName,jdbcType=VARCHAR},'%')
+            </if>
+            <if test="null!=condition.modelStatuss and condition.modelStatuss.size > 0">
+                and model_status in
+                <foreach item="item" index="index" collection="condition.modelStatuss" open="(" separator="," close=")">
+                    #{item}</foreach>
+            </if>
+            <if test="null!=condition.brandIds and condition.brandIds.size > 0">
+                and brand_id in
+                <foreach item="item" index="index" collection="condition.brandIds" open="(" separator="," close=")">
+                    #{item}</foreach>
+            </if>
+            <if test="null!=condition.categoryIds and condition.categoryIds.size > 0">
+                and category_id in
+                <foreach item="item" index="index" collection="condition.categoryIds" open="(" separator="," close=")">
+                    #{item}</foreach>
+            </if>
+        </where>
+    </select>
+</mapper>

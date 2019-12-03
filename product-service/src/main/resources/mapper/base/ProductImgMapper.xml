@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morelinks.service.micro.product.mapper.ProductImgMapper" >
+  <resultMap id="BaseResultMap" type="com.morelinks.feign.micro.product.api.model.ProductImg" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="img_path" property="imgPath" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="show_status" property="showStatus" jdbcType="TINYINT" />
+    <result column="model_id" property="modelId" jdbcType="INTEGER" />
+    <result column="product_id" property="productId" jdbcType="INTEGER" />
+    <result column="del_status" property="delStatus" jdbcType="TINYINT" />
+    <result column="show_weight" property="showWeight" jdbcType="INTEGER" />
+    <result column="hand_weight" property="handWeight" jdbcType="INTEGER" />
+    <result column="img_desc" property="imgDesc" jdbcType="VARCHAR" />
+    <result column="img_title" property="imgTitle" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, img_path, create_time, update_time, show_status, model_id, product_id, del_status, 
+    show_weight, hand_weight, img_desc, img_title, remark
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from product_img
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from product_img
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.morelinks.feign.micro.product.api.model.ProductImg" >
+    insert into product_img (id, img_path, create_time, 
+      update_time, show_status, model_id, 
+      product_id, del_status, show_weight, 
+      hand_weight, img_desc, img_title, 
+      remark)
+    values (#{id,jdbcType=INTEGER}, #{imgPath,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{showStatus,jdbcType=TINYINT}, #{modelId,jdbcType=INTEGER}, 
+      #{productId,jdbcType=INTEGER}, #{delStatus,jdbcType=TINYINT}, #{showWeight,jdbcType=INTEGER}, 
+      #{handWeight,jdbcType=INTEGER}, #{imgDesc,jdbcType=VARCHAR}, #{imgTitle,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR})
+    <selectKey keyProperty="id" order="AFTER" resultType="int" >
+      SELECT LAST_INSERT_ID() AS ID
+    </selectKey>
+  </insert>
+  <insert id="insertSelective" parameterType="com.morelinks.feign.micro.product.api.model.ProductImg" >
+    insert into product_img
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="imgPath != null" >
+        img_path,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="showStatus != null" >
+        show_status,
+      </if>
+      <if test="modelId != null" >
+        model_id,
+      </if>
+      <if test="productId != null" >
+        product_id,
+      </if>
+      <if test="delStatus != null" >
+        del_status,
+      </if>
+      <if test="showWeight != null" >
+        show_weight,
+      </if>
+      <if test="handWeight != null" >
+        hand_weight,
+      </if>
+      <if test="imgDesc != null" >
+        img_desc,
+      </if>
+      <if test="imgTitle != null" >
+        img_title,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="imgPath != null" >
+        #{imgPath,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="showStatus != null" >
+        #{showStatus,jdbcType=TINYINT},
+      </if>
+      <if test="modelId != null" >
+        #{modelId,jdbcType=INTEGER},
+      </if>
+      <if test="productId != null" >
+        #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="delStatus != null" >
+        #{delStatus,jdbcType=TINYINT},
+      </if>
+      <if test="showWeight != null" >
+        #{showWeight,jdbcType=INTEGER},
+      </if>
+      <if test="handWeight != null" >
+        #{handWeight,jdbcType=INTEGER},
+      </if>
+      <if test="imgDesc != null" >
+        #{imgDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="imgTitle != null" >
+        #{imgTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+    <selectKey keyProperty="id" order="AFTER" resultType="int" >
+      SELECT LAST_INSERT_ID() AS ID
+    </selectKey>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.morelinks.feign.micro.product.api.model.ProductImg" >
+    update product_img
+    <set >
+      <if test="imgPath != null" >
+        img_path = #{imgPath,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="showStatus != null" >
+        show_status = #{showStatus,jdbcType=TINYINT},
+      </if>
+      <if test="modelId != null" >
+        model_id = #{modelId,jdbcType=INTEGER},
+      </if>
+      <if test="productId != null" >
+        product_id = #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="delStatus != null" >
+        del_status = #{delStatus,jdbcType=TINYINT},
+      </if>
+      <if test="showWeight != null" >
+        show_weight = #{showWeight,jdbcType=INTEGER},
+      </if>
+      <if test="handWeight != null" >
+        hand_weight = #{handWeight,jdbcType=INTEGER},
+      </if>
+      <if test="imgDesc != null" >
+        img_desc = #{imgDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="imgTitle != null" >
+        img_title = #{imgTitle,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.morelinks.feign.micro.product.api.model.ProductImg" >
+    update product_img
+    set img_path = #{imgPath,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      show_status = #{showStatus,jdbcType=TINYINT},
+      model_id = #{modelId,jdbcType=INTEGER},
+      product_id = #{productId,jdbcType=INTEGER},
+      del_status = #{delStatus,jdbcType=TINYINT},
+      show_weight = #{showWeight,jdbcType=INTEGER},
+      hand_weight = #{handWeight,jdbcType=INTEGER},
+      img_desc = #{imgDesc,jdbcType=VARCHAR},
+      img_title = #{imgTitle,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR}
+    <where >
+      id = #{id,jdbcType=INTEGER}
+    </where>
+  </update>
+  <select id="queryPageResult" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from 
+    product_img
+    <where >
+      <if test="condition.id != null" >
+        and id = #{condition.id,jdbcType=INTEGER}
+      </if>
+      <if test="condition.imgPath != null and condition.imgPath != ''" >
+        and img_path = #{condition.imgPath,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.createTime != null" >
+        and create_time = #{condition.createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.updateTime != null" >
+        and update_time = #{condition.updateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.showStatus != null" >
+        and show_status = #{condition.showStatus,jdbcType=TINYINT}
+      </if>
+      <if test="condition.modelId != null" >
+        and model_id = #{condition.modelId,jdbcType=INTEGER}
+      </if>
+      <if test="condition.productId != null" >
+        and product_id = #{condition.productId,jdbcType=INTEGER}
+      </if>
+      <if test="condition.delStatus != null" >
+        and del_status = #{condition.delStatus,jdbcType=TINYINT}
+      </if>
+      <if test="condition.showWeight != null" >
+        and show_weight = #{condition.showWeight,jdbcType=INTEGER}
+      </if>
+      <if test="condition.handWeight != null" >
+        and hand_weight = #{condition.handWeight,jdbcType=INTEGER}
+      </if>
+      <if test="condition.imgDesc != null and condition.imgDesc != ''" >
+        and img_desc = #{condition.imgDesc,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.imgTitle != null and condition.imgTitle != ''" >
+        and img_title = #{condition.imgTitle,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.remark != null and condition.remark != ''" >
+        and remark = #{condition.remark,jdbcType=VARCHAR}
+      </if>
+    </where>
+    <if test="page.sort != null and page.sort != ''" >
+      ORDER BY ${page.sort} ${page.order}
+    </if>
+    <if test="page != null" >
+      limit #{page.offset}, #{page.limit}
+    </if>
+  </select>
+  <select id="queryPageResultCount" resultType="int" >
+    select count(*) from 
+    product_img
+    <where >
+      <if test="condition.id != null" >
+        and id = #{condition.id,jdbcType=INTEGER}
+      </if>
+      <if test="condition.imgPath != null and condition.imgPath != ''" >
+        and img_path = #{condition.imgPath,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.createTime != null" >
+        and create_time = #{condition.createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.updateTime != null" >
+        and update_time = #{condition.updateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.showStatus != null" >
+        and show_status = #{condition.showStatus,jdbcType=TINYINT}
+      </if>
+      <if test="condition.modelId != null" >
+        and model_id = #{condition.modelId,jdbcType=INTEGER}
+      </if>
+      <if test="condition.productId != null" >
+        and product_id = #{condition.productId,jdbcType=INTEGER}
+      </if>
+      <if test="condition.delStatus != null" >
+        and del_status = #{condition.delStatus,jdbcType=TINYINT}
+      </if>
+      <if test="condition.showWeight != null" >
+        and show_weight = #{condition.showWeight,jdbcType=INTEGER}
+      </if>
+      <if test="condition.handWeight != null" >
+        and hand_weight = #{condition.handWeight,jdbcType=INTEGER}
+      </if>
+      <if test="condition.imgDesc != null and condition.imgDesc != ''" >
+        and img_desc = #{condition.imgDesc,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.imgTitle != null and condition.imgTitle != ''" >
+        and img_title = #{condition.imgTitle,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.remark != null and condition.remark != ''" >
+        and remark = #{condition.remark,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </select>
+</mapper>

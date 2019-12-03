@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morelinks.service.micro.order.mapper.ConfigOrderDetailMapper" >
+    <delete id="deleteSelectedProducts"  >
+    delete from config_order_detail
+        <where >
+            <if test="condition.listId != null and condition.listId.size>0" >
+           and product_id in
+                <foreach item="item" index="index" collection="condition.listId" open="(" separator="," close=")">
+                    #{item}
+                </foreach>
+            </if>
+                and  order_id = #{condition.orderId,jdbcType=INTEGER}
+        </where>
+  </delete>
+    <select id="querySelectedProducts" resultMap="BaseResultMap" >
+        select
+        <include refid="Base_Column_List" />
+        from
+        config_order_detail
+        <where >
+
+            <if test="condition.orderId != null and condition.orderId != ''" >
+                and order_id = #{condition.orderId,jdbcType=VARCHAR}
+            </if>
+            <if test="condition.ListCategoryId != null" >
+                and category_id  in
+                <foreach item="item" index="index" collection="condition.ListCategoryId" open="(" separator="," close=")">
+                    #{item}</foreach>
+            </if>
+        </where>
+        <if test="condition.page.sort != null and condition.page.sort != ''" >
+            ORDER BY ${condition.page.sort} ${condition.page.order}
+        </if>
+        <if test="condition.page != null" >
+            limit #{condition.page.offset}, #{condition.page.limit}
+        </if>
+    </select>
+</mapper>

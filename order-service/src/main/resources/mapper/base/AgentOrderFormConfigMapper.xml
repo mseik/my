@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morelinks.service.micro.order.mapper.AgentOrderFormConfigMapper" >
+  <resultMap id="BaseResultMap" type="com.morelinks.feign.micro.order.api.model.AgentOrderFormConfig" >
+    <id column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="last_address_id" property="lastAddressId" jdbcType="INTEGER" />
+    <result column="last_pay_type" property="lastPayType" jdbcType="TINYINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    user_id, last_address_id, last_pay_type, create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from agent_order_form_config
+    where user_id = #{userId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from agent_order_form_config
+    where user_id = #{userId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.morelinks.feign.micro.order.api.model.AgentOrderFormConfig" >
+    insert into agent_order_form_config (user_id, last_address_id, last_pay_type, 
+      create_time, update_time)
+    values (#{userId,jdbcType=INTEGER}, #{lastAddressId,jdbcType=INTEGER}, #{lastPayType,jdbcType=TINYINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.morelinks.feign.micro.order.api.model.AgentOrderFormConfig" >
+    insert into agent_order_form_config
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="lastAddressId != null" >
+        last_address_id,
+      </if>
+      <if test="lastPayType != null" >
+        last_pay_type,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="lastAddressId != null" >
+        #{lastAddressId,jdbcType=INTEGER},
+      </if>
+      <if test="lastPayType != null" >
+        #{lastPayType,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.morelinks.feign.micro.order.api.model.AgentOrderFormConfig" >
+    update agent_order_form_config
+    <set >
+      <if test="lastAddressId != null" >
+        last_address_id = #{lastAddressId,jdbcType=INTEGER},
+      </if>
+      <if test="lastPayType != null" >
+        last_pay_type = #{lastPayType,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.morelinks.feign.micro.order.api.model.AgentOrderFormConfig" >
+    update agent_order_form_config
+    set last_address_id = #{lastAddressId,jdbcType=INTEGER},
+      last_pay_type = #{lastPayType,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    <where >
+      user_id = #{userId,jdbcType=INTEGER}
+    </where>
+  </update>
+  <select id="queryPageResult" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from 
+    agent_order_form_config
+    <where >
+      <if test="condition.userId != null" >
+        and user_id = #{condition.userId,jdbcType=INTEGER}
+      </if>
+      <if test="condition.lastAddressId != null" >
+        and last_address_id = #{condition.lastAddressId,jdbcType=INTEGER}
+      </if>
+      <if test="condition.lastPayType != null" >
+        and last_pay_type = #{condition.lastPayType,jdbcType=TINYINT}
+      </if>
+      <if test="condition.createTime != null" >
+        and create_time = #{condition.createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.updateTime != null" >
+        and update_time = #{condition.updateTime,jdbcType=TIMESTAMP}
+      </if>
+    </where>
+    <if test="page.sort != null and page.sort != ''" >
+      ORDER BY ${page.sort} ${page.order}
+    </if>
+    <if test="page != null" >
+      limit #{page.offset}, #{page.limit}
+    </if>
+  </select>
+  <select id="queryPageResultCount" resultType="int" >
+    select count(*) from 
+    agent_order_form_config
+    <where >
+      <if test="condition.userId != null" >
+        and user_id = #{condition.userId,jdbcType=INTEGER}
+      </if>
+      <if test="condition.lastAddressId != null" >
+        and last_address_id = #{condition.lastAddressId,jdbcType=INTEGER}
+      </if>
+      <if test="condition.lastPayType != null" >
+        and last_pay_type = #{condition.lastPayType,jdbcType=TINYINT}
+      </if>
+      <if test="condition.createTime != null" >
+        and create_time = #{condition.createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.updateTime != null" >
+        and update_time = #{condition.updateTime,jdbcType=TIMESTAMP}
+      </if>
+    </where>
+  </select>
+</mapper>

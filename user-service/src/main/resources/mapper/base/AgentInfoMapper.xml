@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morelinks.service.micro.inner.user.mapper.AgentInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.morelinks.feign.micro.inner.user.api.model.AgentInfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="agent_level" property="agentLevel" jdbcType="INTEGER" />
+    <result column="contact_email" property="contactEmail" jdbcType="VARCHAR" />
+    <result column="contact_tel" property="contactTel" jdbcType="VARCHAR" />
+    <result column="company_name" property="companyName" jdbcType="VARCHAR" />
+    <result column="company_address" property="companyAddress" jdbcType="VARCHAR" />
+    <result column="city_id" property="cityId" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="level_status" property="levelStatus" jdbcType="TINYINT" />
+    <result column="level_end_time" property="levelEndTime" jdbcType="TIMESTAMP" />
+    <result column="level_start_time" property="levelStartTime" jdbcType="TIMESTAMP" />
+    <result column="no_tax_bill" property="noTaxBill" jdbcType="TINYINT" />
+    <result column="ori_contact_email" property="oriContactEmail" jdbcType="VARCHAR" />
+    <result column="ori_contact_tel" property="oriContactTel" jdbcType="VARCHAR" />
+    <result column="ori_company_name" property="oriCompanyName" jdbcType="VARCHAR" />
+    <result column="ori_company_address" property="oriCompanyAddress" jdbcType="VARCHAR" />
+    <result column="ori_city_id" property="oriCityId" jdbcType="VARCHAR" />
+    <result column="agent_status" property="agentStatus" jdbcType="TINYINT" />
+    <result column="pay_password" property="payPassword" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, agent_level, contact_email, contact_tel, company_name, company_address, city_id, 
+    create_time, update_time, level_status, level_end_time, level_start_time, no_tax_bill, 
+    ori_contact_email, ori_contact_tel, ori_company_name, ori_company_address, ori_city_id, 
+    agent_status, pay_password
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from agent_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from agent_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.morelinks.feign.micro.inner.user.api.model.AgentInfo" >
+    insert into agent_info (id, agent_level, contact_email, 
+      contact_tel, company_name, company_address, 
+      city_id, create_time, update_time, 
+      level_status, level_end_time, level_start_time, 
+      no_tax_bill, ori_contact_email, ori_contact_tel, 
+      ori_company_name, ori_company_address, ori_city_id, 
+      agent_status, pay_password)
+    values (#{id,jdbcType=INTEGER}, #{agentLevel,jdbcType=INTEGER}, #{contactEmail,jdbcType=VARCHAR}, 
+      #{contactTel,jdbcType=VARCHAR}, #{companyName,jdbcType=VARCHAR}, #{companyAddress,jdbcType=VARCHAR}, 
+      #{cityId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{levelStatus,jdbcType=TINYINT}, #{levelEndTime,jdbcType=TIMESTAMP}, #{levelStartTime,jdbcType=TIMESTAMP}, 
+      #{noTaxBill,jdbcType=TINYINT}, #{oriContactEmail,jdbcType=VARCHAR}, #{oriContactTel,jdbcType=VARCHAR}, 
+      #{oriCompanyName,jdbcType=VARCHAR}, #{oriCompanyAddress,jdbcType=VARCHAR}, #{oriCityId,jdbcType=VARCHAR}, 
+      #{agentStatus,jdbcType=TINYINT}, #{payPassword,jdbcType=VARCHAR})
+    <selectKey keyProperty="id" order="AFTER" resultType="int" >
+      SELECT LAST_INSERT_ID() AS ID
+    </selectKey>
+  </insert>
+  <insert id="insertSelective" parameterType="com.morelinks.feign.micro.inner.user.api.model.AgentInfo" >
+    insert into agent_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="agentLevel != null" >
+        agent_level,
+      </if>
+      <if test="contactEmail != null" >
+        contact_email,
+      </if>
+      <if test="contactTel != null" >
+        contact_tel,
+      </if>
+      <if test="companyName != null" >
+        company_name,
+      </if>
+      <if test="companyAddress != null" >
+        company_address,
+      </if>
+      <if test="cityId != null" >
+        city_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="levelStatus != null" >
+        level_status,
+      </if>
+      <if test="levelEndTime != null" >
+        level_end_time,
+      </if>
+      <if test="levelStartTime != null" >
+        level_start_time,
+      </if>
+      <if test="noTaxBill != null" >
+        no_tax_bill,
+      </if>
+      <if test="oriContactEmail != null" >
+        ori_contact_email,
+      </if>
+      <if test="oriContactTel != null" >
+        ori_contact_tel,
+      </if>
+      <if test="oriCompanyName != null" >
+        ori_company_name,
+      </if>
+      <if test="oriCompanyAddress != null" >
+        ori_company_address,
+      </if>
+      <if test="oriCityId != null" >
+        ori_city_id,
+      </if>
+      <if test="agentStatus != null" >
+        agent_status,
+      </if>
+      <if test="payPassword != null" >
+        pay_password,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="agentLevel != null" >
+        #{agentLevel,jdbcType=INTEGER},
+      </if>
+      <if test="contactEmail != null" >
+        #{contactEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="contactTel != null" >
+        #{contactTel,jdbcType=VARCHAR},
+      </if>
+      <if test="companyName != null" >
+        #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyAddress != null" >
+        #{companyAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="cityId != null" >
+        #{cityId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="levelStatus != null" >
+        #{levelStatus,jdbcType=TINYINT},
+      </if>
+      <if test="levelEndTime != null" >
+        #{levelEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="levelStartTime != null" >
+        #{levelStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="noTaxBill != null" >
+        #{noTaxBill,jdbcType=TINYINT},
+      </if>
+      <if test="oriContactEmail != null" >
+        #{oriContactEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="oriContactTel != null" >
+        #{oriContactTel,jdbcType=VARCHAR},
+      </if>
+      <if test="oriCompanyName != null" >
+        #{oriCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="oriCompanyAddress != null" >
+        #{oriCompanyAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="oriCityId != null" >
+        #{oriCityId,jdbcType=VARCHAR},
+      </if>
+      <if test="agentStatus != null" >
+        #{agentStatus,jdbcType=TINYINT},
+      </if>
+      <if test="payPassword != null" >
+        #{payPassword,jdbcType=VARCHAR},
+      </if>
+    </trim>
+    <selectKey keyProperty="id" order="AFTER" resultType="int" >
+      SELECT LAST_INSERT_ID() AS ID
+    </selectKey>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.morelinks.feign.micro.inner.user.api.model.AgentInfo" >
+    update agent_info
+    <set >
+      <if test="agentLevel != null" >
+        agent_level = #{agentLevel,jdbcType=INTEGER},
+      </if>
+      <if test="contactEmail != null" >
+        contact_email = #{contactEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="contactTel != null" >
+        contact_tel = #{contactTel,jdbcType=VARCHAR},
+      </if>
+      <if test="companyName != null" >
+        company_name = #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyAddress != null" >
+        company_address = #{companyAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="cityId != null" >
+        city_id = #{cityId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="levelStatus != null" >
+        level_status = #{levelStatus,jdbcType=TINYINT},
+      </if>
+      <if test="levelEndTime != null" >
+        level_end_time = #{levelEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="levelStartTime != null" >
+        level_start_time = #{levelStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="noTaxBill != null" >
+        no_tax_bill = #{noTaxBill,jdbcType=TINYINT},
+      </if>
+      <if test="oriContactEmail != null" >
+        ori_contact_email = #{oriContactEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="oriContactTel != null" >
+        ori_contact_tel = #{oriContactTel,jdbcType=VARCHAR},
+      </if>
+      <if test="oriCompanyName != null" >
+        ori_company_name = #{oriCompanyName,jdbcType=VARCHAR},
+      </if>
+      <if test="oriCompanyAddress != null" >
+        ori_company_address = #{oriCompanyAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="oriCityId != null" >
+        ori_city_id = #{oriCityId,jdbcType=VARCHAR},
+      </if>
+      <if test="agentStatus != null" >
+        agent_status = #{agentStatus,jdbcType=TINYINT},
+      </if>
+      <if test="payPassword != null" >
+        pay_password = #{payPassword,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.morelinks.feign.micro.inner.user.api.model.AgentInfo" >
+    update agent_info
+    set agent_level = #{agentLevel,jdbcType=INTEGER},
+      contact_email = #{contactEmail,jdbcType=VARCHAR},
+      contact_tel = #{contactTel,jdbcType=VARCHAR},
+      company_name = #{companyName,jdbcType=VARCHAR},
+      company_address = #{companyAddress,jdbcType=VARCHAR},
+      city_id = #{cityId,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      level_status = #{levelStatus,jdbcType=TINYINT},
+      level_end_time = #{levelEndTime,jdbcType=TIMESTAMP},
+      level_start_time = #{levelStartTime,jdbcType=TIMESTAMP},
+      no_tax_bill = #{noTaxBill,jdbcType=TINYINT},
+      ori_contact_email = #{oriContactEmail,jdbcType=VARCHAR},
+      ori_contact_tel = #{oriContactTel,jdbcType=VARCHAR},
+      ori_company_name = #{oriCompanyName,jdbcType=VARCHAR},
+      ori_company_address = #{oriCompanyAddress,jdbcType=VARCHAR},
+      ori_city_id = #{oriCityId,jdbcType=VARCHAR},
+      agent_status = #{agentStatus,jdbcType=TINYINT},
+      pay_password = #{payPassword,jdbcType=VARCHAR}
+    <where >
+      id = #{id,jdbcType=INTEGER}
+    </where>
+  </update>
+  <select id="queryPageResult" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from 
+    agent_info
+    <where >
+      <if test="condition.id != null" >
+        and id = #{condition.id,jdbcType=INTEGER}
+      </if>
+      <if test="condition.agentLevel != null" >
+        and agent_level = #{condition.agentLevel,jdbcType=INTEGER}
+      </if>
+      <if test="condition.contactEmail != null and condition.contactEmail != ''" >
+        and contact_email = #{condition.contactEmail,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.contactTel != null and condition.contactTel != ''" >
+        and contact_tel = #{condition.contactTel,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.companyName != null and condition.companyName != ''" >
+        and company_name = #{condition.companyName,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.companyAddress != null and condition.companyAddress != ''" >
+        and company_address = #{condition.companyAddress,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.cityId != null and condition.cityId != ''" >
+        and city_id = #{condition.cityId,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.createTime != null" >
+        and create_time = #{condition.createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.updateTime != null" >
+        and update_time = #{condition.updateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.levelStatus != null" >
+        and level_status = #{condition.levelStatus,jdbcType=TINYINT}
+      </if>
+      <if test="condition.levelEndTime != null" >
+        and level_end_time = #{condition.levelEndTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.levelStartTime != null" >
+        and level_start_time = #{condition.levelStartTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.noTaxBill != null" >
+        and no_tax_bill = #{condition.noTaxBill,jdbcType=TINYINT}
+      </if>
+      <if test="condition.oriContactEmail != null and condition.oriContactEmail != ''" >
+        and ori_contact_email = #{condition.oriContactEmail,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.oriContactTel != null and condition.oriContactTel != ''" >
+        and ori_contact_tel = #{condition.oriContactTel,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.oriCompanyName != null and condition.oriCompanyName != ''" >
+        and ori_company_name = #{condition.oriCompanyName,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.oriCompanyAddress != null and condition.oriCompanyAddress != ''" >
+        and ori_company_address = #{condition.oriCompanyAddress,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.oriCityId != null and condition.oriCityId != ''" >
+        and ori_city_id = #{condition.oriCityId,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.agentStatus != null" >
+        and agent_status = #{condition.agentStatus,jdbcType=TINYINT}
+      </if>
+      <if test="condition.payPassword != null and condition.payPassword != ''" >
+        and pay_password = #{condition.payPassword,jdbcType=VARCHAR}
+      </if>
+    </where>
+    <if test="page.sort != null and page.sort != ''" >
+      ORDER BY ${page.sort} ${page.order}
+    </if>
+    <if test="page != null" >
+      limit #{page.offset}, #{page.limit}
+    </if>
+  </select>
+  <select id="queryPageResultCount" resultType="int" >
+    select count(*) from 
+    agent_info
+    <where >
+      <if test="condition.id != null" >
+        and id = #{condition.id,jdbcType=INTEGER}
+      </if>
+      <if test="condition.agentLevel != null" >
+        and agent_level = #{condition.agentLevel,jdbcType=INTEGER}
+      </if>
+      <if test="condition.contactEmail != null and condition.contactEmail != ''" >
+        and contact_email = #{condition.contactEmail,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.contactTel != null and condition.contactTel != ''" >
+        and contact_tel = #{condition.contactTel,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.companyName != null and condition.companyName != ''" >
+        and company_name = #{condition.companyName,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.companyAddress != null and condition.companyAddress != ''" >
+        and company_address = #{condition.companyAddress,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.cityId != null and condition.cityId != ''" >
+        and city_id = #{condition.cityId,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.createTime != null" >
+        and create_time = #{condition.createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.updateTime != null" >
+        and update_time = #{condition.updateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.levelStatus != null" >
+        and level_status = #{condition.levelStatus,jdbcType=TINYINT}
+      </if>
+      <if test="condition.levelEndTime != null" >
+        and level_end_time = #{condition.levelEndTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.levelStartTime != null" >
+        and level_start_time = #{condition.levelStartTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.noTaxBill != null" >
+        and no_tax_bill = #{condition.noTaxBill,jdbcType=TINYINT}
+      </if>
+      <if test="condition.oriContactEmail != null and condition.oriContactEmail != ''" >
+        and ori_contact_email = #{condition.oriContactEmail,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.oriContactTel != null and condition.oriContactTel != ''" >
+        and ori_contact_tel = #{condition.oriContactTel,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.oriCompanyName != null and condition.oriCompanyName != ''" >
+        and ori_company_name = #{condition.oriCompanyName,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.oriCompanyAddress != null and condition.oriCompanyAddress != ''" >
+        and ori_company_address = #{condition.oriCompanyAddress,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.oriCityId != null and condition.oriCityId != ''" >
+        and ori_city_id = #{condition.oriCityId,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.agentStatus != null" >
+        and agent_status = #{condition.agentStatus,jdbcType=TINYINT}
+      </if>
+      <if test="condition.payPassword != null and condition.payPassword != ''" >
+        and pay_password = #{condition.payPassword,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </select>
+</mapper>

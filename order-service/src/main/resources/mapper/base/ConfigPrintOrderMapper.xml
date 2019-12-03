@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morelinks.service.micro.order.mapper.ConfigPrintOrderMapper" >
+  <resultMap id="BaseResultMap" type="com.morelinks.feign.micro.order.api.model.ConfigPrintOrder" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="agent_id" property="agentId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="project_id" property="projectId" jdbcType="VARCHAR" />
+    <result column="config_category_ids" property="configCategoryIds" jdbcType="VARCHAR" />
+    <result column="order_status" property="orderStatus" jdbcType="TINYINT" />
+    <result column="ori_mount" property="oriMount" jdbcType="DECIMAL" />
+    <result column="final_amount" property="finalAmount" jdbcType="DECIMAL" />
+    <result column="discount_type" property="discountType" jdbcType="TINYINT" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="install_amount_type" property="installAmountType" jdbcType="TINYINT" />
+    <result column="debug_amount_type" property="debugAmountType" jdbcType="TINYINT" />
+    <result column="tax_amount_type" property="taxAmountType" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, agent_id, user_id, project_id, config_category_ids, order_status, ori_mount, 
+    final_amount, discount_type, create_time, update_time, install_amount_type, debug_amount_type, 
+    tax_amount_type
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from config_print_order
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from config_print_order
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.morelinks.feign.micro.order.api.model.ConfigPrintOrder" >
+    insert into config_print_order (id, agent_id, user_id, 
+      project_id, config_category_ids, order_status, 
+      ori_mount, final_amount, discount_type, 
+      create_time, update_time, install_amount_type, 
+      debug_amount_type, tax_amount_type)
+    values (#{id,jdbcType=VARCHAR}, #{agentId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, 
+      #{projectId,jdbcType=VARCHAR}, #{configCategoryIds,jdbcType=VARCHAR}, #{orderStatus,jdbcType=TINYINT}, 
+      #{oriMount,jdbcType=DECIMAL}, #{finalAmount,jdbcType=DECIMAL}, #{discountType,jdbcType=TINYINT}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{installAmountType,jdbcType=TINYINT}, 
+      #{debugAmountType,jdbcType=TINYINT}, #{taxAmountType,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.morelinks.feign.micro.order.api.model.ConfigPrintOrder" >
+    insert into config_print_order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="agentId != null" >
+        agent_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="projectId != null" >
+        project_id,
+      </if>
+      <if test="configCategoryIds != null" >
+        config_category_ids,
+      </if>
+      <if test="orderStatus != null" >
+        order_status,
+      </if>
+      <if test="oriMount != null" >
+        ori_mount,
+      </if>
+      <if test="finalAmount != null" >
+        final_amount,
+      </if>
+      <if test="discountType != null" >
+        discount_type,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="installAmountType != null" >
+        install_amount_type,
+      </if>
+      <if test="debugAmountType != null" >
+        debug_amount_type,
+      </if>
+      <if test="taxAmountType != null" >
+        tax_amount_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="agentId != null" >
+        #{agentId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="projectId != null" >
+        #{projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="configCategoryIds != null" >
+        #{configCategoryIds,jdbcType=VARCHAR},
+      </if>
+      <if test="orderStatus != null" >
+        #{orderStatus,jdbcType=TINYINT},
+      </if>
+      <if test="oriMount != null" >
+        #{oriMount,jdbcType=DECIMAL},
+      </if>
+      <if test="finalAmount != null" >
+        #{finalAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="discountType != null" >
+        #{discountType,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="installAmountType != null" >
+        #{installAmountType,jdbcType=TINYINT},
+      </if>
+      <if test="debugAmountType != null" >
+        #{debugAmountType,jdbcType=TINYINT},
+      </if>
+      <if test="taxAmountType != null" >
+        #{taxAmountType,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.morelinks.feign.micro.order.api.model.ConfigPrintOrder" >
+    update config_print_order
+    <set >
+      <if test="agentId != null" >
+        agent_id = #{agentId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="projectId != null" >
+        project_id = #{projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="configCategoryIds != null" >
+        config_category_ids = #{configCategoryIds,jdbcType=VARCHAR},
+      </if>
+      <if test="orderStatus != null" >
+        order_status = #{orderStatus,jdbcType=TINYINT},
+      </if>
+      <if test="oriMount != null" >
+        ori_mount = #{oriMount,jdbcType=DECIMAL},
+      </if>
+      <if test="finalAmount != null" >
+        final_amount = #{finalAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="discountType != null" >
+        discount_type = #{discountType,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="installAmountType != null" >
+        install_amount_type = #{installAmountType,jdbcType=TINYINT},
+      </if>
+      <if test="debugAmountType != null" >
+        debug_amount_type = #{debugAmountType,jdbcType=TINYINT},
+      </if>
+      <if test="taxAmountType != null" >
+        tax_amount_type = #{taxAmountType,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.morelinks.feign.micro.order.api.model.ConfigPrintOrder" >
+    update config_print_order
+    set agent_id = #{agentId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
+      project_id = #{projectId,jdbcType=VARCHAR},
+      config_category_ids = #{configCategoryIds,jdbcType=VARCHAR},
+      order_status = #{orderStatus,jdbcType=TINYINT},
+      ori_mount = #{oriMount,jdbcType=DECIMAL},
+      final_amount = #{finalAmount,jdbcType=DECIMAL},
+      discount_type = #{discountType,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      install_amount_type = #{installAmountType,jdbcType=TINYINT},
+      debug_amount_type = #{debugAmountType,jdbcType=TINYINT},
+      tax_amount_type = #{taxAmountType,jdbcType=TINYINT}
+    <where >
+      id = #{id,jdbcType=VARCHAR}
+    </where>
+  </update>
+  <select id="queryPageResult" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from 
+    config_print_order
+    <where >
+      <if test="condition.id != null and condition.id != ''" >
+        and id = #{condition.id,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.agentId != null" >
+        and agent_id = #{condition.agentId,jdbcType=INTEGER}
+      </if>
+      <if test="condition.userId != null" >
+        and user_id = #{condition.userId,jdbcType=INTEGER}
+      </if>
+      <if test="condition.projectId != null and condition.projectId != ''" >
+        and project_id = #{condition.projectId,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.configCategoryIds != null and condition.configCategoryIds != ''" >
+        and config_category_ids = #{condition.configCategoryIds,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.orderStatus != null" >
+        and order_status = #{condition.orderStatus,jdbcType=TINYINT}
+      </if>
+      <if test="condition.oriMount != null" >
+        and ori_mount = #{condition.oriMount,jdbcType=DECIMAL}
+      </if>
+      <if test="condition.finalAmount != null" >
+        and final_amount = #{condition.finalAmount,jdbcType=DECIMAL}
+      </if>
+      <if test="condition.discountType != null" >
+        and discount_type = #{condition.discountType,jdbcType=TINYINT}
+      </if>
+      <if test="condition.createTime != null" >
+        and create_time = #{condition.createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.updateTime != null" >
+        and update_time = #{condition.updateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.installAmountType != null" >
+        and install_amount_type = #{condition.installAmountType,jdbcType=TINYINT}
+      </if>
+      <if test="condition.debugAmountType != null" >
+        and debug_amount_type = #{condition.debugAmountType,jdbcType=TINYINT}
+      </if>
+      <if test="condition.taxAmountType != null" >
+        and tax_amount_type = #{condition.taxAmountType,jdbcType=TINYINT}
+      </if>
+    </where>
+    <if test="page.sort != null and page.sort != ''" >
+      ORDER BY ${page.sort} ${page.order}
+    </if>
+    <if test="page != null" >
+      limit #{page.offset}, #{page.limit}
+    </if>
+  </select>
+  <select id="queryPageResultCount" resultType="int" >
+    select count(*) from 
+    config_print_order
+    <where >
+      <if test="condition.id != null and condition.id != ''" >
+        and id = #{condition.id,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.agentId != null" >
+        and agent_id = #{condition.agentId,jdbcType=INTEGER}
+      </if>
+      <if test="condition.userId != null" >
+        and user_id = #{condition.userId,jdbcType=INTEGER}
+      </if>
+      <if test="condition.projectId != null and condition.projectId != ''" >
+        and project_id = #{condition.projectId,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.configCategoryIds != null and condition.configCategoryIds != ''" >
+        and config_category_ids = #{condition.configCategoryIds,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.orderStatus != null" >
+        and order_status = #{condition.orderStatus,jdbcType=TINYINT}
+      </if>
+      <if test="condition.oriMount != null" >
+        and ori_mount = #{condition.oriMount,jdbcType=DECIMAL}
+      </if>
+      <if test="condition.finalAmount != null" >
+        and final_amount = #{condition.finalAmount,jdbcType=DECIMAL}
+      </if>
+      <if test="condition.discountType != null" >
+        and discount_type = #{condition.discountType,jdbcType=TINYINT}
+      </if>
+      <if test="condition.createTime != null" >
+        and create_time = #{condition.createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.updateTime != null" >
+        and update_time = #{condition.updateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.installAmountType != null" >
+        and install_amount_type = #{condition.installAmountType,jdbcType=TINYINT}
+      </if>
+      <if test="condition.debugAmountType != null" >
+        and debug_amount_type = #{condition.debugAmountType,jdbcType=TINYINT}
+      </if>
+      <if test="condition.taxAmountType != null" >
+        and tax_amount_type = #{condition.taxAmountType,jdbcType=TINYINT}
+      </if>
+    </where>
+  </select>
+</mapper>

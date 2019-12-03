@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morelinks.service.micro.order.mapper.ExpressOrderLogMapper" >
+  <resultMap id="BaseResultMap" type="com.morelinks.feign.micro.order.api.model.ExpressOrderLog" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="express_order_id" property="expressOrderId" jdbcType="INTEGER" />
+    <result column="log_content" property="logContent" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="city_id" property="cityId" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="operator_type" property="operatorType" jdbcType="TINYINT" />
+    <result column="operator" property="operator" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, express_order_id, log_content, remark, city_id, create_time, update_time, operator_type, 
+    operator
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from express_order_log
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from express_order_log
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.morelinks.feign.micro.order.api.model.ExpressOrderLog" >
+    insert into express_order_log (id, express_order_id, log_content, 
+      remark, city_id, create_time, 
+      update_time, operator_type, operator
+      )
+    values (#{id,jdbcType=INTEGER}, #{expressOrderId,jdbcType=INTEGER}, #{logContent,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{cityId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{operatorType,jdbcType=TINYINT}, #{operator,jdbcType=VARCHAR}
+      )
+    <selectKey keyProperty="id" order="AFTER" resultType="int" >
+      SELECT LAST_INSERT_ID() AS ID
+    </selectKey>
+  </insert>
+  <insert id="insertSelective" parameterType="com.morelinks.feign.micro.order.api.model.ExpressOrderLog" >
+    insert into express_order_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="expressOrderId != null" >
+        express_order_id,
+      </if>
+      <if test="logContent != null" >
+        log_content,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="cityId != null" >
+        city_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="operatorType != null" >
+        operator_type,
+      </if>
+      <if test="operator != null" >
+        operator,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="expressOrderId != null" >
+        #{expressOrderId,jdbcType=INTEGER},
+      </if>
+      <if test="logContent != null" >
+        #{logContent,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="cityId != null" >
+        #{cityId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operatorType != null" >
+        #{operatorType,jdbcType=TINYINT},
+      </if>
+      <if test="operator != null" >
+        #{operator,jdbcType=VARCHAR},
+      </if>
+    </trim>
+    <selectKey keyProperty="id" order="AFTER" resultType="int" >
+      SELECT LAST_INSERT_ID() AS ID
+    </selectKey>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.morelinks.feign.micro.order.api.model.ExpressOrderLog" >
+    update express_order_log
+    <set >
+      <if test="expressOrderId != null" >
+        express_order_id = #{expressOrderId,jdbcType=INTEGER},
+      </if>
+      <if test="logContent != null" >
+        log_content = #{logContent,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="cityId != null" >
+        city_id = #{cityId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="operatorType != null" >
+        operator_type = #{operatorType,jdbcType=TINYINT},
+      </if>
+      <if test="operator != null" >
+        operator = #{operator,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.morelinks.feign.micro.order.api.model.ExpressOrderLog" >
+    update express_order_log
+    set express_order_id = #{expressOrderId,jdbcType=INTEGER},
+      log_content = #{logContent,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      city_id = #{cityId,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      operator_type = #{operatorType,jdbcType=TINYINT},
+      operator = #{operator,jdbcType=VARCHAR}
+    <where >
+      id = #{id,jdbcType=INTEGER}
+    </where>
+  </update>
+  <select id="queryPageResult" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from 
+    express_order_log
+    <where >
+      <if test="condition.id != null" >
+        and id = #{condition.id,jdbcType=INTEGER}
+      </if>
+      <if test="condition.expressOrderId != null" >
+        and express_order_id = #{condition.expressOrderId,jdbcType=INTEGER}
+      </if>
+      <if test="condition.logContent != null and condition.logContent != ''" >
+        and log_content = #{condition.logContent,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.remark != null and condition.remark != ''" >
+        and remark = #{condition.remark,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.cityId != null and condition.cityId != ''" >
+        and city_id = #{condition.cityId,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.createTime != null" >
+        and create_time = #{condition.createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.updateTime != null" >
+        and update_time = #{condition.updateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.operatorType != null" >
+        and operator_type = #{condition.operatorType,jdbcType=TINYINT}
+      </if>
+      <if test="condition.operator != null and condition.operator != ''" >
+        and operator = #{condition.operator,jdbcType=VARCHAR}
+      </if>
+    </where>
+    <if test="page.sort != null and page.sort != ''" >
+      ORDER BY ${page.sort} ${page.order}
+    </if>
+    <if test="page != null" >
+      limit #{page.offset}, #{page.limit}
+    </if>
+  </select>
+  <select id="queryPageResultCount" resultType="int" >
+    select count(*) from 
+    express_order_log
+    <where >
+      <if test="condition.id != null" >
+        and id = #{condition.id,jdbcType=INTEGER}
+      </if>
+      <if test="condition.expressOrderId != null" >
+        and express_order_id = #{condition.expressOrderId,jdbcType=INTEGER}
+      </if>
+      <if test="condition.logContent != null and condition.logContent != ''" >
+        and log_content = #{condition.logContent,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.remark != null and condition.remark != ''" >
+        and remark = #{condition.remark,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.cityId != null and condition.cityId != ''" >
+        and city_id = #{condition.cityId,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.createTime != null" >
+        and create_time = #{condition.createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.updateTime != null" >
+        and update_time = #{condition.updateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.operatorType != null" >
+        and operator_type = #{condition.operatorType,jdbcType=TINYINT}
+      </if>
+      <if test="condition.operator != null and condition.operator != ''" >
+        and operator = #{condition.operator,jdbcType=VARCHAR}
+      </if>
+    </where>
+  </select>
+</mapper>

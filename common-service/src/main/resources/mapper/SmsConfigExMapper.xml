@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.morelinks.service.micro.common.mapper.SMSConfigMapper">
+
+    <select id="getByFromSource"  resultMap="BaseResultMap" >
+        SELECT * FROM sms_config
+        <where>
+            <if test="fromSource != null">
+                and from_source = #{fromSource,jdbcType=VARCHAR}
+            </if>
+        </where>
+        ORDER BY id LIMIT 1
+    </select>
+
+
+</mapper>

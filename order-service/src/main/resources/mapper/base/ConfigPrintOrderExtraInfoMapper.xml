@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morelinks.service.micro.order.mapper.ConfigPrintOrderExtraInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.morelinks.feign.micro.order.api.model.ConfigPrintOrderExtraInfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="config_order_id" property="configOrderId" jdbcType="VARCHAR" />
+    <result column="extra_type" property="extraType" jdbcType="TINYINT" />
+    <result column="condition_type" property="conditionType" jdbcType="TINYINT" />
+    <result column="map_type" property="mapType" jdbcType="TINYINT" />
+    <result column="map_key" property="mapKey" jdbcType="VARCHAR" />
+    <result column="extra_amount" property="extraAmount" jdbcType="DECIMAL" />
+    <result column="extra_name" property="extraName" jdbcType="VARCHAR" />
+    <result column="extra_remark" property="extraRemark" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, config_order_id, extra_type, condition_type, map_type, map_key, extra_amount, 
+    extra_name, extra_remark, create_time, update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from config_print_order_extra_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from config_print_order_extra_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.morelinks.feign.micro.order.api.model.ConfigPrintOrderExtraInfo" >
+    insert into config_print_order_extra_info (id, config_order_id, extra_type, 
+      condition_type, map_type, map_key, 
+      extra_amount, extra_name, extra_remark, 
+      create_time, update_time)
+    values (#{id,jdbcType=INTEGER}, #{configOrderId,jdbcType=VARCHAR}, #{extraType,jdbcType=TINYINT}, 
+      #{conditionType,jdbcType=TINYINT}, #{mapType,jdbcType=TINYINT}, #{mapKey,jdbcType=VARCHAR}, 
+      #{extraAmount,jdbcType=DECIMAL}, #{extraName,jdbcType=VARCHAR}, #{extraRemark,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+    <selectKey keyProperty="id" order="AFTER" resultType="int" >
+      SELECT LAST_INSERT_ID() AS ID
+    </selectKey>
+  </insert>
+  <insert id="insertSelective" parameterType="com.morelinks.feign.micro.order.api.model.ConfigPrintOrderExtraInfo" >
+    insert into config_print_order_extra_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="configOrderId != null" >
+        config_order_id,
+      </if>
+      <if test="extraType != null" >
+        extra_type,
+      </if>
+      <if test="conditionType != null" >
+        condition_type,
+      </if>
+      <if test="mapType != null" >
+        map_type,
+      </if>
+      <if test="mapKey != null" >
+        map_key,
+      </if>
+      <if test="extraAmount != null" >
+        extra_amount,
+      </if>
+      <if test="extraName != null" >
+        extra_name,
+      </if>
+      <if test="extraRemark != null" >
+        extra_remark,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="configOrderId != null" >
+        #{configOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="extraType != null" >
+        #{extraType,jdbcType=TINYINT},
+      </if>
+      <if test="conditionType != null" >
+        #{conditionType,jdbcType=TINYINT},
+      </if>
+      <if test="mapType != null" >
+        #{mapType,jdbcType=TINYINT},
+      </if>
+      <if test="mapKey != null" >
+        #{mapKey,jdbcType=VARCHAR},
+      </if>
+      <if test="extraAmount != null" >
+        #{extraAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="extraName != null" >
+        #{extraName,jdbcType=VARCHAR},
+      </if>
+      <if test="extraRemark != null" >
+        #{extraRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+    <selectKey keyProperty="id" order="AFTER" resultType="int" >
+      SELECT LAST_INSERT_ID() AS ID
+    </selectKey>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.morelinks.feign.micro.order.api.model.ConfigPrintOrderExtraInfo" >
+    update config_print_order_extra_info
+    <set >
+      <if test="configOrderId != null" >
+        config_order_id = #{configOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="extraType != null" >
+        extra_type = #{extraType,jdbcType=TINYINT},
+      </if>
+      <if test="conditionType != null" >
+        condition_type = #{conditionType,jdbcType=TINYINT},
+      </if>
+      <if test="mapType != null" >
+        map_type = #{mapType,jdbcType=TINYINT},
+      </if>
+      <if test="mapKey != null" >
+        map_key = #{mapKey,jdbcType=VARCHAR},
+      </if>
+      <if test="extraAmount != null" >
+        extra_amount = #{extraAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="extraName != null" >
+        extra_name = #{extraName,jdbcType=VARCHAR},
+      </if>
+      <if test="extraRemark != null" >
+        extra_remark = #{extraRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.morelinks.feign.micro.order.api.model.ConfigPrintOrderExtraInfo" >
+    update config_print_order_extra_info
+    set config_order_id = #{configOrderId,jdbcType=VARCHAR},
+      extra_type = #{extraType,jdbcType=TINYINT},
+      condition_type = #{conditionType,jdbcType=TINYINT},
+      map_type = #{mapType,jdbcType=TINYINT},
+      map_key = #{mapKey,jdbcType=VARCHAR},
+      extra_amount = #{extraAmount,jdbcType=DECIMAL},
+      extra_name = #{extraName,jdbcType=VARCHAR},
+      extra_remark = #{extraRemark,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP}
+    <where >
+      id = #{id,jdbcType=INTEGER}
+    </where>
+  </update>
+  <select id="queryPageResult" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from 
+    config_print_order_extra_info
+    <where >
+      <if test="condition.id != null" >
+        and id = #{condition.id,jdbcType=INTEGER}
+      </if>
+      <if test="condition.configOrderId != null and condition.configOrderId != ''" >
+        and config_order_id = #{condition.configOrderId,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.extraType != null" >
+        and extra_type = #{condition.extraType,jdbcType=TINYINT}
+      </if>
+      <if test="condition.conditionType != null" >
+        and condition_type = #{condition.conditionType,jdbcType=TINYINT}
+      </if>
+      <if test="condition.mapType != null" >
+        and map_type = #{condition.mapType,jdbcType=TINYINT}
+      </if>
+      <if test="condition.mapKey != null and condition.mapKey != ''" >
+        and map_key = #{condition.mapKey,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.extraAmount != null" >
+        and extra_amount = #{condition.extraAmount,jdbcType=DECIMAL}
+      </if>
+      <if test="condition.extraName != null and condition.extraName != ''" >
+        and extra_name = #{condition.extraName,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.extraRemark != null and condition.extraRemark != ''" >
+        and extra_remark = #{condition.extraRemark,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.createTime != null" >
+        and create_time = #{condition.createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.updateTime != null" >
+        and update_time = #{condition.updateTime,jdbcType=TIMESTAMP}
+      </if>
+    </where>
+    <if test="page.sort != null and page.sort != ''" >
+      ORDER BY ${page.sort} ${page.order}
+    </if>
+    <if test="page != null" >
+      limit #{page.offset}, #{page.limit}
+    </if>
+  </select>
+  <select id="queryPageResultCount" resultType="int" >
+    select count(*) from 
+    config_print_order_extra_info
+    <where >
+      <if test="condition.id != null" >
+        and id = #{condition.id,jdbcType=INTEGER}
+      </if>
+      <if test="condition.configOrderId != null and condition.configOrderId != ''" >
+        and config_order_id = #{condition.configOrderId,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.extraType != null" >
+        and extra_type = #{condition.extraType,jdbcType=TINYINT}
+      </if>
+      <if test="condition.conditionType != null" >
+        and condition_type = #{condition.conditionType,jdbcType=TINYINT}
+      </if>
+      <if test="condition.mapType != null" >
+        and map_type = #{condition.mapType,jdbcType=TINYINT}
+      </if>
+      <if test="condition.mapKey != null and condition.mapKey != ''" >
+        and map_key = #{condition.mapKey,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.extraAmount != null" >
+        and extra_amount = #{condition.extraAmount,jdbcType=DECIMAL}
+      </if>
+      <if test="condition.extraName != null and condition.extraName != ''" >
+        and extra_name = #{condition.extraName,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.extraRemark != null and condition.extraRemark != ''" >
+        and extra_remark = #{condition.extraRemark,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.createTime != null" >
+        and create_time = #{condition.createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.updateTime != null" >
+        and update_time = #{condition.updateTime,jdbcType=TIMESTAMP}
+      </if>
+    </where>
+  </select>
+</mapper>

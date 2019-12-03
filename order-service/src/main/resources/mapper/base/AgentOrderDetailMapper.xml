@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.morelinks.service.micro.order.mapper.AgentOrderDetailMapper" >
+  <resultMap id="BaseResultMap" type="com.morelinks.feign.micro.order.api.model.AgentOrderDetail" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="agent_order_id" property="agentOrderId" jdbcType="VARCHAR" />
+    <result column="product_id" property="productId" jdbcType="INTEGER" />
+    <result column="product_num" property="productNum" jdbcType="INTEGER" />
+    <result column="product_name" property="productName" jdbcType="VARCHAR" />
+    <result column="discount_desc" property="discountDesc" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="ori_amount" property="oriAmount" jdbcType="DECIMAL" />
+    <result column="product_amount" property="productAmount" jdbcType="DECIMAL" />
+    <result column="discount_amount" property="discountAmount" jdbcType="DECIMAL" />
+    <result column="core_product_type" property="coreProductType" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, agent_order_id, product_id, product_num, product_name, discount_desc, remark, 
+    create_time, update_time, ori_amount, product_amount, discount_amount, core_product_type
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from agent_order_detail
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from agent_order_detail
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.morelinks.feign.micro.order.api.model.AgentOrderDetail" >
+    insert into agent_order_detail (id, agent_order_id, product_id, 
+      product_num, product_name, discount_desc, 
+      remark, create_time, update_time, 
+      ori_amount, product_amount, discount_amount, 
+      core_product_type)
+    values (#{id,jdbcType=INTEGER}, #{agentOrderId,jdbcType=VARCHAR}, #{productId,jdbcType=INTEGER}, 
+      #{productNum,jdbcType=INTEGER}, #{productName,jdbcType=VARCHAR}, #{discountDesc,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{oriAmount,jdbcType=DECIMAL}, #{productAmount,jdbcType=DECIMAL}, #{discountAmount,jdbcType=DECIMAL}, 
+      #{coreProductType,jdbcType=TINYINT})
+    <selectKey keyProperty="id" order="AFTER" resultType="int" >
+      SELECT LAST_INSERT_ID() AS ID
+    </selectKey>
+  </insert>
+  <insert id="insertSelective" parameterType="com.morelinks.feign.micro.order.api.model.AgentOrderDetail" >
+    insert into agent_order_detail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="agentOrderId != null" >
+        agent_order_id,
+      </if>
+      <if test="productId != null" >
+        product_id,
+      </if>
+      <if test="productNum != null" >
+        product_num,
+      </if>
+      <if test="productName != null" >
+        product_name,
+      </if>
+      <if test="discountDesc != null" >
+        discount_desc,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="oriAmount != null" >
+        ori_amount,
+      </if>
+      <if test="productAmount != null" >
+        product_amount,
+      </if>
+      <if test="discountAmount != null" >
+        discount_amount,
+      </if>
+      <if test="coreProductType != null" >
+        core_product_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="agentOrderId != null" >
+        #{agentOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="productId != null" >
+        #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="productNum != null" >
+        #{productNum,jdbcType=INTEGER},
+      </if>
+      <if test="productName != null" >
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="discountDesc != null" >
+        #{discountDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="oriAmount != null" >
+        #{oriAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="productAmount != null" >
+        #{productAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="discountAmount != null" >
+        #{discountAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="coreProductType != null" >
+        #{coreProductType,jdbcType=TINYINT},
+      </if>
+    </trim>
+    <selectKey keyProperty="id" order="AFTER" resultType="int" >
+      SELECT LAST_INSERT_ID() AS ID
+    </selectKey>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.morelinks.feign.micro.order.api.model.AgentOrderDetail" >
+    update agent_order_detail
+    <set >
+      <if test="agentOrderId != null" >
+        agent_order_id = #{agentOrderId,jdbcType=VARCHAR},
+      </if>
+      <if test="productId != null" >
+        product_id = #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="productNum != null" >
+        product_num = #{productNum,jdbcType=INTEGER},
+      </if>
+      <if test="productName != null" >
+        product_name = #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="discountDesc != null" >
+        discount_desc = #{discountDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="oriAmount != null" >
+        ori_amount = #{oriAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="productAmount != null" >
+        product_amount = #{productAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="discountAmount != null" >
+        discount_amount = #{discountAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="coreProductType != null" >
+        core_product_type = #{coreProductType,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.morelinks.feign.micro.order.api.model.AgentOrderDetail" >
+    update agent_order_detail
+    set agent_order_id = #{agentOrderId,jdbcType=VARCHAR},
+      product_id = #{productId,jdbcType=INTEGER},
+      product_num = #{productNum,jdbcType=INTEGER},
+      product_name = #{productName,jdbcType=VARCHAR},
+      discount_desc = #{discountDesc,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      ori_amount = #{oriAmount,jdbcType=DECIMAL},
+      product_amount = #{productAmount,jdbcType=DECIMAL},
+      discount_amount = #{discountAmount,jdbcType=DECIMAL},
+      core_product_type = #{coreProductType,jdbcType=TINYINT}
+    <where >
+      id = #{id,jdbcType=INTEGER}
+    </where>
+  </update>
+  <select id="queryPageResult" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from 
+    agent_order_detail
+    <where >
+      <if test="condition.id != null" >
+        and id = #{condition.id,jdbcType=INTEGER}
+      </if>
+      <if test="condition.agentOrderId != null and condition.agentOrderId != ''" >
+        and agent_order_id = #{condition.agentOrderId,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.productId != null" >
+        and product_id = #{condition.productId,jdbcType=INTEGER}
+      </if>
+      <if test="condition.productNum != null" >
+        and product_num = #{condition.productNum,jdbcType=INTEGER}
+      </if>
+      <if test="condition.productName != null and condition.productName != ''" >
+        and product_name = #{condition.productName,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.discountDesc != null and condition.discountDesc != ''" >
+        and discount_desc = #{condition.discountDesc,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.remark != null and condition.remark != ''" >
+        and remark = #{condition.remark,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.createTime != null" >
+        and create_time = #{condition.createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.updateTime != null" >
+        and update_time = #{condition.updateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.oriAmount != null" >
+        and ori_amount = #{condition.oriAmount,jdbcType=DECIMAL}
+      </if>
+      <if test="condition.productAmount != null" >
+        and product_amount = #{condition.productAmount,jdbcType=DECIMAL}
+      </if>
+      <if test="condition.discountAmount != null" >
+        and discount_amount = #{condition.discountAmount,jdbcType=DECIMAL}
+      </if>
+      <if test="condition.coreProductType != null" >
+        and core_product_type = #{condition.coreProductType,jdbcType=TINYINT}
+      </if>
+    </where>
+    <if test="page.sort != null and page.sort != ''" >
+      ORDER BY ${page.sort} ${page.order}
+    </if>
+    <if test="page != null" >
+      limit #{page.offset}, #{page.limit}
+    </if>
+  </select>
+  <select id="queryPageResultCount" resultType="int" >
+    select count(*) from 
+    agent_order_detail
+    <where >
+      <if test="condition.id != null" >
+        and id = #{condition.id,jdbcType=INTEGER}
+      </if>
+      <if test="condition.agentOrderId != null and condition.agentOrderId != ''" >
+        and agent_order_id = #{condition.agentOrderId,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.productId != null" >
+        and product_id = #{condition.productId,jdbcType=INTEGER}
+      </if>
+      <if test="condition.productNum != null" >
+        and product_num = #{condition.productNum,jdbcType=INTEGER}
+      </if>
+      <if test="condition.productName != null and condition.productName != ''" >
+        and product_name = #{condition.productName,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.discountDesc != null and condition.discountDesc != ''" >
+        and discount_desc = #{condition.discountDesc,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.remark != null and condition.remark != ''" >
+        and remark = #{condition.remark,jdbcType=VARCHAR}
+      </if>
+      <if test="condition.createTime != null" >
+        and create_time = #{condition.createTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.updateTime != null" >
+        and update_time = #{condition.updateTime,jdbcType=TIMESTAMP}
+      </if>
+      <if test="condition.oriAmount != null" >
+        and ori_amount = #{condition.oriAmount,jdbcType=DECIMAL}
+      </if>
+      <if test="condition.productAmount != null" >
+        and product_amount = #{condition.productAmount,jdbcType=DECIMAL}
+      </if>
+      <if test="condition.discountAmount != null" >
+        and discount_amount = #{condition.discountAmount,jdbcType=DECIMAL}
+      </if>
+      <if test="condition.coreProductType != null" >
+        and core_product_type = #{condition.coreProductType,jdbcType=TINYINT}
+      </if>
+    </where>
+  </select>
+</mapper>
